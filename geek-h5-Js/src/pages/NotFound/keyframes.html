@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #preloader{
+            position:relative;
+            width: 28px;
+            height: 28px;
+            transform: rotate(45deg);
+            animation: preloader 1.2s infinite linear;
+            margin: 200px auto;
+        }
+        #preloader span{
+            width: 10px;
+            height: 10px;
+            position:absolute;
+            background:#1890ff;
+            border-radius: 100%;
+            display:block;
+            transform-origin: 50% 50%;
+            opacity: .3;
+            animation: preloader_span 1.2s infinite linear;
+        }
+        #preloader span:nth-child(1){
+            top: 0;
+            left: 0;
+        }
+        #preloader span:nth-child(2){
+            top: 0;
+            right: 0;
+            animation-delay: 0.4s;
+        }
+        #preloader span:nth-child(3){
+            right: 0;
+            bottom: 0;
+            animation-delay: 0.8s;
+        }
+        #preloader span:nth-child(4){
+            bottom: 0;
+            left: 0;
+            animation-delay: 1.2s;
+        }
+        @keyframes preloader {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes preloader_span {
+            0% { opacity: .3; }
+            50% {  opacity: 1; }
+            100% { opacity: .3; }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>

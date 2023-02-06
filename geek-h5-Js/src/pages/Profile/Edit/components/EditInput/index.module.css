@@ -1,0 +1,29 @@
+.root {
+  width: 375px;
+  height: 100%;
+  background-color: #f7f8fa;
+}
+.root :global .navbar {
+  background-color: transparent;
+}
+.root :global .commit-btn {
+  color: #fc6627;
+  font-size: 17px;
+}
+.root :global .content {
+  padding: 0 16px;
+}
+.root :global .content h3 {
+  padding: 15px 0;
+  font-size: 17px;
+  color: #333;
+}
+.root :global .content .input-wrap {
+  height: 44px;
+  padding-left: 16px;
+  background-color: #fff;
+}
+.root :global .content .input-wrap input {
+  height: 44px;
+  font-size: 14px;
+}

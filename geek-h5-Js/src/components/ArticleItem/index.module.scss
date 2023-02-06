@@ -1,0 +1,89 @@
+@import '@scss/hairline.scss';
+
+.root {
+  position: relative;
+  padding: 15px 0;
+  @include hairline(bottom, #f0f0f0);
+
+  :global {
+    // 如果没有图片、那么只有H3、H3用flex布局、即可
+    // 如果一张图片、那么H3用flex布局、右侧盒子有宽高、左右显示即可
+    // 如果有三张图片、让三个图片的父盒子另起一行即可
+
+    .article-content {
+      display: flex;
+      align-items: flex-start;
+
+      h3 {
+        flex: 1;
+        padding-right: 10px;
+        margin-bottom: 10px;
+        font-weight: normal;
+        line-height: 22px;
+        font-size: 17px;
+        word-break: break-all;
+
+        display: -webkit-box;
+        overflow: hidden;
+        // 文本 省略号...
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        // background-color: rgb(129, 73, 73);
+      }
+
+      .article-img-wrapper {
+        width: 110px;
+        height: 75px;
+        overflow: hidden;
+        border-radius: 4px;
+
+        // background-color: rgb(155, 120, 120);
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    // t3 下的样式
+    .article-content.t3 {
+      display: block;  
+
+      // background-color: rgb(49, 219, 140);
+
+      .article-imgs {
+        display: flex; 
+        justify-content: space-between;
+      }
+    }
+
+    .article-info {
+      position: relative;
+      margin-top: 10px;
+      color: #999;
+      line-height: 22px;
+      font-size: 12px;
+
+      span {
+        padding-right: 10px;
+
+        &.close {
+          position: absolute;
+          right: 0;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .none-mt {
+      margin-top: 0;
+
+      h3 {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+@import '@scss/hairline.scss';
+
+.root {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 46px 0 50px 0;
+
+  :global {
+
+    /*--- 顶部 Navbar导航 --*/
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+
+
+    /*--- 聊天内容的父盒子 --*/
+    .chat-list {
+      /*--- 得有高度才能滚动，否则无法滚动 --*/
+      height: 100%;
+      /*--- 给盒子里面加滚动效果 --*/
+      overflow-y: scroll;
+      /*--- 父盒子给每个子盒子加 padding --*/
+      padding: 15px 16px;
+    }
+
+
+
+    /*--- 聊天内容的子盒子 - 遍历的盒子 --*/
+    .chat-item {
+      display: flex;
+      margin-bottom: 12px;
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+      }
+
+      .message {
+        max-width: 254px;
+        padding: 12px 8px;
+        line-height: 1.4;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #f7f8fa;
+      }
+    }
+
+    
+    // 如果类名是自己的
+    .user {
+      /*--- 横向反转 --*/
+      flex-direction: row-reverse;
+
+      .icon, img {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+    }
+
+
+
+    /*--- 底部输入框 --*/
+    .input-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 50px;
+      padding: 7px 26px;
+
+      .input {
+        height: 36px;
+        min-height: 0;
+        padding-left: 27px;
+        border-radius: 18px;
+        background-color: #f7f8fa;
+        font-size: 14px;
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
+      .no-border {
+        @include hairline-remove(bottom);
+      }
+
+      .icon {
+        position: absolute;
+        top: 50%;
+        margin-top: -6.5px;
+        margin-left: 10px;
+        font-size: 13px;
+      }
+    }
+  }
+}

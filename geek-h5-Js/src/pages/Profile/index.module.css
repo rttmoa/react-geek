@@ -1,0 +1,175 @@
+@charset "UTF-8";
+.root {
+  height: 100%;
+  background-color: #f8f8f8; /*---  灰色背景 --*/
+}
+.root :global .profile {
+  height: 290px;
+  /*--- 向中间撑起盒子 --*/
+  padding: 0 15px;
+  /*--- 底左圆角、底右圆角、渐变 --*/
+  border-bottom-left-radius: 500px 120px;
+  border-bottom-right-radius: 500px 120px;
+  background: -webkit-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
+  background: -moz-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
+  background: -o-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
+  background: linear-gradient(318deg, #b2b5db 2%, #565482 85%, #494675 97%);
+}
+.root :global .user-info {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  /*--- 垂直居中 --*/
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 40px 0 15px;
+}
+.root :global .user-info .user-name {
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 18px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+}
+.root :global .user-info a {
+  line-height: 16px;
+  color: #fff;
+  font-size: 12px;
+}
+.root :global .user-info a:visited {
+  color: #fff;
+}
+.root :global .user-info a:hover {
+  color: orange;
+}
+.root :global .user-info .icon {
+  width: 9px;
+  height: 16px;
+  vertical-align: middle;
+}
+.root :global .avatar {
+  width: 50px;
+  height: 50px;
+  /*--- 边框效果 --*/
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  overflow: hidden; /*--- ???? --*/
+}
+.root :global .avatar img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.root :global .read-info {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 141px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 12px;
+  color: #f7f8fa;
+  background: -webkit-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
+  background: -moz-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
+  background: -o-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
+  background: linear-gradient(319deg, #585089 0%, #2c2a6b 98%);
+}
+.root :global .read-info .icon {
+  margin-right: 5px;
+  font-size: 20px;
+}
+.root :global .read-info span {
+  display: inline-block;
+  margin: 0 3px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffbc3d;
+}
+.root :global .count-list {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px 0 15px 0;
+}
+.root :global .count-list .count-item {
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  /*--- 水平居中 --*/
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+}
+.root :global .count-list .count-item p:first-child {
+  height: 14px;
+  margin-bottom: 6px;
+}
+.root :global .user-links {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 0;
+  font-size: 12px;
+  /*--- 水平居中 - 让4个div中的子元素 --*/
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  color: #333;
+  /*--- 让4个盒子分成4等份 --*/
+}
+.root :global .user-links .link-item {
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.root :global .user-links .icon {
+  margin-bottom: 11px;
+  font-size: 23px;
+}
+.root :global .more-service {
+  margin: 11px 16px 0 16px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.root :global .more-service h3 {
+  padding: 15px;
+  font-size: 17px;
+  color: #333;
+}
+.root :global .more-service .service-list {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.root :global .more-service .service-item {
+  width: 25%;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+}
+.root :global .more-service .icon {
+  margin-bottom: 11px;
+  font-size: 22px;
+}
