@@ -1,0 +1,28 @@
+.root {
+  :global {
+    .video-list {
+      padding: 0 16px;
+    }
+    .video-item {
+      position: relative;
+      padding: 10px 0;
+      // 底部边框 1px #f0f0f0
+      border-bottom: 1px solid #f0f0f0;
+      span {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+    .title {
+      line-height: 1.4;
+      font-size: 16px;
+      font-weight: normal;
+      padding-bottom: 5px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+}

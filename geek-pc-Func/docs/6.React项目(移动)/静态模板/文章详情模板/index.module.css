@@ -1,0 +1,215 @@
+.root {
+  height: 100%;
+}
+.root :global .root-wrapper {
+  position: relative;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  z-index: 1;
+}
+.root :global .adm-nav-bar-left {
+  -webkit-flex: unset;
+     -moz-box-flex: unset;
+      -ms-flex: unset;
+          flex: unset;
+}
+.root :global .adm-nav-bar-title {
+  padding: 0;
+}
+.root :global .am-icon-ellipsis {
+  color: #323233;
+}
+.root :global .nav-author {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #3a3948;
+  font-size: 15px;
+}
+.root :global .nav-author img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.root :global .nav-author .name {
+  margin: 0 8px;
+  padding-right: 10px;
+  border-right: 1px solid #bfc2cb;
+  line-height: 10px;
+}
+.root :global .nav-author .follow {
+  color: #de644b;
+}
+.root :global .nav-author .followed {
+  color: #ccc;
+}
+.root :global .wrapper {
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-bottom: 50px;
+  overflow-y: auto;
+  background-color: #f7f8fa;
+}
+.root :global .article-wrapper {
+  padding: 0 16px;
+  background-color: #fff;
+}
+.root :global .header {
+  position: relative;
+  padding: 18px 0 12px;
+}
+.root :global .header .title {
+  margin-bottom: 12px;
+  font-size: 23px;
+  color: #333;
+}
+.root :global .header .info {
+  height: 12px;
+  margin-bottom: 23px;
+  line-height: 12px;
+  color: #a5a6ab;
+  font-size: 11px;
+}
+.root :global .header .info span {
+  display: inline-block;
+  padding: 0 8px;
+  border-right: 1px solid #bfc2cb;
+}
+.root :global .header .info span:first-child {
+  padding-left: 0;
+}
+.root :global .header .info span:last-child {
+  border-right: 0;
+}
+.root :global .header .author {
+  position: relative;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.root :global .header .author img {
+  width: 34px;
+  height: 34px;
+  margin-right: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.root :global .header .author .name {
+  color: #333;
+  font-size: 15px;
+}
+.root :global .header .author .follow {
+  position: absolute;
+  right: 0;
+  height: 29px;
+  padding: 8px 18px;
+  border-radius: 15px;
+  line-height: 1;
+  color: #fff;
+  font-size: 14px;
+  background-color: #fc6627;
+}
+.root :global .header .author .followed {
+  color: #a5a6ab;
+  background-color: #f7f8fa;
+}
+.root :global .content {
+  width: 100%;
+  padding: 30px 0 25px;
+  line-height: 27px;
+  overflow: hidden;
+  color: #595769;
+  font-size: 16px;
+}
+.root :global .content .content-html {
+  min-height: 200px;
+  word-break: break-all;
+}
+.root :global .content .content-html pre {
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+.root :global .content .content-html pre code {
+  white-space: pre;
+}
+.root :global .content .content-html pre code.hljs {
+  display: block;
+  padding: 7px;
+  overflow-x: auto;
+}
+.root :global .content img {
+  max-width: 100%;
+}
+.root :global .content .date {
+  padding-top: 25px;
+  text-align: right;
+  font-size: 12px;
+  color: #a5a6ab;
+}
+.root :global .comment {
+  margin-top: 12px;
+  background-color: #fff;
+}
+.root :global .comment .comment-header {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #333;
+}
+.root :global .comment .comment-header span:last-child {
+  color: #a5a6ab;
+  font-size: 14px;
+  font-weight: normal;
+}
+.root :global .comment .comment-list {
+  margin-top: 3px;
+}
+
+:global .comment-popup .adm-popup-body {
+  height: 100%;
+}
+:global .comment-popup-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+:global .reply-popup .adm-popup-body {
+  width: 100%;
+}
+:global .reply-popup-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px 20px 0px 0px;
+}

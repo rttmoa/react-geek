@@ -1,0 +1,27 @@
+.root {
+  height: 100%;
+  background-color: #fff;
+
+  :global {
+    .nav .right { // 控制 NavBar 的右侧属性
+      padding: 0;
+    }
+    .publish {
+      color: #fc6627;
+      font-size: 17px;
+    }
+
+    .input-area {
+      padding: 15px 16px;
+      font-size: 16px;
+
+      &::placeholder {
+        font-size: 16px;
+      }
+
+      .at {
+        color: #969799;
+      }
+    }
+  }
+}

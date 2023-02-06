@@ -1,0 +1,14 @@
+.root {
+  padding-top: 46px;
+  :global {
+    .navBar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    .article-list {
+      padding: 0 16px;
+    }
+  }
+}

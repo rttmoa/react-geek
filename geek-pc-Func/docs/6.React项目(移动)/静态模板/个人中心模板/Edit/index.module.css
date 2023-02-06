@@ -1,0 +1,77 @@
+.root {
+  height: 100%;
+}
+.root :global .content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+.root :global .wrapper {
+  background-color: #f7f8fa;
+}
+.root :global .profile-list {
+  font-size: 14px;
+}
+.root :global .profile-list .adm-list-item {
+  padding-left: 17px;
+}
+.root :global .profile-list .adm-list-item-content-extra {
+  padding-right: 13px;
+  color: #3a3948;
+}
+.root :global .profile-list .adm-list-item-content-extra .avatar-wrapper {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.root :global .profile-list .adm-list-item-content-extra .avatar-wrapper img {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.root :global .profile-list .adm-list-item-content-extra .intro {
+  color: #c8c9cc;
+}
+.root :global .profile-list .adm-list-item-content-extra .intro.normal {
+  color: #3a3948;
+}
+.root :global .profile-list .adm-list-item-content-arrow {
+  padding-left: 0;
+}
+.root :global .profile-list:nth-child(2) {
+  margin-top: 12px;
+}
+.root :global .logout {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+}
+.root :global .logout .btn {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  background: -webkit-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: -moz-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: -o-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: linear-gradient(315deg, #fe4f4f, #fc6627);
+}
+
+:global .adm-picker-popup-body .adm-picker-popup-header {
+  -o-background-size: 0;
+     background-size: 0;
+}
+:global .adm-picker-popup-body .adm-picker-popup-header::after {
+  display: none !important;
+}
+:global .adm-picker-header .adm-picker-header-button {
+  font-size: 14px;
+  color: #969799;
+}
+:global .adm-picker-header .adm-picker-header-button:nth-last-child(1) {
+  color: #fc6627;
+}

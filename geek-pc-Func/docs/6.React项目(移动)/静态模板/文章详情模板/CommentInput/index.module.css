@@ -1,0 +1,31 @@
+.root {
+  height: 100%;
+  background-color: #fff;
+  width: 375px;
+}
+.root :global .publish {
+  color: #fc6627;
+  font-size: 17px;
+}
+.root :global .input-area {
+  padding: 15px 16px;
+  font-size: 16px;
+}
+.root :global .input-area::-webkit-input-placeholder {
+  font-size: 16px;
+}
+.root :global .input-area:-moz-placeholder {
+  font-size: 16px;
+}
+.root :global .input-area::-moz-placeholder {
+  font-size: 16px;
+}
+.root :global .input-area:-ms-input-placeholder {
+  font-size: 16px;
+}
+.root :global .input-area::placeholder {
+  font-size: 16px;
+}
+.root :global .input-area .at {
+  color: #969799;
+}

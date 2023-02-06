@@ -1,0 +1,39 @@
+.root {
+  width: 375px;
+  height: 100%;
+  background-color: #f7f8fa;
+}
+.root :global .navbar {
+  background-color: transparent;
+}
+.root :global .commit-btn {
+  color: #fc6627;
+  font-size: 17px;
+}
+.root :global .edit-input-content {
+  padding: 0 16px;
+}
+.root :global .edit-input-content h3 {
+  padding: 15px 0;
+  font-size: 17px;
+  color: #333;
+}
+.root :global .edit-input-content .input-wrap {
+  height: 44px;
+  padding-left: 16px;
+  background-color: #fff;
+}
+.root :global .edit-input-content .input-wrap input {
+  height: 44px;
+  font-size: 14px;
+}
+.root :global .edit-input-content .textarea {
+  --font-size: 14px;
+  padding: 16px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.root :global .edit-input-content .textarea .adm-text-area-count {
+  font-size: 12px;
+}

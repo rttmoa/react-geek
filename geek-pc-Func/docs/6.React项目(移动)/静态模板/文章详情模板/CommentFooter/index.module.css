@@ -1,0 +1,66 @@
+.root {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+.root :global .input-btn {
+  -webkit-flex: 1;
+     -moz-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 36px;
+  padding-left: 10px;
+  color: #9ea1ae;
+  font-size: 14px;
+  background-color: #f7f8fa;
+  border-radius: 18px;
+}
+.root :global .input-btn .icon {
+  margin-right: 4px;
+  color: #9ea1ae;
+}
+.root :global .action-item {
+  position: relative;
+  padding: 0 13px;
+  text-align: center;
+  color: #595769;
+  font-size: 12px;
+}
+.root :global .action-item .icon {
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+.root :global .action-item:last-child {
+  padding-right: 0;
+}
+.root :global .action-item .bage {
+  position: absolute;
+  right: 8px;
+  top: -3px;
+  padding: 1px 4px;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #fc6627;
+  font-size: 12px;
+  line-height: 1;
+}

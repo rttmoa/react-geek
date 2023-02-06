@@ -1,0 +1,34 @@
+.root {
+  height: 100%;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #fff;
+  width: 375px;
+}
+.root :global .reply-wrapper {
+  position: relative;
+  z-index: 1;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+.root :global .transparent-navbar {
+  background-color: transparent;
+}
+.root :global .origin-comment {
+  position: relative;
+  padding-top: 7px;
+  border-bottom: 1px solid #f0f0f0;
+  overflow-y: scroll;
+}
+.root :global .origin-comment .reply-header {
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 500;
+}

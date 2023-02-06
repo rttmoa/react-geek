@@ -1,0 +1,62 @@
+.root :global .login-form {
+  padding: 0 33px;
+}
+.root :global .login-form .title {
+  margin: 54px 0 13px 0;
+}
+.root :global .login-form .adm-list {
+  --align-items: end !important;
+}
+.root :global .login-form .adm-list-default {
+  border: none;
+}
+.root :global .login-form .adm-list-item {
+  padding: 0;
+}
+.root :global .login-form .login-item {
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+.root :global .login-form .login-item > .adm-list-item-content {
+  height: 70px;
+}
+.root :global .login-form .adm-list-item-content {
+  position: relative;
+  border-bottom: none;
+}
+.root :global .login-form .login-code-extra > .adm-list-item-content {
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+.root :global .login-form .login-code-extra .adm-list-item-content-extra {
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+}
+.root :global .login-form .adm-input-wrapper {
+  --placeholder-color: #a5a6ab;
+}
+.root :global .login-form .code-extra {
+  color: #595769;
+  font-size: 14px;
+}
+.root :global .login-form .code-extra-disabled {
+  color: #a5a6ab;
+}
+.root :global .login-form .adm-list-item-description {
+  position: absolute;
+  bottom: -25px;
+}
+.root :global .login-form .login-submit {
+  height: 50px;
+  margin-top: 38px;
+  border: none;
+  font-size: 16px;
+  background: -webkit-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: -moz-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: -o-linear-gradient(135deg, #fe4f4f, #fc6627);
+  background: linear-gradient(315deg, #fe4f4f, #fc6627);
+}
