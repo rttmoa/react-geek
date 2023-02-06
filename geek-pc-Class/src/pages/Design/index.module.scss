@@ -1,0 +1,23 @@
+.root{
+    // background-color: rgb(241, 242, 250);
+    // color: aquamarine;
+    width: 80%;
+    margin-top: 40px;
+    margin-left: 40px;
+    :global{
+        .footer{
+            // background-color: red;
+            // color: rgb(32, 140, 234);
+            // height: 50px;
+            bottom: 50px;
+            // left: 30px;
+            position: fixed;
+            width: 830px;
+            // height: 20px;
+        }
+        .footer .btn {
+            // color: aqua;
+            // margin-top: 20px;
+        }
+    }
+}

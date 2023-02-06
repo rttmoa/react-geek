@@ -1,0 +1,51 @@
+1
+Redux
+    目的：为React移动端项目做支撑||redux、redux-thunk、react-redux(useDispatch|useSelector)、redux-devtools-extension
+    参考文档：状态管理工具
+    react:负责渲染UI
+    redux:负责管理状态----订阅和取消订阅
+
+redux单独使用
+    action、
+    action-creator、
+    reducer(纯函数)--------只要是固定的输入、必定得到固定的输出   getSum()
+        不得改写参数、不能调用Data.now()等不纯的方法
+    reducer的使用()----------
+    redux-store的使用--------
+    
+
+react-redux结合react项目进行使用
+    react配合redux封装使用
+    react-redux--------------useStore、useSelector、useDispatch
+    useDispatch、useSelector的基本使用----
+    redux应用----------------Women、Men组件 和 Redux的使用
+        ---------------------函数：const addMoney = (money) => {return {type: "Add"} }    接收的参数和返回的参数
+        ---------------------const store = createStore(reducer) 的用法
+    redux模块管理-------------
+    中间件react-thunk的基本使用==>
+        -----------yarn add redux-thunk
+        -----------this.处理异步-----女人做头发案例(day-12 、 react-redux 、 02-redux-应用)
+    action-type的使用---------
+    使用combineReducer合并多个reducer-----
+    导模块---redux(createStore/applyMiddleware/combineReducer)
+        -----react-redux(Provider/useSelector/useDispatch)
+        -----redux-thunk(thunk)
+    redux开发者工具的使用----redux-devtools-extension
+    json-server的使用--------对json文件使用get、delete、put(会覆盖之前的属性)、patch(打补丁，不覆盖原来的值)进行增删改查
+
+
+todos-redux
+    262.todos-redux项目结构------todos相关文件 和 redux相关文件 和 根给子组件传递store数据
+    263-todos-发送请求-获取数据--封装getList方法获取数据 使用useDispatch 和useEffect方法
+    264-关于yarn的使用的说明-----
+    265-todomvc-列表渲染---------在 TodoMain 中渲染 TodoItem 组件
+    266-todomvc-添加任务功能-----TodoHeader中使用useState变成受控组件 || addTodo 中 发请求添加数据 并且更新列表
+    267-关于预检请求的说明-------简单请求和复杂请求
+    268-redux的流程-------------在TOdoItemjs中 第4章/day12/03-redux-todos/TodoItemjs
+    269-todomvc-删除功能的流程---TodoItemjs中有封装的 onchange 方法
+    270-todomvc-思路整理---------
+    271-todomvc-修改任务状态功能--dispatch(changeDone(id, done))
+    272-todomvc-双击显示弹窗-----
+    273-setState同步异步的问题---
+    274-todomvc-修改任务名字-----
+    275-todomvc-底部筛选功能-----

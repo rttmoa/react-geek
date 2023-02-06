@@ -1,0 +1,35 @@
+Hooks
+[] == []   false   数组为复杂类型    复杂类型 比较 地址      对象也是复杂类型
+简单类型比较值 || 复杂类型比较地址
+useEffect博客: useEffect指南 ----
+按需导入 import { } from ''
+render-props==>
+    
+    this.封装-复用鼠标位置的逻辑-----!!!render(()=> {})  传递函数并接收返回值   ||   获取鼠标移动位置  
+    this.复用逻辑-------------------Mouse组件封装后被Cat和Postion组件复用
+    this.整理-----------------------props传递函数并且返回结构就是render模式  ||  this.props.Children(Mousejs)
+    this.模式-----------------------Provider-Consumer 和 Route 都是 render-props模式
+    this.模式-复用Scroll------------获取滚动条的位置   提供函数
+
+高阶组件的使用==>
+    高阶组件=this                HOC在增强的时候不能把 props 丢失
+    this.HOC--------------------封装Mouse组件 Cat和Postion组件复用
+    this.HOC props丢失----------HOC丢失props、withScroll(withMouse(Position)) 会丢失 left和right
+
+HooKs的基本使用==>
+    
+    hooks的基本介绍-------------HOOKS的使用---参考文档
+    hooks的基本使用-------------参考文档
+    hooks的基本语法-------------useState的参数 1.读取状态2.修改状态
+    useState的说明--------------组件的更新过程 再次调用useState、此时React内部会拿到最新的状态的值而非初始值
+    useState的使用规则----------setSate不能用在 if、for和其他函数中  || 组件中hooks的setState 的调用顺序
+
+    useEffect副作用------------参考文档 || 主要作用:渲染UI || 副作用:ajax、手动修改DOM、localStorage
+    useEffect基本使用----------useEffect 执行时机：  每当渲染好 或者 更新后 都会触发useEffect
+    useEffect基本使用----------useEffect(()=>{}) || useEffect(()=>{}, []) 表示注册一次 || useEffect(()=>{}, [count])  
+    useEffect清理副作用--------useEffect依赖 | 用到谁、依赖谁   ||| 内存泄漏问题
+        需要用到清理副作用: 外部数据源 || 定时器 || Window注册事件
+        清理副作用的执行时机： 函数会在组件销毁的时候执行  || componentWillUnmount 
+    自定义hooks的使用----------封装useMouse和useScroll 内部 hooks useState 和 useEffect
+    useEffect发送请求(副作用)--useEffect发送请求.js
+    useEffect取消请求---------使用HOOKS清理副作用

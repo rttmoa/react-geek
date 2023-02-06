@@ -1,0 +1,27 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  // 如果要使用绝对路径，需要使用~
+  background-image: url('~assets/login.png');
+  background-size: cover;
+  position: relative;
+  :global { ///--------------子盒子 包裹到 global 下  不会受别的类影响
+    
+    // 让card水平、垂直居中
+    .login-container {
+      width: 440px;
+      height: 360px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .login-logo {
+      width: 300px;
+      height: 80px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      // console.log('Promise', Promise.prototype)
+      // 得到一个Promise对象
+      const p = new Promise((resolve, reject) => {
+        resolve(200)
+        // reject(a) 
+      })
+      // console.log('p', p)
+
+      // promise还提供了一些常用的静态方法
+      // Promise.resolve() Promise.reject() Promise.all() Promise.race()
+
+      // 1. Promise.resolve(200) 会返回一个成功的promise
+      // 等价于
+      // new Promise((resolve, reject) => {
+      //   resolve(200)
+      // })
+
+      // 2. Promise.reject(new Error('123')) 返回一个失败的promise
+      // 等价于
+      // new Promise((resolve, reject) => {
+      //   reject(new Error())
+      // })
+
+      // 3. Promise.all()  接受一个promise数组，返回一个promise
+      // 只有所有的promise都成功了，返回的promise才会成功
+      // Promise.all([p1, p2, p3, p4]).then()
+
+      // 4. Promise.race() 接收一个Promise数组，返回一个promise
+      // 返回的promise只会取决于第一个结束的promise
+      // Promise.race([p1, p2, p3, p4])  获取一个数据  缓存  请求获取
+
+      
+
+      
+
+    </script>
+  </body>
+</html>

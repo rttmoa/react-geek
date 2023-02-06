@@ -1,0 +1,20 @@
+
+todos-hooks案例
+    todos-hooks: this
+    this.列表展示--------------父组件useState传递list给TodoMainjs遍历list数据 渲染Todos的结构
+    this.添加任务功能----------父子组件传递数据 addTodo TodoHeader添加的数据在父组件中显示
+    this.useRef的使用----------非受控方式 ---- 使用 useRef 获取 input 输入框的值  ||  React.createRef = useRef
+    useContext的使用-----------可以使用多次useContext代替Consumer消费Provider传递的属性
+
+todos-hooks-功能实现-
+    233-修改状态和本地存储---使用useEffect存储数据 || 使用useState取数据(2.传递箭头函数 执行一次)
+    234-双击显示弹窗---------双击事件、失去焦点、自动获取焦点(useEffect)
+    234-双击显示弹窗---------
+    235-双击修改任务---------
+    236-底部筛选功能---------显示数量(filter过滤) 控制active、completed、all  显示对应的数组结构showList
+    237-自定义hooks优化------use开头 useTodos  || useState、useEffect、添加任务、修改任务、删除任务 放到 自定义HOOKS中
+
+    238-React-memo高阶组件的使用--const MemoChild = React.memo(Child)     v-once  v-pre
+    239-useCallback的说明---------避免非必要的渲染 
+    240-useMemo的使用-------------渲染 sum 在使用useState渲染解构出来的 [money, setMoney]  使用按钮触发sum   再次使用useMemo
+    241-hooks的复习---------------indexjs

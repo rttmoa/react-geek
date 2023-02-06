@@ -1,0 +1,32 @@
+Context组件之间的通讯(跨级组件传值)
+render-props   HOC   ==> hooks
+props跨组件通信
+propTypes类型校验
+类的 实例成员(通过类实例去访问) 和 静态成员(通过类本身去访问)
+React生命周期
+    1.初始化阶段
+    2.更新阶段
+    3.卸载阶段
+    4.todos 本地存储功能
+    5.todomvc 自动获取焦点
+
+todos案例本地存储案例 componetDidMount  componentDidUpdate
+
+setState有两个作用： 1.修改state的值  2.更新组件(UI)
+setState有两个参数：获取焦点案例
+
+组件更新机制
+
+组件性能优化  ShouldComponentUpdate
+纯组件的使用  PureComponent
+
+
+REACT router路由的使用
+{currentHash === '/home' && <My></My>}  这句代码的意思
+Link 替换成 NavLink 高亮效果  点击哪个类为active   Link与NavLink组件
+
+{文档有案例}
+10.react-router 嵌套路由的配置
+11.Redirect的使用
+12.react-router-dom编程式导航
+13-rect动态路由参数与获取
