@@ -1,7 +1,8 @@
 # 极客园-移动端-JavaScript
 
-* **安装：yarn**
-* **启动：yarn start**
+**安装：`yarn`**
+
+**启动：`yarn start`**
 
 ### 项目中的问题记录
 
@@ -10,6 +11,7 @@
 3. [ ] 模块的暴露及导出、egg：utils-index.js文件、 export*from './http'
 4. [ ] React.ReactNode是组件的render函数的返回值
 5. [ ] React.ReactElement 是一个有  **type** 、**props**和 **key**属性 的对象
+6. [X] jsconfig.json文件配置的作用
 
 **功能**
 
