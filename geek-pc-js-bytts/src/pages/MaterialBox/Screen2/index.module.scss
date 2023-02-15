@@ -1,0 +1,21 @@
+.root {
+
+  // width: 100vw ;
+  // height: 100vh; 
+  // position: relative;
+  :global {
+    ///--------------子盒子 包裹到 global 下  不会受别的类影响
+
+    display: flex;
+    // justify-content: space-around;
+    // justify-content: space-between;
+    // justify-content: space-evenly;
+    margin: 50px 150px;
+    
+
+    .content {
+      // font-size: 23px;
+    }
+   
+  }
+}

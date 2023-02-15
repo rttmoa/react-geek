@@ -1,0 +1,14 @@
+// indexjs获取 root 属性  styles.root
+.root {
+  background-color: skyblue;
+  :global {
+    .list {
+      font-size: 30px;
+      .item {
+        color: blue;
+      }
+    }
+  }
+}
+
+// :global {  }  包裹的类型是全局的类型，不会被css modules转义

@@ -1,0 +1,38 @@
+.root{
+  :global{
+    .logo {
+      height: 28px;
+      margin: 24px;
+      background: rgba(255, 255, 255, 0.3);
+      background-image: url(./Logo.png);
+      background-repeat: no-repeat;
+      background-size:contain; 
+    }
+    .logoText{
+      display: block;
+      padding-left: 42px;
+      line-height: 28px;
+      color: azure;
+      font-weight: 700; 
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    // .logo::after{
+    //   content: "昱庄自动化控制";
+    //   display: block;
+    //   padding-left: 42px;
+    //   line-height: 28px;
+    //   color: azure;
+    //   font-weight: 700; 
+    // }
+    
+    .site-layout .site-layout-background {
+      background: rgb(232, 231, 231);
+    }
+    // @media screen () {
+    // }
+    // ant-layout-sider-children
+
+  }
+}
