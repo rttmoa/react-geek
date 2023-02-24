@@ -7,7 +7,7 @@
 * [X] Login模块
 * [X] Home模块
 * [X] ArticleList模块
-* [ ] ArticlePublish模块 - 要注意
+* [X] ArticlePublish模块 - 要注意
 
   * [ ] 用了哪些antd的组件及如何使用
   * [ ] 一些语法比如全局属性、router中的属性、挂载到this下的属性
