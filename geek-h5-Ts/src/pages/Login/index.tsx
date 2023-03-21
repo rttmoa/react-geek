@@ -38,7 +38,7 @@ export default function Login() {
         if (time === 1) {
           clearInterval(timeId)
         }
-        return time - 1
+        return (time - 1)
       })
     }, 1000)
   }
@@ -76,7 +76,7 @@ export default function Login() {
     errors,
     touched,
     isValid,
-  } = formik
+  } = formik;
   return (
     <div className={styles.root}>
       {/* 导航条 */}
@@ -107,7 +107,7 @@ export default function Login() {
               value={code}
               name="code"
               onChange={handleChange}
-              autoComplete="off"
+              autoComplete="off"  
               onBlur={handleBlur}
               maxLength={6}
             ></Input>

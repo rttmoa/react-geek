@@ -19,11 +19,11 @@ type Props = {
   onLeftClick?: () => void
 } 
 function NavBar({ children, extra, onLeftClick, className }: Props) {
+
   const history = useHistory()
   const back = () => {
-    // 跳回上一页
     if (onLeftClick) {
-      onLeftClick()
+      onLeftClick();
     } else {
       history.go(-1)
     }
@@ -35,8 +35,7 @@ function NavBar({ children, extra, onLeftClick, className }: Props) {
         <Icon type="iconfanhui" onClick={back} />
       </div>
       {/* 居中标题 */}
-      <div className="title">{children}</div>
-
+      <div className="title">{children}</div> 
       {/* 右侧内容 */}
       <div className="right">{extra}</div>
     </div>

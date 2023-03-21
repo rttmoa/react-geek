@@ -2,10 +2,13 @@ import styles from './index.module.scss'
 
 
 
+
+
+
 const EditList = ({ config, onClose, type }) => {
 
-  const list = config[type]
-  
+  const list = config[type];
+
   return (
     <div className={styles.root}>
       {list.map((item) => (

@@ -76,7 +76,7 @@ export default function ProfileEdit() {
       type: "",
     });
   };
-  
+
   useEffect(() => {
     dispatch(getProfile()); // 获取用户编辑信息
   }, [dispatch]);
@@ -214,17 +214,21 @@ export default function ProfileEdit() {
             </DatePicker>
           </List>
         </div>
+
         <input type="file" hidden ref={fileRef} onChange={onFileChange} />
-        {/* 底部栏：退出登录按钮 */}
+
         <div className="logout" onClick={logoutFn}>
           <button className="btn">退出登录</button>
         </div>
+        
       </div>
+
+
       {/* 全屏表单抽屉 */}
       <Drawer
         position="right"
         className="drawer"
-        sidebar={
+        sidebar= {
           open.visible && (
             <EditInput
               onClose={onClose}
@@ -242,7 +246,7 @@ export default function ProfileEdit() {
       <Drawer
         className="drawer-list"
         position="bottom"
-        sidebar={
+        sidebar= {
           listOpen.visible && (
             <EditList
               config={config}

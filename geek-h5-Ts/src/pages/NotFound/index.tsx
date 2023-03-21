@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+
+
 export default function NotFound() {
   // useState 泛型
   // useRef   泛型
