@@ -6,6 +6,7 @@ type Props = {
   children: React.ReactElement | string
   top?: number
 }
+
 const Sticky = ({ children, top = 0 }: Props) => {
   const placeRef = useRef<HTMLDivElement>(null)
   const childrenRef = useRef<HTMLDivElement>(null)

@@ -20,7 +20,7 @@ import { Dialog } from 'antd-mobile-v5'
 
 
 
-
+// 节流
 const Search = () => {
   const history = useHistory()
   const [keyword, setKeyword] = useState('')
@@ -36,16 +36,18 @@ const Search = () => {
   //     console.log('发送请求')
   //   }, 500)
   // }
-  const timerRef = useRef(-1)
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const timerRef = useRef(-1);
+  
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { // 如果一直输入，如果有定时器 会先清除定时器，创建一个定时器
     const text = e.target.value.trim();// 要去除字符串、发请求要用到
     setKeyword(text)
 
-    window.clearTimeout(timerRef.current)
+    window.clearTimeout(timerRef.current);
+
     timerRef.current = window.setTimeout(() => {
-      // console.log('发送请求')
+      console.log('发送请求')
       if (text) {
-        setIsSearching(true)
+        setIsSearching(true);
         /***--- 关键词建议内容 ---**/
         dispatch(getSuggestList(text))
       } else {  
@@ -54,12 +56,7 @@ const Search = () => {
     }, 500)
   }
 
-  useEffect(() => {
-    // 组件销毁时
-    return () => {
-      window.clearTimeout(timerRef.current)
-    }
-  }, [])
+  useEffect(() => {return () => {window.clearTimeout(timerRef.current);}}, [])
 
   /**
    * 让字符串中的指定内容高亮
@@ -84,7 +81,8 @@ const Search = () => {
   const onSearch = (key: string) => {
     // console.log(key)
     // 保存搜索记录
-    if (!key) return
+    if (!key) return;
+
     dispatch(addSearchList(key))
 
     // 跳转页面
@@ -107,11 +105,7 @@ const Search = () => {
       <NavBar
         className="navbar"
         onLeftClick={() => history.go(-1)}
-        extra={
-          <span className="search-text" onClick={() => onSearch(keyword)}>
-            搜索
-          </span>
-        }
+        extra={<span className="search-text" onClick={() => onSearch(keyword)}>搜索</span>}
       >
         <div className="navbar-search">
           <Icon type="iconbtn_search" className="icon-search" />
@@ -181,9 +175,7 @@ const Search = () => {
             {/* Vue中使用HTML：v-html    高亮展示的是纯文本  需要使用HTML格式展示 */}
             <div
               className="result-value"
-              dangerouslySetInnerHTML={{
-                __html: highlight(item, keyword),
-              }}
+              dangerouslySetInnerHTML={{ __html: highlight(item, keyword) }}
             ></div>
           </div>
         ))}

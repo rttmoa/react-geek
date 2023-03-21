@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import Tabs from '@/components/Tabs'
 import { useDispatch } from 'react-redux'
-import {
-  getAllChannels,
-  getUserChannels,
-  setMoreAction,
-} from '@/store/actions/home'
+import { getAllChannels, getUserChannels, setMoreAction } from '@/store/actions/home'
 import { useSelector } from 'react-redux'
 import Icon from '@/components/Icon'
 import { Drawer } from 'antd-mobile'
@@ -36,7 +32,7 @@ export default function Home() {
   // 控制高亮
   const [active, setActive] = useState(0)
   const changeActive = (e: number) => {
-    setActive(e)
+    setActive(e);
     dispatch(
       setMoreAction({
         visible: false,

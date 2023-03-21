@@ -5,12 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './index.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 // import Sticky from '@/components/Sticky'
-import {
-  getArticleDetail,
-  getCommentList,
-  getMoreCommentList,
-  followUser,
-} from '@/store/actions/article'
+import { getArticleDetail, getCommentList, getMoreCommentList, followUser } from '@/store/actions/article'
 import { RootState } from '@/store'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
@@ -35,6 +30,8 @@ import { Comment } from '@/store/reducers/article'
 // const dirty = '<a onclick="javascript:alert(document.cookie) href="#">哈哈哈</a>'
 // const clean = DOMPurify.sanitize(dirty)
 // console.log(clean)
+
+
 
 const Article = () => {
   const history = useHistory()
@@ -161,10 +158,7 @@ const Article = () => {
               <img src={detail.aut_photo} alt="" />
               <span className="name">{detail.aut_name}</span>
               <span
-                className={classNames(
-                  'follow',
-                  detail.is_followed ? 'followed' : ''
-                )}
+                className={classNames('follow',detail.is_followed ? 'followed' : '' )}
                 onClick={onFollowUser}
               >
                 {detail.is_followed ? '已关注' : '关注'}
@@ -172,9 +166,7 @@ const Article = () => {
             </div>
           ) : (
             ''
-          )}
-          {/* 这里可以使用 ? 或者 && */}
-          {/* {isShowAuthor && (<div>123</div>)} */}
+          )} 
         </NavBar>
 
         <>
@@ -194,9 +186,7 @@ const Article = () => {
                   <img src={detail.aut_photo} alt="" />
                   <span className="name">{detail.aut_name}</span>
                   <span
-                    className={classNames('follow', {
-                      followed: detail.is_followed,
-                    })}
+                    className={classNames('follow', {followed: detail.is_followed,})}
                     onClick={onFollowUser}
                   >
                     {detail.is_followed ? '已关注' : '关注'}
@@ -213,7 +203,7 @@ const Article = () => {
                   }}
                 ></div>
                 <div className="date">
-                  发布文章时间：{dayjs(detail.pubdate).format('YYYY-MM-DD')} {/* dayjs和moment模块格式化时间 */} 
+                  发布文章时间：{dayjs(detail.pubdate).format('YYYY-MM-DD')} 
                 </div>
               </div>
             </div>
@@ -313,4 +303,4 @@ const Article = () => {
   )
 }
 
-export default Article
+export default Article;
