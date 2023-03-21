@@ -9,18 +9,23 @@ import { getTokenInfo } from '@/utils/storage'
 import { useDispatch } from 'react-redux'
 import { getUser } from '@/store/actions/profile'
 
+
+
+
+
+
 const Chat = () => {
   const [messageList, setMessageList] = useState([
-    // 放两条初始消息
     { type: 'robot', text: '亲爱的用户您好，小智同学为您服务。' },
-    { type: 'user', text: '你好' },
+    { type: 'user', text: '你好' }
   ])
   const [msg, setMsg] = useState('')
-  const photo = useSelector((state) => state.profile.user.photo)
+  const photo = useSelector((state) => state.profile.user.photo);
   // socketio的链接
   const clientRef = useRef(null)
   const listRef = useRef(null)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // 获取用户信息
     dispatch(getUser())
@@ -34,9 +39,8 @@ const Chat = () => {
       },
       transports: ['websocket'],
     })
-    clientRef.current = client
+    clientRef.current = client;
 
-    //链接服务器成功的事件
     client.on('connect', function () {
       // console.log('连接服务器成功')
       // Toast.info('链接服务器成功，开始聊天吧')
@@ -52,8 +56,7 @@ const Chat = () => {
     client.on('message', function (e) {
       setMessageList((messageList) => {
         return [
-          ...messageList,
-          {
+          ...messageList, {
             type: 'robot',
             text: e.msg,
           },
@@ -67,11 +70,10 @@ const Chat = () => {
     }
   }, [dispatch])
 
+
   useEffect(() => {
-    // 当messageList发生改变，就会执行
     // 让滚动条滚动到最底部
-    listRef.current.scrollTop =
-      listRef.current.scrollHeight - listRef.current.offsetHeight
+    listRef.current.scrollTop = listRef.current.scrollHeight - listRef.current.offsetHeight
   }, [messageList])
 
   const onKeyUp = (e) => {
@@ -81,8 +83,7 @@ const Chat = () => {
     // 1. 需要给服务器发送消息
     // 2. 把自己的消息添加到消息列表中
     setMessageList([
-      ...messageList,
-      {
+      ...messageList, {
         type: 'user',
         text: msg,
       },
@@ -131,6 +132,7 @@ const Chat = () => {
         />
         <Icon type="iconbianji" />
       </div>
+
     </div>
   )
 }

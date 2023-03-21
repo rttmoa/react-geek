@@ -10,13 +10,12 @@ import { LoginAction } from './reducers/login'
 import { ProfileAction } from './reducers/profile'
 import { SearchAction } from './reducers/search'
 import { ArticleAction } from './reducers/article'
+
+
 // 参数1：reducer
 // 参数2：指定store的初始值
-// 参数3：指定中间件
-
-const store = createStore(
-  reducer,
-  {
+// 参数3：指定中间件 
+const store = createStore(reducer, {
     login: getTokenInfo(),
     search: { // 指定初始值
       suggestions: [],
@@ -47,12 +46,8 @@ type RootAction =
   | SearchAction
   | ArticleAction
   
-export type RootThunkAction = ThunkAction<
-  Promise<void>,
-  RootState,
-  unknown,
-  RootAction  // 原： AnyAction   异步dispatch没有返回类型(没有提示)  改：RootAction   dispatch有返回类型了
->
+  // 原： AnyAction   异步dispatch没有返回类型(没有提示)  改：RootAction   dispatch有返回类型了
+export type RootThunkAction = ThunkAction<Promise<void>, RootState, unknown, RootAction>
 
 export default store
 

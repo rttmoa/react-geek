@@ -2,6 +2,7 @@
 
 * **安装：yarn**
 * **启动：yarn start**
+* 端口：3020
 
 js/jsx/ts/tsx/.d.ts
 js: 写js功能和react组件

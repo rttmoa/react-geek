@@ -1,13 +1,7 @@
 // 用于覆盖webpack的配置
-const {
-  override,
-  fixBabelImports,
-  addWebpackAlias,
-  addPostcssPlugins,
-  addWebpackExternals,
-} = require('customize-cra')
-const px2viewport = require('postcss-px-to-viewport')
-const path = require('path')
+const { override, fixBabelImports, addWebpackAlias, addPostcssPlugins, addWebpackExternals } = require('customize-cra');
+const px2viewport = require('postcss-px-to-viewport');
+const path = require('path');
 
 /* 
   css处理器
@@ -30,19 +24,12 @@ const alias = addWebpackAlias({
 })
 
 const postcssPlugins = addPostcssPlugins([
-  px2viewport({
-    viewportWidth: 375,
-  }),
+  px2viewport({ viewportWidth: 375 })
 ])
 
 // 排除第三方的依赖包 - 打包 上线 
-const obj =
-  process.env.NODE_ENV === 'production'
-    ? {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      }
-    : {}
-const externals = addWebpackExternals(obj)
+const obj = process.env.NODE_ENV === 'production' ? { react: 'React', 'react-dom': 'ReactDOM' } : {};
+
+const externals = addWebpackExternals(obj);
 
 module.exports = override(externals, babelPlugin, alias, postcssPlugins)

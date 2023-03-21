@@ -5,6 +5,7 @@ import AuthRoute from './components/AuthRoute'
 import history from './utils/history'
 import KeepAlive from './components/KeepAlive'
 
+
 const Login = React.lazy(() => import('@/pages/Login'))
 const Home = React.lazy(() => import('@/pages/Layout'))
 const ProfileEdit = React.lazy(() => import('@/pages/Profile/Edit'))
@@ -13,17 +14,15 @@ const NotFound = React.lazy(() => import('@/pages/NotFound'))
 const ProfileFeedback = React.lazy(() => import('@/pages/Profile/Feedback'))
 const Search = React.lazy(() => import('@/pages/Search'))
 const SearchResult = React.lazy(() => import('@/pages/Search/Result'))
-const Article = React.lazy(() => import('@/pages/Article'))
-
+const Article = React.lazy(() => import('@/pages/Article'));
 
 
 
 export default function App() {
   return (
-    // 注意： BrowserRouter  等于  Router history={history}
     <Router history={history}>
       <div className="app">
-          <Suspense fallback={<div>loading...</div>}>  {/* 自定义加载中的效果 | 动画效果 */} 
+          <Suspense fallback={<div>Loading...</div>}> 
             <KeepAlive
               alivePath="/home"
               path="/home"
@@ -42,16 +41,10 @@ export default function App() {
               {/* 需要登录才能访问 */}
               <AuthRoute path="/profile/edit" component={ProfileEdit}></AuthRoute>
               <AuthRoute path="/profile/chat" component={ProfileChat}></AuthRoute>
-              <AuthRoute
-                path="/profile/feedback"
-                component={ProfileFeedback}
-              ></AuthRoute>
+              <AuthRoute path="/profile/feedback" component={ProfileFeedback}></AuthRoute>
 
-              <Route
-                render={(props) => {
-                  if (!props.location.pathname.startsWith('/home')) {
-                    return <NotFound />
-                  }
+              <Route render={(props) => {
+                  if (!props.location.pathname.startsWith('/home')) return <NotFound />
                 }}
               ></Route>
             </Switch>

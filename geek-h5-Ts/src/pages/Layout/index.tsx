@@ -6,9 +6,12 @@ import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import AuthRoute from '@/components/AuthRoute'
 import KeepAlive from '@/components/KeepAlive'
 const Home = lazy(() => import('@/pages/Home'))
-const QA = lazy(() => import('@/pages/QA/index'))
-const Video = lazy(() => import('@/pages/Video'))
+const Ts = lazy(() => import('@/pages/Ts'))
+// const QA = lazy(() => import('@/pages/QA'))
+// const Video = lazy(() => import('@/pages/Video'))
 const Profile = lazy(() => import('@/pages/Profile'))
+
+
 
 // 这个tabBar类型推断 已经推出 是string类型
 const tabBar = [
@@ -18,15 +21,20 @@ const tabBar = [
     path: '/home/index',
   }, 
   { 
-    title: '问答',
+    title: '测试',
     icon: 'iconbtn_qa',
-    path: '/home/qa',
+    path: '/home/ts',
   },
-  {
-    title: '视频',
-    icon: 'iconbtn_video',
-    path: '/home/video',
-  },
+  // { 
+  //   title: '问答',
+  //   icon: 'iconbtn_qa',
+  //   path: '/home/qa',
+  // },
+  // {
+  //   title: '视频',
+  //   icon: 'iconbtn_video',
+  //   path: '/home/video',
+  // },
   {
     title: '我的',
     icon: 'iconbtn_mine',
@@ -36,26 +44,19 @@ const tabBar = [
 export default function Layout() {
   const history = useHistory()
   const location = useLocation()
-  // console.log(location)
   return (
     <div className={styles.root}>
       {/* 区域一：点击按钮切换显示内容的区域 */}
       <div className="tab-content">
         {/* 配置二级路由 只要用了路由的懒加载，配合Suspense一起使用 */}
         <Suspense fallback={<div>loading...</div>}>
-          {/* <Route path="/home" exact component={Home}></Route> */}
-          <KeepAlive
-            alivePath="/home/index"
-            path="/home/index"
-            component={Home}
-          ></KeepAlive>
+          <KeepAlive alivePath="/home/index" path="/home/index" component={Home}></KeepAlive>
           <Switch>
-            <Route path="/home/qa" component={QA}></Route>
-            <Route path="/home/video" component={Video}></Route>
-            {/* Route组件：只要path匹配了，component就会渲染 */}
-            {/* 有些页面，就算path匹配到了，还需要登陆了才能访问，否则跳转到登陆页面，route提供了一种更复杂的使用方式，route可以不提供component，提供render */}
-            {/* component={Profile} 等价于 render={() => <Profile></Profile>} */}
-            {/* 需求：封装一个PrivateRoute,,这个组件把这些逻辑封装起来 */}
+            {/* 需求：封装一个PrivateRoute,这个组件把这些逻辑封装起来 */}
+            <Route path="/home/ts" component={Ts}></Route>
+            {/* <Route path="/home/qa" component={QA}></Route> */}
+            {/* <Route path="/home/video" component={Video}></Route> */}
+            {/* component={Profile} 等价于 render={() => <Profile></Profile>} */} 
             <AuthRoute path="/home/profile" component={Profile}></AuthRoute>
           </Switch>
         </Suspense>
@@ -64,18 +65,11 @@ export default function Layout() {
       <div className="tabbar">
         {tabBar.map((item) => (
           <div
-            className={classNames(
-              'tabbar-item',
-              location.pathname === item.path ? 'tabbar-item-active' : ''
-            )}
+            className={classNames( 'tabbar-item', location.pathname === item.path ? 'tabbar-item-active' : "" )}
             key={item.title}
             onClick={() => history.push(item.path)}
           >
-            <Icon
-              type={
-                location.pathname === item.path ? item.icon + '_sel' : item.icon
-              }
-            />
+            <Icon type={ location.pathname === item.path ? item.icon + '_sel' : item.icon }/>
             <span>{item.title}</span>
           </div>
         ))}

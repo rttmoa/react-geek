@@ -1,81 +1,87 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styles from './index.module.scss'
-import NavBar from '@/components/NavBar'
-import { List, DatePicker, Drawer, Toast, Modal } from 'antd-mobile'
-import { useDispatch } from 'react-redux'
-import { getProfile, updatePhoto, updateProfile } from '@/store/actions/profile'
-import { useSelector } from 'react-redux'
-import classNames from 'classnames'
-import EditInput from './components/EditInput'
-import EditList from './components/EditList'
-import dayjs from 'dayjs'
-import { useHistory } from 'react-router'
-import { logout } from '@/store/actions/login'
-const { Item } = List
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./index.module.scss";
+import NavBar from "@/components/NavBar";
+import { List, DatePicker, Drawer, Toast, Modal } from "antd-mobile";
+import { useDispatch } from "react-redux";
+import { getProfile, updatePhoto, updateProfile } from "@/store/actions/profile";
+import { useSelector } from "react-redux";
+import classNames from "classnames";
+import EditInput from "./components/EditInput";
+import EditList from "./components/EditList";
+import dayjs from "dayjs";
+import { useHistory } from "react-router";
+import { logout } from "@/store/actions/login";
+import { removeTokenInfo } from "@/utils/storage";
+const { Item } = List;
+
+
+
+
 export default function ProfileEdit() {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const fileRef = useRef(null)
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const fileRef = useRef(null);
   const [open, setOpen] = useState({
     visible: false,
-    type: '',
-  })
+    type: "",
+  });
 
   // 控制列表抽屉的显示和隐藏
   const [listOpen, setListOpen] = useState({
     visible: false,
     // avatar gender
-    type: '',
-  })
+    type: "",
+  });
 
   const config = {
     photo: [
       {
-        title: '拍照',
+        title: "拍照",
         onClick: () => {
-          console.log('拍照')
+          console.log("拍照");
         },
       },
       {
-        title: '本地选择',
+        title: "本地选择",
         onClick: () => {
           // 触发点击事件
-          fileRef.current.click()
+          fileRef.current.click();
         },
       },
     ],
     gender: [
       {
-        title: '男',
+        title: "男",
         onClick: () => {
-          onCommit('gender', 0)
+          onCommit("gender", 0);
         },
       },
       {
-        title: '女',
+        title: "女",
         onClick: () => {
-          onCommit('gender', 1)
+          onCommit("gender", 1);
         },
       },
     ],
-  }
+  };
 
   const onClose = () => {
     setOpen({
       visible: false,
-      type: '',
-    })
+      type: "",
+    });
     setListOpen({
       visible: false,
-      type: '',
-    })
-  }
+      type: "",
+    });
+  };
+  
   useEffect(() => {
-    dispatch(getProfile())
-  }, [dispatch])
+    dispatch(getProfile()); // 获取用户编辑信息
+  }, [dispatch]);
 
-  // 获取redux中的profile数据
-  const profile = useSelector((state) => state.profile.profile)
+  const profile = useSelector((state) => state.profile.profile);
   // console.log(profile)
 
   const onCommit = async (type, value) => {
@@ -84,45 +90,46 @@ export default function ProfileEdit() {
       updateProfile({
         [type]: value,
       })
-    )
-    Toast.success('修改成功', 1, null, false)
-    onClose()
-  }
+    );
+    Toast.success("修改成功", 1, null, false);
+    onClose();
+  };
 
   const onFileChange = async (e) => {
-    const file = e.target.files[0]
-    const fd = new FormData()
+    const file = e.target.files[0];
+    const fd = new FormData();
     // 把文件上传到服务器
-    fd.append('photo', file)
+    fd.append("photo", file);
 
-    await dispatch(updatePhoto(fd))
-    Toast.success('修改头像成功')
-    onClose()
-  }
+    await dispatch(updatePhoto(fd));
+    Toast.success("修改头像成功");
+    onClose();
+  };
 
   const onBirthChange = (e) => {
-    onCommit('birthday', dayjs(e).format('YYYY-MM-DD'))
-  }
+    onCommit("birthday", dayjs(e).format("YYYY-MM-DD"));
+  };
 
   const logoutFn = () => {
     // 1. 显示弹窗
     // 2. 删除token (包括redux和本地)
     // 3. 跳转到登录页
-    Modal.alert('温馨提示', '你确定要退出吗', [
-      { text: '取消' },
+    Modal.alert("温馨提示", "你确定要退出吗", [
+      { text: "取消" },
       {
-        text: '确定',
-        style: { color: '#FC6627' },
+        text: "确定",
+        style: { color: "#FC6627" },
         onPress() {
-          dispatch(logout())
+          dispatch(logout());
+          removeTokenInfo();
           // 跳转到登录页
-          history.push('/login')
+          history.push("/login");
           // 提示
-          Toast.success('退出登录成功', 1)
+          Toast.success("退出登录成功", 1);
         },
       },
-    ])
-  }
+    ]);
+  };
 
   return (
     <div className={styles.root}>
@@ -137,8 +144,8 @@ export default function ProfileEdit() {
               onClick={() => {
                 setListOpen({
                   visible: true,
-                  type: 'photo',
-                })
+                  type: "photo",
+                });
               }}
               extra={
                 <span className="avatar-wrapper">
@@ -154,8 +161,8 @@ export default function ProfileEdit() {
               onClick={() => {
                 setOpen({
                   visible: true,
-                  type: 'name',
-                })
+                  type: "name",
+                });
               }}
             >
               昵称
@@ -164,16 +171,16 @@ export default function ProfileEdit() {
               arrow="horizontal"
               extra={
                 <span
-                  className={classNames('intro', profile.intro ? 'normal' : '')}
+                  className={classNames("intro", profile.intro ? "normal" : "")}
                 >
-                  {profile.intro || '未填写'}
+                  {profile.intro || "未填写"}
                 </span>
               }
               onClick={() => {
                 setOpen({
                   visible: true,
-                  type: 'intro',
-                })
+                  type: "intro",
+                });
               }}
             >
               简介
@@ -182,13 +189,13 @@ export default function ProfileEdit() {
 
           <List className="profile-list">
             <Item
-              extra={profile.gender === 0 ? '男' : '女'}
+              extra={profile.gender === 0 ? "男" : "女"}
               arrow="horizontal"
               onClick={() => {
                 setListOpen({
                   visible: true,
-                  type: 'gender',
-                })
+                  type: "gender",
+                });
               }}
             >
               性别
@@ -197,11 +204,11 @@ export default function ProfileEdit() {
               mode="date"
               value={new Date(profile.birthday)}
               onChange={onBirthChange}
-              minDate={new Date('1900-01-01')}
+              minDate={new Date("1900-01-01")}
               maxDate={new Date()}
               title="选择生日"
             >
-              <Item arrow="horizontal" extra={'2020-02-02'}>
+              <Item arrow="horizontal" extra={"2020-02-02"}>
                 生日
               </Item>
             </DatePicker>
@@ -226,7 +233,7 @@ export default function ProfileEdit() {
             ></EditInput>
           )
         }
-        children={''}
+        children={""}
         open={open.visible}
       />
 
@@ -247,8 +254,8 @@ export default function ProfileEdit() {
         open={listOpen.visible}
         onOpenChange={onClose}
       >
-        {''}
+        {""}
       </Drawer>
     </div>
-  )
+  );
 }

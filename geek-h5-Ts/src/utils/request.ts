@@ -15,8 +15,7 @@ const instance = axios.create({
 })
 
 // 配置拦截器
-instance.interceptors.request.use(
-  (config) => {
+instance.interceptors.request.use((config) => {
     // 对config做点什么
     // 获取token
     const token = getTokenInfo().token
@@ -124,4 +123,4 @@ instance.interceptors.response.use(
   }
 )
 
-export default instance
+export default instance;

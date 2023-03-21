@@ -7,9 +7,13 @@ import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import styles from './index.module.scss'
 
+
+
 // 1. 经验
 // 2. 百度 --- 谷歌
+// 在AuthRoute组件中判断是否有Token 拦截到Login页面
 const Profile = () => {
+  
   const history = useHistory()
   const dispatch = useDispatch()
   // 泛型参数1：指定state的类型
@@ -17,10 +21,9 @@ const Profile = () => {
   // const user = useSelector<RootState, RootState['profile']['user']>(state => state.profile.user) // 指定泛型 拿到 返回的User类型
   const user = useSelector((state: RootState) => state.profile.user)// state有类型(RootState)、profile就有类型 | 变量user可以推断类型
 
-  // 页面一进入，就需要发送请求，获取用户信息
   useEffect(() => {
-    dispatch(getUser())
-  }, [dispatch])
+    dispatch(getUser());
+  }, [dispatch]);
   return (
     <div className={styles.root}>
       <div className="profile">
@@ -30,9 +33,7 @@ const Profile = () => {
             <img src={user.photo} alt="" />
           </div>
           <div className="user-name">{user.name}</div>
-          <Link to="/profile/edit">
-            个人信息 <Icon type="iconbtn_right" />
-          </Link>
+          <Link to="/profile/edit">个人信息<Icon type="iconbtn_right" /> </Link>
         </div>
 
         {/* 今日阅读区域 */}
@@ -86,17 +87,11 @@ const Profile = () => {
       <div className="more-service">
         <h3>更多服务</h3>
         <div className="service-list">
-          <div
-            className="service-item"
-            onClick={() => history.push('/profile/feedback')}
-          >
+          <div className="service-item" onClick={() => history.push('/profile/feedback')} >
             <Icon type="iconbtn_feedback" />
             <div>用户反馈</div>
           </div>
-          <div
-            className="service-item"
-            onClick={() => history.push('/profile/chat')}
-          >
+          <div className="service-item" onClick={() => history.push('/profile/chat')}>
             <Icon type="iconbtn_xiaozhitongxue" />
             <div>小智同学</div>
           </div>

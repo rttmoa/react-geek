@@ -37,6 +37,7 @@ export const getTokenInfo = (): Token => {
  * 删除本地缓存中的 Token 信息
  */
 export const removeTokenInfo = () => {
+  // console.log(213)
   localStorage.removeItem(TOKEN_KEY)
 }
 

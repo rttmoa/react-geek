@@ -3,11 +3,15 @@ import { ImagePicker, InputItem } from 'antd-mobile'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.scss'
 
+
+
+
 const ProfileFeedback = () => {
   const history = useHistory()
 
   return (
     <div className={styles.root}>
+
       <NavBar onLeftClick={() => history.go(-1)}>意见反馈</NavBar>
 
       <div className="wrapper">
@@ -17,8 +21,9 @@ const ProfileFeedback = () => {
             <textarea className="textarea" placeholder="请输入"></textarea>
             <div className="count">0/100</div>
           </div>
+          {/* ImagePicker Ts组件源码 - 可传值 */}
           <ImagePicker files={[]} multiple />
-          <p className="image-picker-desc">最多6张，单个图片不超过20M。</p>
+          <p className="image-picker-desc">最多6张, 单个图片不超过20M。</p>
         </div>
 
         <div className="feedback-item">
