@@ -92,7 +92,8 @@ const Article = () => { // http://localhost:3020/article/8026
 
 
 
-  const hasMore = comment.last_id !== comment.end_id // 如果last与end值不相等 就表示还有数据
+  const hasMore = comment.last_id !== comment.end_id; // 如果last与end值不相等 就表示还有数据
+
   const loadMore = async () => {
     await dispatch(getMoreCommentList(id, comment.last_id))
   }
