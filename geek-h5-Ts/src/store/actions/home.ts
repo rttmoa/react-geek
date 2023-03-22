@@ -51,7 +51,7 @@ export const saveUserChannels = (payload: Channel[]): HomeAction => {// 返回�
   }
 }
 
-// 获取所有频道
+/**--- 获取所有频道 ---**/
 export const getAllChannels = (): RootThunkAction => {
   return async (dispatch) => {
     const res = await request.get('/channels')
@@ -77,12 +77,8 @@ export const delChannel = (channel: Channel): RootThunkAction => {
     const userChannels = getState().home.userChannels
     if (hasToken()) {
       // 发送请求
-      await request.delete('/user/channels/' + channel.id)
-      // 同步频道的数据到redux中
-      // console.log(res)
-      dispatch(
-        saveUserChannels(userChannels.filter((item) => item.id !== channel.id))
-      )
+      await request.delete('/user/channels/' + channel.id) 
+      dispatch(saveUserChannels(userChannels.filter((item) => item.id !== channel.id)))
     } else {
       // 没有登录
       // 修改本地，修改redux
@@ -99,9 +95,7 @@ export const addChannel = (channel: Channel): RootThunkAction => {
     const channels = [...getState().home.userChannels, channel]
     if (hasToken()) {
       // 发请求添加
-      await request.patch('/user/channels', {
-        channels: [channel],
-      })
+      await request.patch('/user/channels', { channels: [channel] })
       dispatch(saveUserChannels(channels))
     } else {
       dispatch(saveUserChannels(channels))

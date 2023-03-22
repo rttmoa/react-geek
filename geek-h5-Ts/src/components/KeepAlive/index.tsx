@@ -15,7 +15,7 @@ const KeepAlive = ({ alivePath, component: Component, ...rest }: Props) => {
   return (
     <Route {...rest}>
       {(props) => {
-        const { location } = props
+        const { location } = props;
         const matched = location.pathname.startsWith(alivePath)
         return (
           <div

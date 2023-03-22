@@ -1,13 +1,8 @@
 import Icon from '@/components/Icon'
-import {
-  setMoreAction,
-  unLinkArticle,
-  reportArticle,
-} from '@/store/actions/home'
+import { setMoreAction, unLinkArticle, reportArticle, } from '@/store/actions/home'
 import { Modal, Toast } from 'antd-mobile'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './index.module.scss'
 
 /* 
@@ -66,6 +61,7 @@ const list = [
   { id: 8, title: '侵权' },
 ]
 const FeedbackActionMenu = () => {
+
   // 举报类型：normal 不感兴趣或拉黑作者 | junk 垃圾内容
   const moreAction = useSelector((state) => state.home.moreAction)
   const dispatch = useDispatch()
@@ -104,6 +100,7 @@ const FeedbackActionMenu = () => {
         footer={[]}
         onClose={onClose}
         visible={moreAction.visible}
+        // visible={true}
       >
         <div className="more-action">
           {/* normal 类型时的菜单内容 */}
@@ -131,11 +128,7 @@ const FeedbackActionMenu = () => {
                 <span className="back-text">反馈垃圾内容</span>
               </div>
               {list.map((item) => (
-                <div
-                  key={item.id}
-                  className="action-item"
-                  onClick={() => report(item.id)}
-                >
+                <div key={item.id} className="action-item"  onClick={() => report(item.id)}>
                   {item.title}
                 </div>
               ))}
@@ -147,4 +140,4 @@ const FeedbackActionMenu = () => {
   )
 }
 
-export default FeedbackActionMenu
+export default FeedbackActionMenu;

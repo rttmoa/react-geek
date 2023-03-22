@@ -102,7 +102,7 @@ export default function reducer(state = initValue, action: HomeAction) {
           },
         },
       }
-    case 'home/saveMoreArticleList': 
+    case 'home/saveMoreArticleList':
       // const oldList = state.articles[action.payload.channelId].list  // const oldList: Ariticle[]
       return {
         ...state,

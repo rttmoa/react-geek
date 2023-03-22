@@ -9,29 +9,22 @@ import { useDispatch } from 'react-redux'
 import { setMoreAction } from '@/store/actions/home'
 import { useHistory } from 'react-router'
 
+
+
+
+
+/**--- 外部每一条文章详情 ---**/
 const ArticleItem = ({ article, channelId }) => {
-  const dispatch = useDispatch()
-  const {
-    cover: { type, images },
-    title,
-    aut_name,
-    comm_count,
-    pubdate,
-  } = article
-  const isLogin = useSelector((state) => !!state.login.token)
+
+  const dispatch = useDispatch();
+  const { cover: { type, images }, title, aut_name, comm_count, pubdate  } = article;
+  const isLogin = useSelector((state) => !!state.login.token);
   const history = useHistory()
+
   return (
-    <div
-      className={styles.root}
-      onClick={() => history.push('/article/' + article.art_id)}
-    >
+    <div className={styles.root} onClick={() => history.push('/article/' + article.art_id)}>
       {/* t3: 三图结构 none-mt没有图片结构  */}
-      <div
-        className={classnames('article-content', {
-          t3: type === 3,
-          'none-mt': type === 0,
-        })}
-      >
+      <div className={classnames('article-content', { t3: type === 3, 'none-mt': type === 0 })}>
         <h3>{title}</h3>
         {type !== 0 && (
           <div className="article-imgs">
@@ -43,6 +36,7 @@ const ArticleItem = ({ article, channelId }) => {
           </div>
         )}
       </div>
+      
       <div className={classnames('article-info', type === 0 ? 'none-mt' : '')}>
         <span>{aut_name}</span>
         <span>{comm_count} 评论</span>
@@ -50,20 +44,14 @@ const ArticleItem = ({ article, channelId }) => {
         <span>{dayjs(pubdate).fromNow()}</span>
 
         <span className="close">
-          {isLogin && (
-            <Icon
-              type="iconbtn_essay_close"
-              onClick={() =>
-                dispatch(
-                  setMoreAction({
-                    visible: true,
-                    articleId: article.art_id,
-                    channelId,
-                  })
-                )
-              }
-            />
-          )}
+          {isLogin && (<Icon type="iconbtn_essay_close" onClick = {() => 
+              dispatch( setMoreAction({
+                visible: true,
+                articleId: article.art_id,
+                channelId,
+              }))  
+            }
+          />)}
         </span>
       </div>
     </div>

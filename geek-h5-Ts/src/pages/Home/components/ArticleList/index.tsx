@@ -56,32 +56,35 @@ type Props = {
   activeId: number
 }
 const ArticleList = ({ channelId, activeId }: Props) => {
+
   const dispatch = useDispatch()
-  const current = useSelector(
-    (state: RootState) => state.home.articles[channelId]
-  )
+  const current = useSelector((state: RootState) => state.home.articles[channelId]);
+
   useEffect(() => {
     // 如果该频道有文章数据，没必要一进来就发送请求
-    if (current) return
+    if (current) return;
     if (channelId === activeId) {
       dispatch(getArticleList(channelId, Date.now() + '')) // + '' 表示 number转string
     }
   }, [channelId, activeId, dispatch, current])
+
   const onRefresh = async () => {
     // 下拉刷新，需要重新加载最新的数据
-    setHasMore(true)
+    setHasMore(true);
     await dispatch(getArticleList(channelId, Date.now() + ''))// + '' 表示 number转string
   }
 
   // 控制是否有更多数据
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(true); // 一进入页面true加载数据
   // 是否正在加载中
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   const loadMore = async () => {
+    // console.log(123)
     // 如果在加载中，不允许重复加载
     if (loading) return
     // 如果不是当前的频道，也不需要加载
-    if (channelId !== activeId) return
+    if (channelId !== activeId) return;
 
     // 如果没有更多数据
     if (!current.timestamp) {
@@ -100,13 +103,14 @@ const ArticleList = ({ channelId, activeId }: Props) => {
   }
 
   // 如果不是当前频道，没有文章数据，先不渲染
-  if (!current) return null
+  if (!current) return null;
   return (
     <div className={styles.root}>
       <div className="articles">
         <PullToRefresh onRefresh={onRefresh}>
           {current.list.map((item) => (
             <div className="article-item" key={item.art_id}>
+              {/* 文章列表 - 每一个Article Box */}
               <ArticleItem channelId={channelId} article={item}></ArticleItem>
             </div>
           ))}

@@ -2,12 +2,16 @@ import classnames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import Icon from '../Icon'
 import styles from './index.module.scss'
+
+
+
 type Props = {
   className?: string
   src: string
   alt?: string
 }
 const Image = ({ className, src, alt }: Props) => {
+
   // const imgRef = useRef<number>(null)  // 如果是 number 类型 下面会报错
   const imgRef = useRef<HTMLImageElement>(null)  // useRef() 基于泛型来实现的
   // 控制是否在加载
@@ -39,6 +43,8 @@ const Image = ({ className, src, alt }: Props) => {
     })
     observer.observe(current)
   }, [])
+
+  
   return (
     <div className={classnames(styles.root, className)}>
       {/* 加载中 */}

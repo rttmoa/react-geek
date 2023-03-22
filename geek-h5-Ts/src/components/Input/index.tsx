@@ -16,9 +16,7 @@ type Props = Omit<
   React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
-  >,
-  'type'
-> & {
+  >, 'type'> & {
   extra?: string
   onExtraClick?: () => void
   className?: string
