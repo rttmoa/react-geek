@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import Icon from '../Icon'
 import styles from './index.module.scss'
 
-
+// new IntersectionObserver
+// 
 
 type Props = {
   className?: string
@@ -13,7 +14,7 @@ type Props = {
 const Image = ({ className, src, alt }: Props) => {
 
   // const imgRef = useRef<number>(null)  // 如果是 number 类型 下面会报错
-  const imgRef = useRef<HTMLImageElement>(null)  // useRef() 基于泛型来实现的
+  const imgRef = useRef<HTMLImageElement>(null)   
   // 控制是否在加载
   const [loading, setLoading] = useState(true)
   // 控制是否加载失败
@@ -21,16 +22,16 @@ const Image = ({ className, src, alt }: Props) => {
 
   // 加载成功
   const onLoad = () => {
-    setError(false)
-    setLoading(false)
+    setError(false);
+    setLoading(false);
   }
   const onError = () => {
-    setLoading(false)
-    setError(true)
+    setLoading(false);
+    setError(true);
   }
   useEffect(() => {
     // 监听图片
-    const current = imgRef.current! // HTMLImageElement | null
+    const current = imgRef.current!; // HTMLImageElement | null
 
     const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
@@ -41,10 +42,11 @@ const Image = ({ className, src, alt }: Props) => {
         observer.unobserve(current)
       }
     })
+    // console.log(current)
     observer.observe(current)
   }, [])
 
-  
+
   return (
     <div className={classnames(styles.root, className)}>
       {/* 加载中 */}

@@ -45,7 +45,7 @@ const ArticleItem = ({ article, channelId }) => {
 
         <span className="close">
           {isLogin && (<Icon type="iconbtn_essay_close" onClick = {() => 
-              dispatch( setMoreAction({
+              dispatch(setMoreAction({
                 visible: true,
                 articleId: article.art_id,
                 channelId,

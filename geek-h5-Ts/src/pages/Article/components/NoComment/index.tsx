@@ -1,6 +1,9 @@
 import noCommentImage from '@/assets/none.png'
 import styles from './index.module.scss'
 
+
+
+
 const NoComment = () => {
   return (
     <div className={styles.root}>

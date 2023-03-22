@@ -3,6 +3,7 @@ import { setMoreAction, unLinkArticle, reportArticle, } from '@/store/actions/ho
 import { Modal, Toast } from 'antd-mobile'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {list} from '@/utils/constant'
 import styles from './index.module.scss'
 
 /* 
@@ -46,20 +47,8 @@ import styles from './index.module.scss'
         }
 */
 
-/**
- * 举报反馈菜单
- */
-const list = [
-  { id: 0, title: '其他问题' },
-  { id: 1, title: '标题夸张' },
-  { id: 2, title: '低俗色情' },
-  { id: 3, title: '错别字多' },
-  { id: 4, title: '旧闻重复' },
-  { id: 5, title: '广告软文' },
-  { id: 6, title: '内容不适' },
-  { id: 7, title: '涉嫌违法犯罪' },
-  { id: 8, title: '侵权' },
-]
+
+
 const FeedbackActionMenu = () => {
 
   // 举报类型：normal 不感兴趣或拉黑作者 | junk 垃圾内容

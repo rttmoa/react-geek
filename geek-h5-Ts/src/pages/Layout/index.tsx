@@ -5,42 +5,15 @@ import classNames from 'classnames'
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom'
 import AuthRoute from '@/components/AuthRoute'
 import KeepAlive from '@/components/KeepAlive'
+import { tabBar } from '@/utils/constant'
 const Home = lazy(() => import('@/pages/Home'))
 const Ts = lazy(() => import('@/pages/Ts'))
 // const QA = lazy(() => import('@/pages/QA'))
 // const Video = lazy(() => import('@/pages/Video'))
 const Profile = lazy(() => import('@/pages/Profile'))
 
+ 
 
-
-// 这个tabBar类型推断 已经推出 是string类型
-const tabBar = [
-  {
-    title: '首页', 
-    icon: 'iconbtn_home',
-    path: '/home/index',
-  }, 
-  { 
-    title: '测试',
-    icon: 'iconbtn_qa',
-    path: '/home/ts',
-  },
-  // { 
-  //   title: '问答',
-  //   icon: 'iconbtn_qa',
-  //   path: '/home/qa',
-  // },
-  // {
-  //   title: '视频',
-  //   icon: 'iconbtn_video',
-  //   path: '/home/video',
-  // },
-  {
-    title: '我的',
-    icon: 'iconbtn_mine',
-    path: '/home/profile',
-  },
-];
 export default function Layout() {
   const history = useHistory()
   const location = useLocation()

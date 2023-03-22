@@ -45,6 +45,7 @@ export default function Home() {
   }
   return (
     <div className={styles.root}>
+      
       <Tabs tabs={tabs} index={active} onChange={changeActive}>
         {tabs.map((item) => (
           // 向 ArticleList 组件  传递 channelId和activeId

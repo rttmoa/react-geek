@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styles from './index.module.scss'
 import { addComment } from '@/store/actions/article'
+
+
+
 type Props = {
   onClose: () => void
   aritcleId: string
