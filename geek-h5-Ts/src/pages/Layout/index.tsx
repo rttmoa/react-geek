@@ -14,7 +14,8 @@ const Profile = lazy(() => import('@/pages/Profile'))
 
  
 
-export default function Layout() {
+export default function Layout () {
+
   const history = useHistory()
   const location = useLocation()
   return (

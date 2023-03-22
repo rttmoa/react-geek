@@ -6,6 +6,8 @@ import { addComment } from '@/store/actions/article'
 
 
 
+
+
 type Props = {
   onClose: () => void
   aritcleId: string
@@ -26,7 +28,8 @@ const CommentInput = ({ onClose, aritcleId, name, onAddReply }: Props) => {
     }, 100)
   }, [])
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  
   // 发表评论
   const onSendComment = async () => {
     if (!value) return

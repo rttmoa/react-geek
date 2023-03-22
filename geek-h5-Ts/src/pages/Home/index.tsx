@@ -13,10 +13,11 @@ import { RootState } from '@/store'
 import { useHistory } from 'react-router'
 
 
+// Tabs 计算中心的位置
+// Channels 使用lodash/differenceBy
 
 
-
-export default function Home() {
+export default function Home () {
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -47,20 +48,15 @@ export default function Home() {
     <div className={styles.root}>
       
       <Tabs tabs={tabs} index={active} onChange={changeActive}>
-        {tabs.map((item) => (
-          // 向 ArticleList 组件  传递 channelId和activeId
-          <ArticleList
-            key={item.id}
-            channelId={item.id}
-            activeId={tabs && tabs[active].id}
-          ></ArticleList>
-        ))}
+        {tabs.map((item) => <ArticleList key={item.id} channelId={item.id} activeId={tabs && tabs[active].id}></ArticleList>)}
       </Tabs>
+
       {/* 搜索、频道管理 */}
       <div className="tabs-opration">
         <Icon type="iconbtn_search" onClick={() => history.push('/search')} />
         <Icon type="iconbtn_channel" onClick={() => setOpen(true)} />
       </div>
+
       {/* 频道管理组件 */}
       <Drawer
         className="my-drawer"
@@ -69,6 +65,7 @@ export default function Home() {
         sidebar={open && <Channels onClose={onClose} index={active} onChange={changeActive}></Channels> }
         open={open}
       ></Drawer>
+
       <MoreAction></MoreAction>
     </div>
   )

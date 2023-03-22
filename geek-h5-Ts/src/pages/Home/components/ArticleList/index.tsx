@@ -57,7 +57,7 @@ type Props = {
 }
 const ArticleList = ({ channelId, activeId }: Props) => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const current = useSelector((state: RootState) => state.home.articles[channelId]);
 
   useEffect(() => {

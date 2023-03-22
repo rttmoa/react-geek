@@ -11,7 +11,8 @@ import { getUser } from '@/store/actions/profile'
 
 
 
-
+// websocket 
+// const listRef = React.useRef()让滚动条自动滚动到最底部
 
 
 const Chat = () => {
@@ -72,7 +73,7 @@ const Chat = () => {
 
 
   useEffect(() => {
-    // 让滚动条滚动到最底部
+    // 让滚动条自动滚动到最底部
     listRef.current.scrollTop = listRef.current.scrollHeight - listRef.current.offsetHeight
   }, [messageList])
 
@@ -95,6 +96,10 @@ const Chat = () => {
     // 清空消息
     setMsg('')
   }
+
+
+
+
   return (
     <div className={styles.root}>
       {/* 顶部导航栏 */}

@@ -16,14 +16,7 @@ export default function EditInput({ onClose, type, onCommit }) {
 
   return (
     <div className={styles.root}>
-      <NavBar
-        onLeftClick={onClose}
-        extra={
-          <span className="commit-btn" onClick={() => onCommit(type, value)}>
-            提交
-          </span>
-        }
-      >
+      <NavBar onLeftClick={onClose}  extra={<span className="commit-btn" onClick={() => onCommit(type, value)}>提交</span>}>
         编辑{type === 'name' ? '昵称' : '简介'}
       </NavBar>
       
@@ -32,17 +25,9 @@ export default function EditInput({ onClose, type, onCommit }) {
 
         {/* 回显内容 */}
         {type === 'name' ? (
-          <Input
-            className="input-wrap"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            autoFocus
-          ></Input>
+          <Input className="input-wrap" value={value} onChange={(e) => setValue(e.target.value)} autoFocus></Input>
         ) : (
-          <Textarea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          ></Textarea>
+          <Textarea value={value} onChange={(e) => setValue(e.target.value)}></Textarea>
         )}
       </div>
     </div>

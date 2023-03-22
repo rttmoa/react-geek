@@ -5,12 +5,7 @@ import { useHistory } from 'react-router'
 import styles from './index.module.scss'
 import { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getSuggestList,
-  clearSuggestions,
-  addSearchList,
-  clearHistories,
-} from '@/store/actions/search'
+import { getSuggestList, clearSuggestions, addSearchList, clearHistories, } from '@/store/actions/search'
 import { RootState } from '@/store'
 import { Dialog } from 'antd-mobile-v5'
 // import debounce from 'lodash/debounce'
@@ -160,11 +155,7 @@ const Search = () => {
       </div>
 
       {/* 搜素建议结果列表 */}
-      <div
-        className={classnames('search-result', {
-          show: isSearching,
-        })}
-      >
+      <div className={classnames('search-result', {show: isSearching})}>
         {suggestions.map((item, index) => (
           <div
             className="result-item"
@@ -173,10 +164,7 @@ const Search = () => {
           >
             <Icon className="icon-search" type="iconbtn_search" />
             {/* Vue中使用HTML：v-html    高亮展示的是纯文本  需要使用HTML格式展示 */}
-            <div
-              className="result-value"
-              dangerouslySetInnerHTML={{ __html: highlight(item, keyword) }}
-            ></div>
+            <div className="result-value" dangerouslySetInnerHTML={{ __html: highlight(item, keyword) }}></div>
           </div>
         ))}
       </div>

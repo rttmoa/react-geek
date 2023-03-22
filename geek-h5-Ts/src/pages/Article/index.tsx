@@ -33,23 +33,32 @@ import { Comment } from '@/store/reducers/article'
 
 
 
-const Article = () => {
+
+
+// NavBar中传递children
+
+
+const Article = () => { // http://localhost:3020/article/8026
+
   const history = useHistory()
-  const { id } = useParams<{ id: string }>() // 拿到地址栏 /id 的值
+  const { id } = useParams<{ id: string }>();  // 拿到地址栏 /id 的值
   const dispatch = useDispatch()
+
   useEffect(() => {
-    dispatch(getArticleDetail(id))
+    dispatch(getArticleDetail(id)) // 获取文章详情数据
   }, [dispatch, id])
 
-  const { detail, comment } = useSelector((state: RootState) => state.article)
+  useEffect(() => {
+    dispatch(getCommentList(id)) // 获取文章的评论
+  }, [dispatch, id])
+
+
+  const { detail, comment } = useSelector((state: RootState) => state.article);  // 先获取数据 再用redux获取数据
 
   
   useEffect(() => {
-    // 配置 highlight.js
-    hljs.configure({
-      // 忽略未经转义的 HTML 字符
-      ignoreUnescapedHTML: true,
-    })
+    // 配置 highlight.js -- 忽略未经转义的 HTML 字符
+    hljs.configure({ignoreUnescapedHTML: true})
     // 获取到内容中所有的code标签
     const codes = document.querySelectorAll('.dg-html pre > code')
     codes.forEach((el) => {
@@ -60,28 +69,28 @@ const Article = () => {
 
   // 是否显示顶部信息
   const [isShowAuthor, setIsShowAuthor] = useState(false)
-  const authorRef = useRef<HTMLDivElement>(null)
-  const wrapRef = useRef<HTMLDivElement>(null)
+  const authorRef = useRef<HTMLDivElement>(null) // 作者信息盒子
+  const wrapRef = useRef<HTMLDivElement>(null)  // wrapRef: 页面内容盒子
+
+  // 节流阀
   useEffect(() => {
     const onScroll = throttle(function () {
-      const rect = authorRef.current?.getBoundingClientRect()!
+      const rect = authorRef.current?.getBoundingClientRect()!   // 作者信息盒子
       if (rect && rect.top <= 0) {
-        setIsShowAuthor(true)
+        setIsShowAuthor(true);
       } else {
-        setIsShowAuthor(false)
+        setIsShowAuthor(false);
       }
-    }, 300)
+    }, 300);
     const wrap = wrapRef.current!
-    wrap.addEventListener('scroll', onScroll)
-    return () => {
-      wrap.removeEventListener('scroll', onScroll)
-    }
+    wrap.addEventListener('scroll', onScroll);
+
+    return () => {wrap.removeEventListener('scroll', onScroll)}
   }, [])
 
-  // 发送请求-获取评论数据
-  useEffect(() => {
-    dispatch(getCommentList(id))
-  }, [dispatch, id])
+  
+
+
 
   const hasMore = comment.last_id !== comment.end_id // 如果last与end值不相等 就表示还有数据
   const loadMore = async () => {
@@ -93,14 +102,15 @@ const Article = () => {
     Toast.show('操作成功')
   }
 
-  const commentRef = useRef<HTMLDivElement>(null)
-  const isShowComment = useRef(false)
-  const goComment = () => {// 点击评论 - 跳转到评论部分
-    const wrap = wrapRef.current!
+  const commentRef = useRef<HTMLDivElement>(null);
+  const isShowComment = useRef(false);
+  
+  const goComment = () => { // 点击评论 - 跳转到评论部分
+    const wrap = wrapRef.current!;
     if (isShowComment.current) {
       wrap.scrollTo(0, 0)
     } else {
-      wrap.scrollTo(0, commentRef.current!.offsetTop - 46)//offsetTop:13421-46
+      wrap.scrollTo(0, commentRef.current!.offsetTop - 46); // offsetTop: 13421-46
     }
     isShowComment.current = !isShowComment.current
   }
@@ -114,6 +124,7 @@ const Article = () => {
   const [showComment, setShowComment] = useState({
     visible: false,
   })
+
   const closeComment = () => {
     setShowComment({
       visible: false,
@@ -133,40 +144,34 @@ const Article = () => {
       originComment: {} as Comment,
     })
   }
-  const onShowReply = (comment: Comment) => {// 接收一个Comment类型
+  const onShowReply = (comment: Comment) => { // 接收一个Comment类型
     setShowReply({
       visible: true,
       originComment: comment,
     })
   }
 
+
+
+
+
   return (
     <div className={styles.root}>
       <div className="root-wrapper">
         {/* 顶部导航栏 */}
-        <NavBar
-          className="navBar"
-          onLeftClick={() => history.go(-1)}
-          extra={
-            <span>
-              <Icon type="icongengduo" />
-            </span>
-          }
-        >
+        <NavBar className="navBar" onLeftClick={() => history.go(-1)} extra={<span><Icon type="icongengduo" /></span>}>
           {isShowAuthor ? (
             <div className="nav-author">
               <img src={detail.aut_photo} alt="" />
               <span className="name">{detail.aut_name}</span>
               <span
-                className={classNames('follow',detail.is_followed ? 'followed' : '' )}
+                className={classNames('follow', detail.is_followed ? 'followed' : '' )}
                 onClick={onFollowUser}
               >
                 {detail.is_followed ? '已关注' : '关注'}
               </span>
             </div>
-          ) : (
-            ''
-          )} 
+          ) : ("")}
         </NavBar>
 
         <>
@@ -185,10 +190,7 @@ const Article = () => {
                 <div className="author" ref={authorRef}>
                   <img src={detail.aut_photo} alt="" />
                   <span className="name">{detail.aut_name}</span>
-                  <span
-                    className={classNames('follow', {followed: detail.is_followed,})}
-                    onClick={onFollowUser}
-                  >
+                  <span className={classNames('follow', {followed: detail.is_followed,})} onClick={onFollowUser}>
                     {detail.is_followed ? '已关注' : '关注'}
                   </span>
                 </div>
@@ -242,11 +244,7 @@ const Article = () => {
         <CommentFooter
           goComment={goComment}
           onShare={() => setShare(true)}
-          onComment={() =>
-            setShowComment({
-              visible: true,
-            })
-          }
+          onComment={() => setShowComment({visible: true})}
         ></CommentFooter>
       </div>
 

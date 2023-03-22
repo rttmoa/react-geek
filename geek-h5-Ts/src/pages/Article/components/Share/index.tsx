@@ -2,13 +2,17 @@ import styles from './index.module.scss'
 
 
 
+
+
+
 type Props = {
   onClose: () => void
 }
 const Share = ({ onClose }: Props) => {
+
   return (
     <div className={styles.root}>
-      {/* 标题 */}
+
       <div className="share-header">立即分享给好友</div>
 
       {/* 第一排菜单 */}
@@ -66,10 +70,8 @@ const Share = ({ onClose }: Props) => {
         </div>
       </div>
 
-      {/* 取消按钮 */}
-      <div className="share-cancel" onClick={onClose}>
-        取消
-      </div>
+      <div className="share-cancel" onClick={onClose}>取消</div>
+
     </div>
   )
 }

@@ -27,6 +27,7 @@ const Channels = ({ onClose, index, onChange }) => {
 
   // 切换
   const changeChannel = (i) => {
+    
     // 如果是编辑状态，不允许跳转
     if (editing) return;
 

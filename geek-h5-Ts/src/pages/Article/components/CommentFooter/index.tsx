@@ -6,16 +6,21 @@ import { likeAritcle, collectArticle } from '@/store/actions/article'
 import { Toast } from 'antd-mobile'
 
 
+// type StringType = "reply" | "normal"
+
 type Props = {
   goComment?: () => void
   onShare?: () => void
   onComment?: () => void
   type?: string
+  // type?: StringType
 }
-const CommentFooter = ({ goComment, onShare, onComment, type = 'normal', }: Props) => {
-  const { detail } = useSelector((state: RootState) => state.article)
+const CommentFooter = ({ goComment, onShare, onComment, type = 'normal' }: Props) => {
 
-  const dispatch = useDispatch()
+  const { detail } = useSelector((state: RootState) => state.article);
+
+  const dispatch = useDispatch();
+
   const onLike = async () => {
     await dispatch(likeAritcle(detail.art_id, detail.attitude))
     Toast.info('点赞成功/取消成功')
@@ -27,6 +32,7 @@ const CommentFooter = ({ goComment, onShare, onComment, type = 'normal', }: Prop
 
   return (
     <div className={styles.root}>
+      
       <div className="input-btn" onClick={onComment}>
         <Icon type="iconbianji" />
         <span>去评论</span>
@@ -41,20 +47,15 @@ const CommentFooter = ({ goComment, onShare, onComment, type = 'normal', }: Prop
           </div>
           {/* 'iconbtn_like2' */}
           <div className="action-item" onClick={onLike}>
-            <Icon
-              type={
-                detail.attitude === 1 ? 'iconbtn_like_sel' : 'iconbtn_like2' // 等于1是点赞、等于-1是取消点赞
-              }
-            />
+            {/* 等于1是点赞、等于-1是取消点赞 */}
+            <Icon type={detail.attitude === 1 ? 'iconbtn_like_sel' : 'iconbtn_like2'} />
             <p>点赞</p>
           </div>
         </>
       )}
       <div className="action-item" onClick={collect}>
         {/* 'iconbtn_collect' */}
-        <Icon
-          type={detail.is_collected ? 'iconbtn_collect_sel' : 'iconbtn_collect'}
-        />
+        <Icon  type={detail.is_collected ? 'iconbtn_collect_sel' : 'iconbtn_collect'} />
         <p>收藏</p>
       </div>
       <div className="action-item" onClick={onShare}>
@@ -65,4 +66,4 @@ const CommentFooter = ({ goComment, onShare, onComment, type = 'normal', }: Prop
   )
 }
 
-export default CommentFooter
+export default CommentFooter;

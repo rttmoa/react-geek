@@ -40,8 +40,8 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => {
 
     const to = activeOffsetLeft - (tabWidth - activeTabWidth) / 2
     // navRef.current.scrollLeft = to
-    const from = navRef.current.scrollLeft
-    const frames = Math.round((0.2 * 1000) / 16)
+    const from = navRef.current.scrollLeft;
+    const frames = Math.round((0.2 * 1000) / 16);
     let count = 0;
     function animate() {
       navRef.current.scrollLeft += (to - from) / frames
@@ -49,8 +49,7 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => {
       if (++count < frames) {
         requestAnimationFrame(animate)
       }
-    }
-
+    } 
     animate()
 
     // window.innerWidth / 375： 手动处理 JS 移动端适配

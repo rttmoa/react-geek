@@ -23,13 +23,7 @@ export default function App() {
     <Router history={history}>
       <div className="app">
           <Suspense fallback={<div>Loading...</div>}> 
-            <KeepAlive
-              alivePath="/home"
-              path="/home"
-              component={Home}
-              exact
-            ></KeepAlive>
-            {/* <Route path="/home" component={Home}></Route> */}
+            <KeepAlive alivePath="/home" path="/home" component={Home} exact></KeepAlive>
 
             <Switch>
               <Redirect exact from="/" to="/home/index"></Redirect>

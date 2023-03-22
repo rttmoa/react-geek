@@ -23,13 +23,7 @@ type Props = Omit<
   autoFocus?: boolean
   type?: 'text' | 'password' | 'radio'
 }
-export default function Input({
-  extra,
-  onExtraClick,
-  className,
-  autoFocus,
-  ...rest
-}: Props) {
+export default function Input({ extra,onExtraClick,className,autoFocus, ...rest}: Props) {
   // focus
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -37,18 +31,12 @@ export default function Input({
       inputRef.current!.focus() // ! 非空断言
     }
   }, [autoFocus])
+
+  
   return (
     <div className={styles.root}>
-      <input
-        ref={inputRef}
-        className={classNames('input', className)}
-        {...rest}
-      />
-      {extra ? (
-        <div className="extra" onClick={onExtraClick}>
-          {extra}
-        </div>
-      ) : null}
+      <input ref={inputRef} className={classNames('input', className)} {...rest}/>
+      {extra ? (<div className="extra" onClick={onExtraClick}> {extra} </div>) : null}
     </div>
   )
 }

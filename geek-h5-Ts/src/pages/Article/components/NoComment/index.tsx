@@ -5,6 +5,7 @@ import styles from './index.module.scss'
 
 
 const NoComment = () => {
+  
   return (
     <div className={styles.root}>
       <img src={noCommentImage} alt="" />
@@ -13,4 +14,4 @@ const NoComment = () => {
   )
 }
 
-export default NoComment
+export default NoComment;

@@ -3,11 +3,11 @@ import { RootThunkAction } from '..'
 import { ArticleAction, Comment } from '../reducers/article'
 
 
+
+/**--- 获取文章详情数据 ---**/
 export function getArticleDetail(id: string): RootThunkAction {
   return async (dispatch) => {
-    const res = await request.get('/articles/' + id)
-    // console.log(res.data) // 代码提示
-    
+    const res = await request.get('/articles/' + id) 
     /**--- 先写reducers再写dispatch ---**/
     dispatch({
       type: 'artcile/saveDetail',
@@ -16,7 +16,7 @@ export function getArticleDetail(id: string): RootThunkAction {
   }
 }
 
-// 获取文章的评论
+/**--- 获取文章的评论 ---**/
 export function getCommentList(id: string): RootThunkAction {
   // common接口地址：http://geek.itheima.net/api.html#u83b7u53d6u8bc4u8bbau6216u8bc4u8bbau56deu590d0a3ca20id3du83b7u53d6u8bc4u8bbau6216u8bc4u8bbau56deu590d3e203ca3e
   return async (dispatch) => {

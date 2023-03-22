@@ -25,7 +25,7 @@ function NavBar({ children, extra, onLeftClick, className }: Props) {
     if (onLeftClick) {
       onLeftClick();
     } else {
-      history.go(-1)
+      history.go(-1);
     }
   }
   return (

@@ -1,6 +1,9 @@
 import { Route } from 'react-router-dom'
 import styles from './index.module.scss'
 import { RouteProps } from 'react-router-dom'
+
+
+
 /**
  * 缓存路由组件
  * @param {String} props.alivePath 要缓存的路径
@@ -18,10 +21,7 @@ const KeepAlive = ({ alivePath, component: Component, ...rest }: Props) => {
         const { location } = props;
         const matched = location.pathname.startsWith(alivePath)
         return (
-          <div
-            className={styles.root}
-            style={{ display: matched ? 'block' : 'none' }}
-          >
+          <div className={styles.root} style={{ display: matched ? 'block' : 'none' }}>
             <Component {...props} />
           </div>
         )
@@ -30,4 +30,4 @@ const KeepAlive = ({ alivePath, component: Component, ...rest }: Props) => {
   )
 }
 
-export default KeepAlive
+export default KeepAlive;

@@ -26,9 +26,7 @@ const CommentItem = ({ comment, onReply, type = 'normal' }: Props) => {
           {/* 关注或点赞按钮 */}
           <span className="thumbs-up">
             {comment.like_count}
-            <Icon
-              type={comment.is_liking ? 'iconbtn_like_sel' : 'iconbtn_like2'}
-            />
+            <Icon type={comment.is_liking ? 'iconbtn_like_sel' : 'iconbtn_like2'}/>
           </span>
         </div>
 
@@ -38,7 +36,7 @@ const CommentItem = ({ comment, onReply, type = 'normal' }: Props) => {
         <div className="comment-footer">
           {/* 回复按钮 */}
 
-          {type === 'reply' ? null : (// 点击进入回复 就不用显示这个按钮了
+          {type === 'reply' ? null : ( // 点击进入回复 就不用显示这个按钮了
             <span
               className="replay"
               onClick={() => onReply && onReply(comment)}
@@ -47,9 +45,9 @@ const CommentItem = ({ comment, onReply, type = 'normal' }: Props) => {
             </span>
           )}
 
-          {/* 评论日期 */}
+          {/* 评论日期 - 多久之前 | 几天内 */}
           <span className="comment-time">
-            {dayjs(comment.pubdate).fromNow()}  {/* dayjs 处理日期 几天内 */}
+            {dayjs(comment.pubdate).fromNow()}  
           </span>
         </div>
       </div>
