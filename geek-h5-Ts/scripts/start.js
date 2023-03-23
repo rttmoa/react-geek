@@ -157,8 +157,7 @@ checkBrowsers(paths.appPath, isInteractive)
         process.exit();
       });
     }
-  })
-  .catch(err => {
+  }).catch(err => {
     if (err && err.message) {
       console.log(err.message);
     }
