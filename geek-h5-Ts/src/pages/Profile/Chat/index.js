@@ -35,9 +35,7 @@ const Chat = () => {
     // client.on()  监听事件
     // client.emit() 主动的给服务器发送消息
     const client = io('http://geek.itheima.net', {
-      query: {
-        token: getTokenInfo().token,
-      },
+      query: { token: getTokenInfo().token },
       transports: ['websocket'],
     })
     clientRef.current = client;
@@ -79,7 +77,7 @@ const Chat = () => {
 
   const onKeyUp = (e) => {
     if (e.keyCode !== 13) return
-    if (!msg) return
+    if (!msg) return;
     // 回车的时候，
     // 1. 需要给服务器发送消息
     // 2. 把自己的消息添加到消息列表中

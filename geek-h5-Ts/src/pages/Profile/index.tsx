@@ -24,6 +24,8 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  
   return (
     <div className={styles.root}>
       <div className="profile">
@@ -37,10 +39,7 @@ const Profile = () => {
         </div>
 
         {/* 今日阅读区域 */}
-        <div className="read-info">
-          <Icon type="iconbtn_readingtime" />
-          今日阅读 <span>10</span> 分钟
-        </div>
+        <div className="read-info"><Icon type="iconbtn_readingtime" />今日阅读 <span>10</span> 分钟</div>
 
         {/* 统计信息区域 */}
         <div className="count-list">

@@ -34,7 +34,7 @@ import { Comment } from '@/store/reducers/article'
 
 
 
-
+// 节流阀 - 作者信息盒子固定到NavBar
 // NavBar中传递children
 
 
@@ -165,10 +165,7 @@ const Article = () => { // http://localhost:3020/article/8026
             <div className="nav-author">
               <img src={detail.aut_photo} alt="" />
               <span className="name">{detail.aut_name}</span>
-              <span
-                className={classNames('follow', detail.is_followed ? 'followed' : '' )}
-                onClick={onFollowUser}
-              >
+              <span className={classNames('follow', detail.is_followed ? 'followed' : '' )} onClick={onFollowUser}>
                 {detail.is_followed ? '已关注' : '关注'}
               </span>
             </div>

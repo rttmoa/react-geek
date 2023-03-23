@@ -9,29 +9,30 @@ import { InfiniteScroll } from 'antd-mobile-v5'
 import { useState } from 'react'
 
 
-
+// 地址栏参数获取：
+// 通过 history.push('search/result?key=' + key) 传递过来
+// http://localhost:3020/search/result?key=cookie
+// 通过 new URLSearchParams(useLocation().location.search).get("key")!
 
 
 let page = 1 // 全局变量  如果放在里面  会一直调用1
 const SearchResult = () => {
 
   const location = useLocation()
-  const search = new URLSearchParams(location.search)
-  const key = search.get('key')!;
+  const search = new URLSearchParams(location.search) // new URLSearchParams("?key=cookie")
+  const key = search.get('key')!   // URLSearchParams {} key: cookie
   const dispatch = useDispatch()
+  // console.log(key)
+
 
   // 获取搜索结果
   const results = useSelector((state: RootState) => state.search.results);
-
-  // useEffect(() => {
-  //   dispatch(getSearchResults(key, 1))
-  // }, [dispatch, key])
-
+ 
   // 是否有更多数据
   const [hasMore, setHasMore] = useState(true);
 
   // 加载状态
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const loadMore = async () => {
     if (loading) return;
@@ -47,18 +48,15 @@ const SearchResult = () => {
       setHasMore(false);
     }
   }
+
+
   return (
     <div className={styles.root}>
-      {/* 顶部导航栏 */}
       <NavBar className="navBar">搜索结果</NavBar>
 
       <div className="article-list">
         {results.map((item) => (
-          <ArticleItem
-            key={item.art_id}
-            article={item}
-            channelId={-1} // 举报功能
-          ></ArticleItem>
+          <ArticleItem key={item.art_id} article={item} channelId={-1}></ArticleItem>
         ))}
       </div>
       {/* 无限加载 */}

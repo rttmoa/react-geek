@@ -41,17 +41,17 @@ export function clearSuggestions(): SearchAction {
   }
 }
 
-
+/**--- 添加搜索关键词 ---**/
 export function addSearchList(keyword: string): RootThunkAction {
   return async (dispatch, getState) => {
     // 获取到原来的histories
-    let histories = getState().search.histories
+    let histories = getState().search.histories;
     // 1. 不允许有重复的历史记录, 先删除原来历史记录中的keyword
     histories = histories.filter((item) => item !== keyword)
     // 添加keyword
     histories = [keyword, ...histories]
     if (histories.length > 10) {
-      histories = histories.slice(0, 10)
+      histories = histories.slice(0, 10);
     }
     // 保存 redux
     dispatch({
@@ -72,9 +72,7 @@ export function clearHistories(): RootThunkAction {
     // 清空本地历史记录
     removeLocalHistories()
     // 清空redux数据
-    dispatch({
-      type: 'search/clearHistories',
-    })
+    dispatch({ type: 'search/clearHistories' })
   }
 }
 
@@ -91,13 +89,7 @@ type ResultRes = {
  */
 export function getSearchResults( keyword: string, page: number ): RootThunkAction {
   return async (dispatch) => {
-    const res = await request.get<ResultRes>('search', {
-      params: {
-        q: keyword,
-        page,
-        per_page: 10,
-      },
-    })
+    const res = await request.get<ResultRes>('search', {params: {q: keyword, page, per_page: 10}})
     // console.log(res.data.page)// 在get后指定泛型后、这里有提示功能
     dispatch({
       type: 'search/saveResults',

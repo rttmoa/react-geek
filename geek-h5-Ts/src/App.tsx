@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
-import { Router, Route, Switch, Redirect } from 'react-router-dom'// 需要下载 "@types/react-router-dom": "^5.1.9",
-import './App.scss'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'   // 需要下载 "@types/react-router-dom": "^5.1.9",
+// import './App.scss'
 import AuthRoute from './components/AuthRoute'
 import history from './utils/history'
 import KeepAlive from './components/KeepAlive'
@@ -18,7 +18,7 @@ const Article = React.lazy(() => import('@/pages/Article'));
 
 
 
-export default function App() {
+export default function App () {
   return (
     <Router history={history}>
       <div className="app">

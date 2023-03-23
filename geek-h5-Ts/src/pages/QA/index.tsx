@@ -1,6 +1,9 @@
 import NavBar from '@/components/NavBar'
 import styles from './index.module.scss'
 
+
+
+
 const Question = () => {
   return (
     <div className={styles.root}>

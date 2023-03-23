@@ -41,7 +41,7 @@ instance.interceptors.response.use(
   async (err: AxiosError<{ message: string }>) => {
     // 如果因为网络原因，response没有，给提示消息
     if (!err.response) {
-      Toast.info('网络繁忙，请稍后重试')
+      Toast.info('网络繁忙，请稍后重试', .5)
       return Promise.reject(err)
     }
 
@@ -50,7 +50,7 @@ instance.interceptors.response.use(
     // 网络没问题，后台返回了有数据
     if (response.status !== 401) {
       // 不是token失效的问题
-      Toast.info(response.data.message) // TS 提示
+      Toast.info(response.data.message, .5) // TS 提示
       return Promise.reject(err)
     }
 
@@ -117,7 +117,7 @@ instance.interceptors.response.use(
           from: history.location.pathname,
         },
       })
-      Toast.info('登录信息失效，请重新登录')
+      Toast.info('登录信息失效，请重新登录', .5)
       return Promise.reject(err)
     }
   }
