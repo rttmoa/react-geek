@@ -3,6 +3,9 @@ import { useRef, useEffect } from 'react'
 import styles from './index.module.scss'
 
 
+
+
+
 // index.modules.scss
 const Input = ({type = 'text', value, autoFocus, onChange, name, className, placeholder, extra, onExtraClick, ...rest }) => {
   // console.log(rest)

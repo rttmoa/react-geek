@@ -82,7 +82,6 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => {
   
   
 
-  // TODO:　返回结构
   return (
     <div className={styles.root}>
       <div className="tabs">
@@ -92,14 +91,7 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => {
               tabs.map((item, i) => {
                 // console.log(item) // item可以拿到每一个id
                 return(
-                  <div
-                    className={classnames('tab', i === activeIndex ? 'active' : '')}
-                    key={i}
-                    onClick={() => {
-                      // console.log(i);
-                       changeTab(i)
-                      }}
-                  >
+                  <div className={classnames('tab', i === activeIndex ? 'active' : '')} key={i} onClick={() => {changeTab(i)}}>
                     <span>{item.title}</span>
                   </div>
                 )
@@ -113,12 +105,7 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => {
         <div className="tabs-content">
           {
             React.Children.map(children, child => {//TODOS: 为每个子元素生成副本，并传入选中选项卡的 id 值
-              // console.log(child)
-              return React.cloneElement(child, 
-                {
-                  activeId: tabs[activeIndex]?.id || 0
-                })
-            })
+              return React.cloneElement(child, {activeId: tabs[activeIndex]?.id || 0})})
           }
         </div>
       </div>
