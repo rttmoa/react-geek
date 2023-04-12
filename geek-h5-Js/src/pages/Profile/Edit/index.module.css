@@ -81,15 +81,11 @@
   border-radius: 4px;
   color: #fff;
   font-size: 16px;
-  background: -webkit-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -moz-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -o-linear-gradient(135deg, #fe4f4f, #fc6627);
   background: linear-gradient(315deg, #fe4f4f, #fc6627);
 }
 
 :global .am-picker-popup-body .am-picker-popup-header {
-  -o-background-size: 0;
-     background-size: 0;
+  background-size: 0;
 }
 :global .am-picker-popup-body .am-picker-popup-header::after {
   display: none !important;
@@ -101,4 +97,4 @@
 :global .am-picker-popup-header-right {
   font-size: 14px;
   color: #fc6627;
-}
+}/*# sourceMappingURL=index.module.css.map */

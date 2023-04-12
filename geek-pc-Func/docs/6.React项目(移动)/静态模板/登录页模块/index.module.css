@@ -25,10 +25,7 @@
   border-bottom: none;
 }
 .root :global .login-form .login-code-extra > .adm-list-item-content {
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0;
 }
 .root :global .login-form .login-code-extra .adm-list-item-content-extra {
@@ -55,8 +52,5 @@
   margin-top: 38px;
   border: none;
   font-size: 16px;
-  background: -webkit-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -moz-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -o-linear-gradient(135deg, #fe4f4f, #fc6627);
   background: linear-gradient(315deg, #fe4f4f, #fc6627);
-}
+}/*# sourceMappingURL=index.module.css.map */

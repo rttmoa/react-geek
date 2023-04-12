@@ -7,10 +7,7 @@
 }
 .root :global .navbar .adm-nav-bar-left,
 .root :global .navbar .adm-nav-bar-right {
-  -webkit-flex: unset;
-     -moz-box-flex: unset;
-      -ms-flex: unset;
-          flex: unset;
+  flex: unset;
 }
 .root :global .navbar .adm-nav-bar-right {
   font-size: 16px;
@@ -27,14 +24,8 @@
   padding: 0 16px;
 }
 .root :global .history .history-header {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-between;
-     -moz-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   padding-top: 16px;
   padding-bottom: 19px;
   color: #a5a6ab;
@@ -47,23 +38,14 @@
   color: #333333;
 }
 .root :global .history .history-list .history-item {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   position: relative;
   padding: 12px 0;
   font-size: 13px;
 }
 .root :global .history .history-list .history-item span {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 .root :global .history .history-list .history-item .icon {
   color: #999;
@@ -85,14 +67,8 @@
 }
 .root :global .search-result .result-item {
   position: relative;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 44px;
   padding: 10px 0;
   font-size: 14px;
@@ -102,10 +78,7 @@
   font-size: 12px;
 }
 .root :global .search-result .result-item .result-value {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 .root :global .search-result .result-item .result-value span {
   color: red;
@@ -117,8 +90,7 @@
   word-break: break-all;
   display: -webkit-box;
   overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-}
+}/*# sourceMappingURL=index.module.css.map */

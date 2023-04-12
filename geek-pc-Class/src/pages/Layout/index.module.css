@@ -1,0 +1,35 @@
+.layout {
+  height: 100vh;
+}
+.layout :global .ant-layout {
+  height: 100%;
+}
+.layout :global .ant-layout-header {
+  padding: 0;
+  position: relative;
+}
+.layout :global .logo {
+  float: left;
+  width: 200px;
+  height: 60px;
+  margin: 2px 0;
+  background: url(~assets/logo.png);
+  background-size: cover;
+}
+.layout :global .profile {
+  color: #fff;
+  font-weight: 700;
+  position: absolute;
+  right: 100px;
+}
+.layout :global .profile span + span {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.layout :global .ant-row-rtl .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+.layout :global .site-layout-background {
+  background: #fff;
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,12 +1,6 @@
 .root {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -16,18 +10,9 @@
   border-top: 1px solid #f0f0f0;
 }
 .root :global .input-btn {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
+  flex: 1;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 36px;
   padding-left: 10px;
   color: #9ea1ae;
@@ -63,4 +48,4 @@
   background-color: #fc6627;
   font-size: 12px;
   line-height: 1;
-}
+}/*# sourceMappingURL=index.module.css.map */

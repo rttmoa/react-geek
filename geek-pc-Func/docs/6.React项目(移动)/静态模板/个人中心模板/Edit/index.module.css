@@ -55,15 +55,11 @@
   border-radius: 4px;
   color: #fff;
   font-size: 16px;
-  background: -webkit-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -moz-linear-gradient(135deg, #fe4f4f, #fc6627);
-  background: -o-linear-gradient(135deg, #fe4f4f, #fc6627);
   background: linear-gradient(315deg, #fe4f4f, #fc6627);
 }
 
 :global .adm-picker-popup-body .adm-picker-popup-header {
-  -o-background-size: 0;
-     background-size: 0;
+  background-size: 0;
 }
 :global .adm-picker-popup-body .adm-picker-popup-header::after {
   display: none !important;
@@ -74,4 +70,4 @@
 }
 :global .adm-picker-header .adm-picker-header-button:nth-last-child(1) {
   color: #fc6627;
-}
+}/*# sourceMappingURL=index.module.css.map */

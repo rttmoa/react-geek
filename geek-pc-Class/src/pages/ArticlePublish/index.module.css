@@ -1,0 +1,9 @@
+.root {
+  background-color: skyblue;
+}
+.root :global .list {
+  font-size: 30px;
+}
+.root :global .list .item {
+  color: blue;
+}/*# sourceMappingURL=index.module.css.map */

@@ -7,15 +7,8 @@
 .root :global .reply-wrapper {
   position: relative;
   z-index: 1;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-     -moz-box-orient: vertical;
-     -moz-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
 }
 .root :global .transparent-navbar {
@@ -31,4 +24,4 @@
   padding: 16px;
   font-size: 17px;
   font-weight: 500;
-}
+}/*# sourceMappingURL=index.module.css.map */

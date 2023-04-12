@@ -7,27 +7,15 @@
   padding: 0 15px;
   border-bottom-left-radius: 500px 120px;
   border-bottom-right-radius: 500px 120px;
-  background: -webkit-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
-  background: -moz-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
-  background: -o-linear-gradient(132deg, #b2b5db 2%, #565482 85%, #494675 97%);
   background: linear-gradient(318deg, #b2b5db 2%, #565482 85%, #494675 97%);
 }
 .root :global .user-info {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 40px 0 15px;
 }
 .root :global .user-info .user-name {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   margin-left: 18px;
   font-size: 24px;
   font-weight: 400;
@@ -61,15 +49,8 @@
      object-fit: cover;
 }
 .root :global .read-info {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: -webkit-fit-content;
+  align-items: center;
   width: -moz-fit-content;
   width: fit-content;
   height: 30px;
@@ -77,9 +58,6 @@
   border-radius: 15px;
   font-size: 12px;
   color: #f7f8fa;
-  background: -webkit-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
-  background: -moz-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
-  background: -o-linear-gradient(131deg, #585089 0%, #2c2a6b 98%);
   background: linear-gradient(319deg, #585089 0%, #2c2a6b 98%);
 }
 .root :global .read-info .icon {
@@ -94,21 +72,12 @@
   color: #ffbc3d;
 }
 .root :global .count-list {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-between;
-     -moz-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   padding: 20px 0 15px 0;
 }
 .root :global .count-list .count-item {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   text-align: center;
   font-size: 13px;
   color: #fff;
@@ -118,9 +87,6 @@
   margin-bottom: 6px;
 }
 .root :global .user-links {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   padding: 20px 0;
   font-size: 12px;
@@ -130,10 +96,7 @@
   color: #333;
 }
 .root :global .user-links .link-item {
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 .root :global .user-links .icon {
   margin-bottom: 11px;
@@ -150,9 +113,6 @@
   color: #333;
 }
 .root :global .more-service .service-list {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
 }
 .root :global .more-service .service-item {
@@ -164,4 +124,4 @@
 .root :global .more-service .icon {
   margin-bottom: 11px;
   font-size: 22px;
-}
+}/*# sourceMappingURL=index.module.css.map */
