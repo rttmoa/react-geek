@@ -32,41 +32,33 @@ export function getSuggestList(keyword: string): RootThunkAction {
   }
 }
 
-/**
- * 清空推荐记录
- */
+
+/** #### 清空推荐记录 （action）  */
 export function clearSuggestions(): SearchAction {
   return {
     type: 'search/clearSuggestions',
   }
 }
 
-/**--- 添加搜索关键词 ---**/
+
+/** #### 添加搜索关键词 存储Localstoreage+Redux  */
 export function addSearchList(keyword: string): RootThunkAction {
   return async (dispatch, getState) => {
-    // 获取到原来的histories
-    let histories = getState().search.histories;
+    let histories = getState().search.histories;  
     // 1. 不允许有重复的历史记录, 先删除原来历史记录中的keyword
     histories = histories.filter((item) => item !== keyword)
-    // 添加keyword
     histories = [keyword, ...histories]
     if (histories.length > 10) {
       histories = histories.slice(0, 10);
     }
     // 保存 redux
-    dispatch({
-      type: 'search/saveHistories',
-      payload: histories,
-    })
+    dispatch({ type: 'search/saveHistories', payload: histories })
     // 保存到本地
     setLocalHistories(histories)
   }
 }
 
-/**
- * 清空历史记录
- * @returns
- */
+/** #### 清空历史记录Localstoreage+Redux （action）  */
 export function clearHistories(): RootThunkAction {
   return async (dispatch) => {
     // 清空本地历史记录
@@ -76,13 +68,13 @@ export function clearHistories(): RootThunkAction {
   }
 }
 
+
 type ResultRes = {
   page: number
   per_page: number
   results: Ariticle[]
   total_count: number
 }
-
 
 /**
  * 获取搜索结果数据

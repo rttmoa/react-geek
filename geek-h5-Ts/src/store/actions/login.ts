@@ -9,6 +9,7 @@ type Token = {
   refresh_token: string
 }
 
+/** #### 发送验证码 （Get请求, action） */
 export const sendCode = (mobile: string) => {
   return async () => {
     // 发送请求
@@ -53,10 +54,7 @@ export const login = (data: { mobile: string; code: string }) => {
   }
 }
 
-/**
- * 退出
- * @returns
- */
+/** #### TODO: 退出 （action） ---*/
 export const logout = (payload: Token) => {
   return {
     type: 'login/logout' as const,

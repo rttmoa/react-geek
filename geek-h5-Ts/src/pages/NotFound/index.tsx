@@ -3,11 +3,12 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 export default function NotFound() {
-  // useState 泛型
-  // useRef   泛型
+  // useState<array>[] 泛型
+  // useRef<string>('')   泛型
   // useEffect
   const [time, setTime] = useState<number>(3)
   const history = useHistory()
+
   // useEffect(() => {
   //   let timer = setTimeout(() => {
   //     setTime(time - 1)
@@ -17,6 +18,7 @@ export default function NotFound() {
   //     history.push('/home')
   //   }
   // }, [time, history])
+
   useEffect(() => {
     // 在ts中，使用定时器的时候，，，ts会默认把setTimeout和setInterval的类型定义为nodejs中的定时器。而不是浏览器中的
     // 以后使用定时器，推荐加上 window     |   加不加不影响功能，影响Js的推断
@@ -33,12 +35,11 @@ export default function NotFound() {
       history.push('/home/index')
     }
   }, [time, history])
+  
   return (
     <div>
       <h1>对不起，你访问的内容不存在...</h1>
-      <p>
-        {time} 秒后，返回<Link to="/home">首页</Link>
-      </p>
+      <p>{time} 秒后，返回<Link to="/home">首页</Link></p>
     </div>
   )
 }

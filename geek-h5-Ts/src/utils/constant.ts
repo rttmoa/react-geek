@@ -8,7 +8,7 @@ const tabBar = [
     { 
       title: '测试',
       icon: 'iconbtn_qa',
-      path: '/home/ts',
+      path: '/home/total',
     },
     // { 
     //   title: '问答',
@@ -19,7 +19,7 @@ const tabBar = [
     //   title: '视频',
     //   icon: 'iconbtn_video',
     //   path: '/home/video',
-    // },q
+    // },
     {
       title: '我的',
       icon: 'iconbtn_mine',

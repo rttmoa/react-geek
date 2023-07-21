@@ -19,29 +19,21 @@ type Props = {
   onLeftClick?: () => void
 } 
 function NavBar({ children, extra, onLeftClick, className }: Props) {
-
   const history = useHistory()
   const back = () => {
-    if (onLeftClick) {
-      onLeftClick();
-    } else {
-      history.go(-1);
-    }
+    if (onLeftClick) onLeftClick(); 
+    else history.go(-1);
   }
   return (
     <div className={classNames(styles.root, className)}>
-      {/* 后退按钮 */}
       <div className="left">
         <Icon type="iconfanhui" onClick={back} />
       </div>
-      {/* 居中标题 */}
       <div className="title">{children}</div> 
-      {/* 右侧内容 */}
       <div className="right">{extra}</div>
     </div>
   )
-}
-// 原：
+} 
 // NavBar.propTypes = {
 //   children: Prop.name
 // }

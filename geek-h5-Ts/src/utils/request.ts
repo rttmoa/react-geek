@@ -68,11 +68,8 @@ instance.interceptors.response.use((response) => {
       const res = await axios({
         method: 'put',
         url: baseURL + 'authorizations',
-        headers: {
-          Authorization: 'Bearer ' + refresh_token,
-        },
+        headers: { Authorization: 'Bearer ' + refresh_token },
       })
-      // debugger
       // 刷新成功
       // 把新的token保存起来
       const tokenInfo = {
@@ -88,14 +85,9 @@ instance.interceptors.response.use((response) => {
     } catch {
       // 刷新token失败, 刷新token过期
       // store.dispatch 类型就是 Dispath,,,要求参数必须有type才行
-      // 移除本地的token
+
       removeTokenInfo()
-      store.dispatch(
-        logout({
-          token: '',
-          refresh_token: '',
-        })
-      )
+      store.dispatch(logout({ token: '', refresh_token: '' }))
       // 跳转到登录页
       history.replace({
         pathname: '/login',
@@ -109,4 +101,4 @@ instance.interceptors.response.use((response) => {
   }
 )
 
-export default instance;
+export default instance; 

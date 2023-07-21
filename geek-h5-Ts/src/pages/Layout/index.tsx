@@ -7,7 +7,7 @@ import AuthRoute from '@/components/AuthRoute'
 import KeepAlive from '@/components/KeepAlive'
 import { tabBar } from '@/utils/constant'
 const Home = lazy(() => import('@/pages/Home'))
-const Ts = lazy(() => import('@/pages/Ts'))
+const Total = lazy(() => import('@/pages/total'))
 // const QA = lazy(() => import('@/pages/QA'))
 // const Video = lazy(() => import('@/pages/Video'))
 const Profile = lazy(() => import('@/pages/Profile'))
@@ -27,7 +27,7 @@ export default function Layout () {
           <KeepAlive alivePath="/home/index" path="/home/index" component={Home}></KeepAlive>
           <Switch>
             {/* 需求：封装一个PrivateRoute,这个组件把这些逻辑封装起来 */}
-            <Route path="/home/ts" component={Ts}></Route>
+            <Route path="/home/total" component={Total}></Route>
             {/* <Route path="/home/qa" component={QA}></Route> */}
             {/* <Route path="/home/video" component={Video}></Route> */}
             {/* component={Profile} 等价于 render={() => <Profile></Profile>} */} 

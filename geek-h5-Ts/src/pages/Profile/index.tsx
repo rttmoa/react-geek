@@ -16,30 +16,34 @@ const Profile = () => {
   
   const history = useHistory()
   const dispatch = useDispatch()
-  // 泛型参数1：指定state的类型
+  
+  // 泛型参数1：指定state的类型  RootState中有login,profile,home,search,article的类型，即可推出后面的属性
   // 泛型参数2：指定返回值的类型
-  // const user = useSelector<RootState, RootState['profile']['user']>(state => state.profile.user) // 指定泛型 拿到 返回的User类型
-  const user = useSelector((state: RootState) => state.profile.user)// state有类型(RootState)、profile就有类型 | 变量user可以推断类型
+  // const user = useSelector<RootState, RootState['profile']['user']>(state => state.profile.user)
+  const user = useSelector((state: RootState) => state.profile.user)
+  // console.log(user)
+
 
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(getUser()); // TODO: action中获取User接口数据后，存储redux中，页面中从redux中获取数据渲染
   }, [dispatch]);
 
   
   return (
     <div className={styles.root}>
       <div className="profile">
+
         {/* 顶部个人信息区域 */}
         <div className="user-info">
           <div className="avatar">
             <img src={user.photo} alt="" />
           </div>
-          <div className="user-name">{user.name}</div>
-          <Link to="/profile/edit">个人信息<Icon type="iconbtn_right" /> </Link>
+          <div className="user-name">{'UserName' || user.name}</div>
+          <Link to="/profile/edit"><span className='text'>个人信息</span><Icon type="iconbtn_right" /> </Link>
         </div>
 
         {/* 今日阅读区域 */}
-        <div className="read-info"><Icon type="iconbtn_readingtime" />今日阅读 <span>10</span> 分钟</div>
+        <div className="read-info"><Icon type="iconbtn_readingtime" />今日阅读<span>34</span> 分钟</div>
 
         {/* 统计信息区域 */}
         <div className="count-list">
@@ -88,14 +92,15 @@ const Profile = () => {
         <div className="service-list">
           <div className="service-item" onClick={() => history.push('/profile/feedback')} >
             <Icon type="iconbtn_feedback" />
-            <div>用户反馈</div>
+            <div style={{color: '#4119f4'}}>用户反馈</div>
           </div>
           <div className="service-item" onClick={() => history.push('/profile/chat')}>
             <Icon type="iconbtn_xiaozhitongxue" />
-            <div>小智同学</div>
+            <div style={{color: '#4119f4'}}>小智同学</div>
           </div>
         </div>
       </div>
+
     </div>
   )
 }

@@ -1,12 +1,9 @@
 import http from '@/utils/request'
 import { User, Profile, ProfileAction } from '../reducers/profile'
 import { RootThunkAction } from '..'
-/**
- * 保存用户信息
- * @param {*} payload
- * @returns
- */
-// actionCreator: 创建action  必须要符合 ProfileAction类型
+
+
+/** #### 保存用户信息  @param {*} payload ---*/
 export const saveUser = (payload: User): ProfileAction => {/**--- actionCreator: 创建action  必须要符合 ProfileAction类型 ---**/
   return {
     type: 'profile/user',
@@ -14,10 +11,7 @@ export const saveUser = (payload: User): ProfileAction => {/**--- actionCreator:
   }
 }
 
-/**
- * 获取用户信息
- * @returns Promise
- */
+/** #### 获取用户信息 （action） ---*/
 export const getUser = (): RootThunkAction => {
   return async (dispatch) => {
     const res = await http.get('/user')
@@ -32,6 +26,7 @@ export const saveProfile = (payload: Profile): ProfileAction => {// 传递的Pro
   }
 }
 
+/** #### 获取用户个人信息+存储redux ---*/
 export const getProfile = (): RootThunkAction => {
   return async (dispatch) => {
     const res = await http.get('/user/profile')
@@ -42,9 +37,10 @@ export const getProfile = (): RootThunkAction => {
 // 返回一个全部属性变成可选的类型
 type PartialProfile = Partial<Profile>
 
-// 修改用户的信息
+
 // dispatch: Dispatch类型，，，参数必须符合Action类型 {type: T}
-export const updateProfile = (data: PartialProfile): RootThunkAction => {// 修改的Profile是可选的
+/** #### 修改用户的信息+重新获取用户信息 （action） ---*/
+export const updateProfile = (data: PartialProfile): RootThunkAction => { // 修改的Profile是可选的
   return async (dispatch) => {
     await http.patch('/user/profile', data)
     dispatch(getProfile())
@@ -52,6 +48,7 @@ export const updateProfile = (data: PartialProfile): RootThunkAction => {// 修�
 }
 
 // FormData是DOM中提供的 不需要导入
+/** #### 更新用户头像+重新获取用户信息 （action） ---*/
 export const updatePhoto = (fd: FormData): RootThunkAction => {
   return async (dispatch) => {
     await http.patch('/user/photo', fd)

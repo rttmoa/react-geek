@@ -13,8 +13,6 @@ import { getUser } from '@/store/actions/profile'
 
 // websocket 
 // const listRef = React.useRef()让滚动条自动滚动到最底部
-
-
 const Chat = () => {
   const [messageList, setMessageList] = useState([
     { type: 'robot', text: '亲爱的用户您好，小智同学为您服务。' },
@@ -55,10 +53,7 @@ const Chat = () => {
     client.on('message', function (e) {
       setMessageList((messageList) => {
         return [
-          ...messageList, {
-            type: 'robot',
-            text: e.msg,
-          },
+          ...messageList, { type: 'robot', text: e.msg },
         ]
       })
     })

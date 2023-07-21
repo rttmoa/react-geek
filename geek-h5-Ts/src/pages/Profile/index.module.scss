@@ -19,25 +19,30 @@
       .user-name {
         flex: 1;
         margin-left: 18px;
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 400;
         color: #fff;
       }
-
+ 
+      // Link标签
       a {
         line-height: 16px;
-        color: #fff;
+        color: #f4eff4;
         font-size: 12px;
-
+        padding-right: 10px;
         &:visited {
           color: #fff;
         }
       }
-
+      .text {
+        color: #abf419; 
+      }
       .icon {
         width: 9px;
         height: 16px;
+        color: #abf419; 
         vertical-align: middle;
+        padding-left: 1px;
       }
     }
 

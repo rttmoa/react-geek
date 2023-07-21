@@ -63,19 +63,21 @@
       position: fixed;
       left: 0;
       right: 0;
-      bottom: 0;
+      bottom: 10px;
       height: 50px;
       padding: 7px 16px;
 
       .input {
         height: 36px;
         min-height: 0;
-        padding-left: 27px;
+        padding-left: 29px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         border-radius: 18px;
         background-color: #f7f8fa;
-        font-size: 14px;
+        font-size: 12px;
         &::placeholder {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
       .no-border {

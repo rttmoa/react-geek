@@ -1,8 +1,8 @@
-import NavBar from '@/components/NavBar'
 import styles from './index.module.scss'
-import Input from '@/components/Input'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import NavBar from '@/components/NavBar'
+import Input from '@/components/Input' // TODO: 封装Input组件
+import { useFormik } from 'formik' // TODO: 表单值获取与使用
+import * as Yup from 'yup'      // TODO: YUP校验
 import classNames from 'classnames'
 import { useDispatch } from 'react-redux'
 import { login, sendCode } from '@/store/actions/login'
@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 
 
-
+// TODO: 验证码倒计时 + 登陆时Input组件封装 + formik库 + yup库 + useHistory + useLocation + useDispatch
 export default function Login() {
   const history = useHistory() // useHistory<unknown>()
   // useLocation钩子也需要泛型，参数类型用于指定state的类型
@@ -19,20 +19,19 @@ export default function Login() {
   const dispatch = useDispatch();
   const [time, setTime] = useState(0);
 
-  const onExtraClick = async () => {
+
+  const onExtraClick = async () => { // 获取验证码倒计时
     if (time > 0) return;
     // 先对手机号进行验证
     if (!/^1[3-9]\d{9}$/.test(mobile)) {
       formik.setTouched({ mobile: true })
       return;
     }
-
     await dispatch(sendCode(mobile));
-
-    Toast.success('获取验证码成功', 1)
+    Toast.success('获取验证码成功', .5)
 
     // 开启倒计时
-    setTime(5);
+    setTime(60);
     let timeId = setInterval(() => {
       // 当我们每次都想要获取到最新的状态，需要写成 箭头函数的形式
       setTime((time) => {
@@ -43,6 +42,8 @@ export default function Login() {
       });
     }, 1000);
   }
+
+
   const formik = useFormik({
     initialValues: {
       mobile: '13911111111',
@@ -51,7 +52,7 @@ export default function Login() {
     // 当表单提交的时候，会触发
     async onSubmit(values) {
       await dispatch(login(values));
-      Toast.success('登录成功');
+      Toast.success('登录成功', .5);
       const pathname = location.state ? location.state.from : '/home';
       // history.go(-1) 页面回退
       // history.go(1) 页面前进
@@ -65,6 +66,7 @@ export default function Login() {
       code: Yup.string().required('验证码不能为空').matches(/^\d{6}$/, '验证码格式错误'),
     }),
   })
+
   const {
     values: { mobile, code },
     handleChange,
@@ -74,11 +76,13 @@ export default function Login() {
     touched,
     isValid,
   } = formik;
+
+
   return (
     <div className={styles.root}>
-      {/* 导航条 */}
+
       <NavBar>登录</NavBar>
-      {/* 内容 */}
+
       <div className="content">
         <h3>短信登录</h3>
         <form onSubmit={handleSubmit}>
@@ -89,7 +93,7 @@ export default function Login() {
               name="mobile"
               autoComplete="off"
               onChange={handleChange}
-              onBlur={handleBlur}
+              onBlur={handleBlur} // 鼠标离开事件
               maxLength={11}
             ></Input>
             {touched.mobile && errors.mobile ? (<div className="validate">{errors.mobile}</div>) : null}
@@ -108,12 +112,7 @@ export default function Login() {
             ></Input>
             {touched.code && errors.code ? (<div className="validate">{errors.code}</div>) : null}
           </div>
-          {/* 登录按钮 产品 */}
-          <button
-            type="submit"
-            className={classNames('login-btn', { disabled: !isValid })}
-            disabled={!isValid}
-          >
+          <button type="submit" className={classNames('login-btn', { disabled: !isValid })} disabled={!isValid}>
             登录
           </button>
         </form>

@@ -23,7 +23,8 @@ type Props = Omit<
   autoFocus?: boolean
   type?: 'text' | 'password' | 'radio'
 }
-export default function Input({ extra,onExtraClick,className,autoFocus, ...rest}: Props) {
+// 1.登陆时，短信登陆时的输入框
+export default function Input({ extra, onExtraClick,className,autoFocus, ...rest}: Props) { 
   // focus
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {

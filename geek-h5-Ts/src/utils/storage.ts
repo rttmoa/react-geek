@@ -3,7 +3,6 @@ const TOKEN_KEY = 'geek-itcast-21'            // Token
 const CHANNEL_KEY = 'geek-itcast-21-channels' // Channel 
 const SEARCH_HIS_KEY = 'geek-itast-21-search' // Search
 
-
 type Token = {
   token: string
   refresh_token: string
@@ -14,6 +13,9 @@ type Channels = {
   id: number
   name: string
 }[]
+
+
+// FIXME: TOKEN数据的 获取、存储、删除
 
 /** #### TODO: 将Token信息存入缓存 @param {Object} tokenInfo 从后端获取到的 Token 信息 ---*/
 export const setTokenInfo = (tokenInfo: Token) => {
@@ -42,7 +44,7 @@ export const hasToken = () => { // 会有类型推断：const hasToken: () => bo
 
 
 
-// 频道数据的 获取、存储、删除
+// FIXME: 频道数据的 获取、存储、删除
 
 /** #### TODO: 保存频道数据到本地 ---*/
 export const setLocalChannels = (channels: Channels) => {
@@ -62,7 +64,7 @@ export const removeLocalChannels = () => {
 
 
 
-// 搜索关键词的 获取、存储、删除
+// FIXME: 搜索关键词的 获取、存储、删除
 
 /** #### TODO: 从缓存获取搜索历史关键字 ---*/
 export const getLocalHistories = (): string[] => {
