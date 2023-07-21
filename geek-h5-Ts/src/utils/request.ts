@@ -15,26 +15,19 @@ const instance = axios.create({
 })
 
 // 配置拦截器
-instance.interceptors.request.use((config) => {
-    // 对config做点什么
-    // 获取token
+instance.interceptors.request.use((config) => { 
     const token = getTokenInfo().token
     if (token) {
       config.headers.Authorization = 'Bearer ' + token
     }
     return config
-  },
-  (error: AxiosError<{ message: string }>) => {
-    // 对错误做点什么
-    return Promise.reject(error);
-    // console.log(error.code)
+  }, (error: AxiosError<{ message: string }>) => {
+    return Promise.reject(error); 
   }
 )
 
 // 配置响应拦截器
-instance.interceptors.response.use(
-  (response) => {
-    // 对响应做点什么...
+instance.interceptors.response.use((response) => {
     return response.data
   },
   // AxiosError<类型参数> 类型参数用于指定 data的类型
@@ -50,7 +43,7 @@ instance.interceptors.response.use(
     // 网络没问题，后台返回了有数据
     if (response.status !== 401) {
       // 不是token失效的问题
-      Toast.info(response.data.message, .5) // TS 提示
+      Toast.info(response.data.message, .5) 
       return Promise.reject(err)
     }
 
@@ -70,7 +63,7 @@ instance.interceptors.response.use(
     }
 
     // 是401错误，且有刷新token
-    // 尝试发请求，获取新的token,注意：刷新token发送请求，不能使用封装的instance
+    // 尝试发请求，获取新的token, 注意：刷新token发送请求，不能使用封装的instance
     try {
       const res = await axios({
         method: 'put',
@@ -86,14 +79,8 @@ instance.interceptors.response.use(
         token: res.data.data.token,
         refresh_token: refresh_token,
       }
-      // console.log(tokenInfo)
-      // 保存到redux中
+      // store.dispatch({ type: 'login/token', payload: tokenInfo})
       store.dispatch(saveToken(tokenInfo))
-      // store.dispatch({
-      //   type: 'login/token',
-      //   payload: tokenInfo
-      // })
-      // 保存到localstorage中
       setTokenInfo(tokenInfo)
 
       // token刷新成功后，重新把最开始失败的请求重新发一次
@@ -109,7 +96,6 @@ instance.interceptors.response.use(
           refresh_token: '',
         })
       )
-      // store.dispatch()
       // 跳转到登录页
       history.replace({
         pathname: '/login',

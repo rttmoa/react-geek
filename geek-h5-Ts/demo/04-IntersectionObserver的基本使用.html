@@ -20,9 +20,7 @@
     <script>
       const img = document.querySelector('img')
       // 如何知道图片是否该加载了，，，如何知道图片是否在可视区
-      const observer = new IntersectionObserver(function ([
-        { isIntersecting },
-      ]) {
+      const observer = new IntersectionObserver(function ([{ isIntersecting }]) {
         console.log('监听')
         if (isIntersecting) {
           img.src = img.dataset.src

@@ -2,7 +2,10 @@
 
 .root {
   :global {
-     
-     
+    .content {
+      padding: 25px 45px;
+      // color: red;
+      line-height: 25px;
+    } 
   }
 }

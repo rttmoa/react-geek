@@ -13,7 +13,6 @@ import { useHistory, useLocation } from 'react-router'
 
 
 export default function Login() {
-
   const history = useHistory() // useHistory<unknown>()
   // useLocation钩子也需要泛型，参数类型用于指定state的类型
   const location = useLocation<{ from: string }>();

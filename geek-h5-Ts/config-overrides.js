@@ -3,13 +3,14 @@ const { override, fixBabelImports, addWebpackAlias, addPostcssPlugins, addWebpac
 const px2viewport = require('postcss-px-to-viewport');
 const path = require('path');
 
+
 /* 
   css处理器
     预处理器：less sass stylus
     后处理器：postcss (js中的babel)
-      autoprefixer : 自动添加前缀  tranform:
-      pxtorem :px 转成rem
-      pxtoviewport px转成vw
+      autoprefixer: 自动添加前缀  tranform:
+      pxtorem:      px 转成rem
+      pxtoviewport: px转成vw
 */
 // antd 的按需加载
 const babelPlugin = fixBabelImports('import', {

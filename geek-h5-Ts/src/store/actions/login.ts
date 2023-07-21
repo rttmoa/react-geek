@@ -27,7 +27,7 @@ export const sendCode = (mobile: string) => {
 export const saveToken = (payload: Token): LoginAction  => { //　这里指定类型才会有提示、否则不会有提示功能　
   return {
     // type: 'login/token' as const,  // type是常量
-    type: 'login/token', // type是string
+    type: 'login/token',  
     payload,
   }
 }

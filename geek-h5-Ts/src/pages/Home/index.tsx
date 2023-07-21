@@ -62,7 +62,7 @@ export default function Home () {
         className="my-drawer"
         position="left"
         children={''}
-        sidebar={open && <Channels onClose={onClose} index={active} onChange={changeActive}></Channels> }
+        sidebar={open && <Channels onClose={onClose} index={active} onChange={changeActive}></Channels>}
         open={open}
       ></Drawer>
 

@@ -19,13 +19,14 @@ const tabBar = [
     //   title: '视频',
     //   icon: 'iconbtn_video',
     //   path: '/home/video',
-    // },
+    // },q
     {
       title: '我的',
       icon: 'iconbtn_mine',
       path: '/home/profile',
     },
 ];
+
 /** /Home/component/MoreAction 举报反馈菜单 */
 const list = [
   { id: 0, title: '其他问题' },
@@ -38,7 +39,6 @@ const list = [
   { id: 7, title: '涉嫌违法犯罪' },
   { id: 8, title: '侵权' },
 ]
-
 
 export {
     tabBar,
