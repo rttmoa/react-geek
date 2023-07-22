@@ -43,11 +43,10 @@ import { RootState } from '@/store'
       timestamp: 时间戳
     } 
   }
-
-
 */
+
 /**
- * 文章列表组件
+ * TODO: 文章列表组件
  * @param {String} props.channelId 当前文章列表所对应的频道ID
  * @param {String} props.aid 当前 Tab 栏选中的频道ID
  */
@@ -80,7 +79,6 @@ const ArticleList = ({ channelId, activeId }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const loadMore = async () => {
-    // console.log(123)
     // 如果在加载中，不允许重复加载
     if (loading) return
     // 如果不是当前的频道，也不需要加载

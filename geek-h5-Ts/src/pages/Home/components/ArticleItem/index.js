@@ -13,7 +13,7 @@ import { useHistory } from 'react-router'
 
 
 
-/**--- 外部每一条文章详情 ---**/
+/** #### TODO: 文章列表 - 每一个Article Box ---*/
 const ArticleItem = ({ article, channelId }) => {
 
   const dispatch = useDispatch();
@@ -42,10 +42,9 @@ const ArticleItem = ({ article, channelId }) => {
         <span>{comm_count} 评论</span>
         {/* fromNow: 距离现在的时间 */}
         <span>{dayjs(pubdate).fromNow()}</span>
-
         <span className="close">
-          {isLogin && (<Icon type="iconbtn_essay_close" onClick = {() => 
-              dispatch(setMoreAction({
+          {isLogin && (<Icon type="iconbtn_essay_close" onClick = {
+            () => dispatch(setMoreAction({
                 visible: true,
                 articleId: article.art_id,
                 channelId,

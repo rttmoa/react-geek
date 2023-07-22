@@ -24,14 +24,13 @@ const SearchResult = () => {
 
   // 获取搜索结果
   const results = useSelector((state: RootState) => state.search.results);
-  console.log(results.length)
+  // console.log(results) // {art_id: '303', title: 'electron-vue邮件客户端总结', aut_id: '1111', aut_name: '黑马程序员(改不了)', comm_count: 0, …}
 
+  
   // 是否有更多数据
   const [hasMore, setHasMore] = useState(true);
-
   // 加载状态
   const [loading, setLoading] = useState(false);
-
   const loadMore = async () => {
     if (loading) return;
     setLoading(true);
@@ -50,9 +49,7 @@ const SearchResult = () => {
     <div className={styles.root}>
       <NavBar className="navBar">搜索结果</NavBar>
       <div className="article-list">
-        {results.map((item) => (
-          <ArticleItem key={item.art_id} article={item} channelId={-1}></ArticleItem>
-        ))}
+        {results.map((item) => <ArticleItem key={item.art_id} article={item} channelId={-1}></ArticleItem>)}
       </div>
       {/* TODO: 滚动加载 */}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />

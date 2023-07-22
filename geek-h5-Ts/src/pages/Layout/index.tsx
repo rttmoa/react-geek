@@ -8,33 +8,32 @@ import KeepAlive from '@/components/KeepAlive'
 import { tabBar } from '@/utils/constant'
 const Home = lazy(() => import('@/pages/Home'))
 const Total = lazy(() => import('@/pages/total'))
+const Profile = lazy(() => import('@/pages/Profile'))
 // const QA = lazy(() => import('@/pages/QA'))
 // const Video = lazy(() => import('@/pages/Video'))
-const Profile = lazy(() => import('@/pages/Profile'))
 
  
 
 export default function Layout () {
-
   const history = useHistory()
   const location = useLocation()
   return (
     <div className={styles.root}>
+
       {/* 区域一：点击按钮切换显示内容的区域 */}
       <div className="tab-content">
         {/* 配置二级路由 只要用了路由的懒加载，配合Suspense一起使用 */}
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<div>正在加载</div>}>
           <KeepAlive alivePath="/home/index" path="/home/index" component={Home}></KeepAlive>
           <Switch>
-            {/* 需求：封装一个PrivateRoute,这个组件把这些逻辑封装起来 */}
-            <Route path="/home/total" component={Total}></Route>
-            {/* <Route path="/home/qa" component={QA}></Route> */}
-            {/* <Route path="/home/video" component={Video}></Route> */}
+            {/* 需求：封装一个PrivateRoute, 这个组件把这些逻辑封装起来 */}
+            <Route path="/home/total" component={Total}></Route> 
             {/* component={Profile} 等价于 render={() => <Profile></Profile>} */} 
             <AuthRoute path="/home/profile" component={Profile}></AuthRoute>
           </Switch>
         </Suspense>
       </div>
+
       {/* 区域二：按钮区域，会使用固定定位显示在页面底部 */}
       <div className="tabbar">
         {tabBar.map((item) => (
@@ -48,6 +47,7 @@ export default function Layout () {
           </div>
         ))}
       </div>
+      
     </div>
   )
 }

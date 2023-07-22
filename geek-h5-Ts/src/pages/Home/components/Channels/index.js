@@ -18,27 +18,23 @@ const Channels = ({ onClose, index, onChange }) => {
 
   const userChannels = useSelector((state) => state.home.userChannels)
   const dispatch = useDispatch()
+
   // 推荐频道
   const recommendChannels = useSelector((state) => {
     const { userChannels, allChannels } = state.home;
-    // console.log(userChannels)
-    return differenceBy(allChannels, userChannels, 'id');
+    return differenceBy(allChannels, userChannels, 'id');  // 推荐频道 = 所有频道 - 用户频道
   })
 
   // 切换
   const changeChannel = (i) => {
-    
     // 如果是编辑状态，不允许跳转
     if (editing) return;
-
     // console.log(typeof i) // 查看传递到index组件的类型
-    
-    // 高亮处理 
+    // FIXME: 高亮处理 
     // 1. 如果删除的 i 和 index相等，默认让推荐 0 高亮
     // 2. 如果删除的 i 小于 index, 默认让 i - 1高亮
     // 3. 如果删除的i  大于 index  不用处理
     onChange(i);
-
     onClose();
   }
 
@@ -47,10 +43,8 @@ const Channels = ({ onClose, index, onChange }) => {
 
   // 删除频道
   const del = (channel, i) => {
-
     if (userChannels.length <= 4) { Toast.info('至少保留4个频道了啦'); return }
     dispatch(delChannel(channel))
-
     // 删除的时候，需要处理高亮
     if (i === index) {
       onChange(0);
@@ -60,9 +54,9 @@ const Channels = ({ onClose, index, onChange }) => {
     }
   }
 
-  const add = async (channel) => { // channel: {id: 11, name: '后端'} 
+  const add = async (channel) => { // @params: channel: {id: 11, name: '后端'} 
     await dispatch(addChannel(channel))
-    // Toast.success('添加成功', 1)
+    Toast.success('添加成功', .3)
   }
 
 
@@ -85,7 +79,6 @@ const Channels = ({ onClose, index, onChange }) => {
               {editing ? '完成' : '编辑'}
             </span>
           </div>
-
           <div className="channel-list">
             {userChannels.map((item, i) => (
               <span
