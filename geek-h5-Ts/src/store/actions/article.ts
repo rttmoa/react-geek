@@ -4,11 +4,11 @@ import { ArticleAction, Comment } from '../reducers/article'
 
 
 
-/**--- 获取文章详情数据 ---**/
+/** #### 获取文章详情数据 （action）  */
 export function getArticleDetail(id: string): RootThunkAction {
   return async (dispatch) => {
+    // 获取新闻详情 （ /v1_0/articles/:article_id）： http://geek.itheima.net/api.html
     const res = await request.get('/articles/' + id) 
-    /**--- 先写reducers再写dispatch ---**/
     dispatch({
       type: 'artcile/saveDetail',
       payload: res.data,
@@ -16,10 +16,10 @@ export function getArticleDetail(id: string): RootThunkAction {
   }
 }
 
-/**--- 获取文章的评论 ---**/
-export function getCommentList(id: string): RootThunkAction {
-  // common接口地址：http://geek.itheima.net/api.html#u83b7u53d6u8bc4u8bbau6216u8bc4u8bbau56deu590d0a3ca20id3du83b7u53d6u8bc4u8bbau6216u8bc4u8bbau56deu590d3e203ca3e
+/** #### 获取文章的评论 （action）  */
+export function getCommentList(id: string): RootThunkAction { 
   return async (dispatch) => {
+    // 获取评论或评论回复 （/v1_0/comments）： http://geek.itheima.net/api.html
     const res = await request.get('/comments', {
       params: {
         type: 'a',
@@ -31,17 +31,16 @@ export function getCommentList(id: string): RootThunkAction {
       payload: res.data,
     })
   }
-}
-/**--- getCommentList和getMoreCommentList 的方法几乎相同， 一个是覆盖一个是新增 ---**/
+} 
 
-// 获取文章的评论(获取更多评论)
+/** #### 获取评论或评论回复 （action）  */
 export function getMoreCommentList( id: string, offset: string ): RootThunkAction {
   return async (dispatch) => {
     const res = await request.get('/comments', {
       params: {
-        type: 'a',
-        source: id,
-        offset,
+        type: 'a',  // 评论类型，a-对文章(article)的评论，c-对评论(comment)的回复 
+        source: id, // 源id，文章id或评论id
+        offset,     // 获取评论数据的偏移量
       },
     })
     dispatch({
@@ -51,7 +50,7 @@ export function getMoreCommentList( id: string, offset: string ): RootThunkActio
   }
 }
 
-/**--- 点赞  -- MVVM   点赞之后重新获取数据  MVVM --- * */
+/** #### TODO: 点赞   MVVM模式   点赞之后重新获取数据  MVVM  */
 export function likeAritcle(id: string, attitude: number): RootThunkAction {
   return async (dispatch) => {
     if (attitude === 1) {
@@ -61,12 +60,12 @@ export function likeAritcle(id: string, attitude: number): RootThunkAction {
       // 点赞
       await request.post('/article/likings', { target: id })
     }
-    // 更新
+    // 重新获取文章数据，使用状态管理重新渲染页面
     await dispatch(getArticleDetail(id))
   }
 }
 
-// 收藏
+/** #### 收藏   MVVM模式   点赞之后重新获取数据  MVVM */
 export function collectArticle( id: string, is_collected: boolean ): RootThunkAction {
   return async (dispatch) => {
     if (is_collected) {
@@ -78,27 +77,24 @@ export function collectArticle( id: string, is_collected: boolean ): RootThunkAc
         target: id,
       })
     }
+    // 重新获取文章数据，使用状态管理重新渲染页面
     await dispatch(getArticleDetail(id))
   }
 }
 
+/** #### 关注作者 / 取消关注作者  */
 export function followUser( userId: string, is_follow: boolean): RootThunkAction {
   return async (dispatch, getState) => {
-    if (is_follow) {
-      // 取消关注
-      await request.delete('/user/followings/' + userId)
-    } else {
-      // 关注
-      await request.post('/user/followings', {
-        target: userId,
-      })
-    }
-    await dispatch(getArticleDetail(getState().article.detail.art_id))
+    // 参数： 作者ID，是否关注
+    if (is_follow) await request.delete('/user/followings/' + userId); // 取消关注
+    else await request.post('/user/followings', { target: userId })
+    // 重新加载页面
+    await dispatch(getArticleDetail(getState().article.detail.art_id)) 
   }
 }
 
-/**--- 添加评论 ---**/
-export function addComment(articleId: string,content: string): RootThunkAction {
+/** #### 添加评论  */
+export function addComment(articleId: string, content: string): RootThunkAction {
   return async (dispatch, getState) => {
     const res = await request.post('/comments', {
       target: articleId,
@@ -112,9 +108,8 @@ export function addComment(articleId: string,content: string): RootThunkAction {
   }
 }
 
-
-
-export function updateComment(comment: Comment): ArticleAction {/**--- 同步方法 ---**/
+/** #### 更新评论 （reducer）  */
+export function updateComment(comment: Comment): ArticleAction { 
   // 更新某一个评论消息
   return {
     type: 'article/updateComment',

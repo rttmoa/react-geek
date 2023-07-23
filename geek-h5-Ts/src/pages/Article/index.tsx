@@ -10,12 +10,11 @@ import { RootState } from '@/store'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import DOMPurify from 'dompurify' // 防止XSS攻击
-import hljs from 'highlight.js'
-// highlightElement(DOM) 就可以让代码高亮
-import 'highlight.js/styles/monokai.css'
 
-// 导入高亮的语言包
-import 'highlight.js/lib/common'
+import hljs from 'highlight.js' 
+import 'highlight.js/styles/monokai.css' 
+import 'highlight.js/lib/common' // 导入高亮的语言包
+
 import throttle from 'lodash/throttle'
 import NoComment from './components/NoComment'
 import CommentItem from './components/CommentItem'
@@ -36,27 +35,23 @@ import { Comment } from '@/store/reducers/article'
 
 // 节流阀 - 作者信息盒子固定到NavBar
 // NavBar中传递children
-
-
-const Article = () => { // http://localhost:3020/article/8026
+const Article = () => {  
 
   const history = useHistory()
   const { id } = useParams<{ id: string }>();  // 拿到地址栏 /id 的值
   const dispatch = useDispatch()
 
+  // 获取文章详情数据 && 获取文章的评论
   useEffect(() => {
-    dispatch(getArticleDetail(id)) // 获取文章详情数据
+    dispatch(getArticleDetail(id))    
   }, [dispatch, id])
-
   useEffect(() => {
-    dispatch(getCommentList(id)) // 获取文章的评论
+    dispatch(getCommentList(id))   
   }, [dispatch, id])
-
-
-  const { detail, comment } = useSelector((state: RootState) => state.article);  // 先获取数据 再用redux获取数据
+  const { detail, comment } = useSelector((state: RootState) => state.article);   
 
   
-  useEffect(() => {
+  useEffect(() => { // highlightjs
     // 配置 highlight.js -- 忽略未经转义的 HTML 字符
     hljs.configure({ignoreUnescapedHTML: true})
     // 获取到内容中所有的code标签
@@ -67,14 +62,13 @@ const Article = () => { // http://localhost:3020/article/8026
     })
   }, [detail])
 
-  // 是否显示顶部信息
-  const [isShowAuthor, setIsShowAuthor] = useState(false)
-  const authorRef = useRef<HTMLDivElement>(null) // 作者信息盒子
-  const wrapRef = useRef<HTMLDivElement>(null)  // wrapRef: 页面内容盒子
 
-  // 节流阀
-  useEffect(() => {
+  const [isShowAuthor, setIsShowAuthor] = useState(false)
+  const authorRef = useRef<HTMLDivElement>(null) // <div className="author" ref={authorRef}></div>
+  const wrapRef = useRef<HTMLDivElement>(null)  // <div className="wrapper" ref={wrapRef}></div> 
+  useEffect(() => { // authorRef.current?.getBoundingClientRect()
     const onScroll = throttle(function () {
+      // console.log(authorRef.current?.getBoundingClientRect().top) // DOM盒子距离顶部的距离 由+到-
       const rect = authorRef.current?.getBoundingClientRect()!   // 作者信息盒子
       if (rect && rect.top <= 0) {
         setIsShowAuthor(true);
@@ -84,7 +78,6 @@ const Article = () => { // http://localhost:3020/article/8026
     }, 300);
     const wrap = wrapRef.current!
     wrap.addEventListener('scroll', onScroll);
-
     return () => {wrap.removeEventListener('scroll', onScroll)}
   }, [])
 
@@ -98,15 +91,14 @@ const Article = () => { // http://localhost:3020/article/8026
     await dispatch(getMoreCommentList(id, comment.last_id))
   }
 
-  const onFollowUser = async () => {
+  const onFollowUser = async () => {  // 关注作者 （接口中传递作者ID + 是否关注）
     await dispatch(followUser(detail.aut_id, detail.is_followed))
     Toast.show('操作成功')
   }
 
-  const commentRef = useRef<HTMLDivElement>(null);
+  const commentRef = useRef<HTMLDivElement>(null); // <div className="comment-header" ref={commentRef}></div>
   const isShowComment = useRef(false);
-  
-  const goComment = () => { // 点击评论 - 跳转到评论部分
+  const goComment = () => {   // 跳转到评论部分
     const wrap = wrapRef.current!;
     if (isShowComment.current) {
       wrap.scrollTo(0, 0)
@@ -116,50 +108,37 @@ const Article = () => { // http://localhost:3020/article/8026
     isShowComment.current = !isShowComment.current
   }
 
+
+  // 分享
   const [share, setShare] = useState(false)
   const onCloseShare = () => {
     setShare(false)
   }
 
-  // 添加评论的显示和隐藏
-  const [showComment, setShowComment] = useState({
-    visible: false,
-  })
 
+  // 添加评论
+  const [showComment, setShowComment] = useState({ visible: false })
   const closeComment = () => {
-    setShowComment({
-      visible: false,
-    })
+    setShowComment({ visible: false })
   }
 
-  const [showReply, setShowReply] = useState({
-    // 是否可见
-    visible: false,
-    // 原始评论
-    originComment: {} as Comment,
-  })
 
+  // 回复评论组件 
+  const [showReply, setShowReply] = useState({ visible: false, originComment: {} as Comment }) // originComment:原始评论
   const closeReply = () => {
-    setShowReply({
-      visible: false,
-      originComment: {} as Comment,
-    })
+    setShowReply({ visible: false, originComment: {} as Comment })
   }
-  const onShowReply = (comment: Comment) => { // 接收一个Comment类型
-    setShowReply({
-      visible: true,
-      originComment: comment,
-    })
+  const onShowReply = (comment: Comment) => { 
+    setShowReply({ visible: true,  originComment: comment })
   }
 
 
 
 
-
+  // TODO: url: http://localhost:3020/article/7874
   return (
     <div className={styles.root}>
       <div className="root-wrapper">
-        {/* 顶部导航栏 */}
         <NavBar className="navBar" onLeftClick={() => history.go(-1)} extra={<span><Icon type="icongengduo" /></span>}>
           {isShowAuthor ? (
             <div className="nav-author">
@@ -171,35 +150,32 @@ const Article = () => { // http://localhost:3020/article/8026
             </div>
           ) : ("")}
         </NavBar>
-
         <>
           <div className="wrapper" ref={wrapRef}>
+            {/* TODO: 文章内容部分：标题 + 内容 */}
             <div className="article-wrapper">
               {/* 文章描述信息栏 */}
               <div className="header">
-                <h1 className="title">{detail.title}</h1>
-
+                <h1 className="title">{detail.title}</h1> 
                 <div className="info">
                   <span>{detail.pubdate}</span>
                   <span>{detail.read_count} 阅读</span>
                   <span>{detail.comm_count} 评论</span>
                 </div>
-
                 <div className="author" ref={authorRef}>
                   <img src={detail.aut_photo} alt="" />
                   <span className="name">{detail.aut_name}</span>
-                  <span className={classNames('follow', {followed: detail.is_followed,})} onClick={onFollowUser}>
+                  <span className={classNames('follow', {followed: detail.is_followed})} onClick={onFollowUser}>
                     {detail.is_followed ? '已关注' : '关注'}
                   </span>
                 </div>
               </div>
-
               {/* 文章正文内容区域 */}
               <div className="content">
                 <div
                   className="content-html dg-html"
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(detail.content),
+                    __html: DOMPurify.sanitize(detail.content)
                   }}
                 ></div>
                 <div className="date">
@@ -207,38 +183,25 @@ const Article = () => { // http://localhost:3020/article/8026
                 </div>
               </div>
             </div>
+            {/* TODO: 评论部分 */}
             <div className="comment">
-              {/* 评论总览信息 */}
-
-              {/* Sticky 吸顶效果  */}
-              {/* <Sticky top={46}> */}
+              {/* Sticky 吸顶效果  （<Sticky top={46}>）  */} 
               <div className="comment-header" ref={commentRef}>
                 <span>全部评论（{detail.comm_count}）</span>
                 <span>{detail.like_count} 点赞</span>
               </div>
-              {/* </Sticky> */}
-              {/* 评论列表 - 控制显示无评论还是展示评论信息 */}
-              {
-                detail.comm_count === 0 ? (
-                  <NoComment></NoComment>
-                ) : (
-                  comment.results?.map((item) => (
-                    <CommentItem
-                      onReply={onShowReply}
-                      key={item.com_id}
-                      comment={item}
-                    ></CommentItem>
-                  ))
-                )
-              }
-              <InfiniteScroll
-                hasMore={hasMore}
-                loadMore={loadMore}
-              ></InfiniteScroll>
-            </div>
-
+              {detail.comm_count === 0 ? (
+                <NoComment></NoComment>
+              ) : (
+                comment.results?.map((item) => (
+                  <CommentItem onReply={onShowReply} key={item.com_id} comment={item}></CommentItem>
+                ))
+              )}
+              <InfiniteScroll hasMore={hasMore} loadMore={loadMore}></InfiniteScroll>
+            </div> 
           </div>
         </>
+        {/* TODO: 底部：评论，点赞，收藏，分享 */}
         <CommentFooter
           goComment={goComment}
           onShare={() => setShare(true)}
@@ -247,10 +210,9 @@ const Article = () => { // http://localhost:3020/article/8026
       </div>
 
 
-
-
-      {/* 分享抽屉 */}
+      {/* FIXME: Drawer */}
       <Drawer
+      // Shary
         className="drawer-share"
         position="bottom"
         children={''}
@@ -258,38 +220,29 @@ const Article = () => { // http://localhost:3020/article/8026
         open={share}
         onOpenChange={onCloseShare}
       />
-
-      {/* 添加评论的抽屉 */}
-      {/* 评论抽屉 */}
+ 
       <Drawer
+      // Comment
         className="drawer"
         position="bottom"
         children={''}
         sidebar={
           <div className="drawer-sidebar-wrapper">
-            {showComment.visible && (
-              <CommentInput onClose={closeComment} aritcleId={detail.art_id} />
-            )}
+            {showComment.visible && <CommentInput onClose={closeComment} aritcleId={detail.art_id} />}
           </div>
         }
         open={showComment.visible}
         onOpenChange={closeComment}
       />
 
-      {/* 回复抽屉 */}
       <Drawer
+      // Reply
         className="drawer-right"
         position="right"
         children={''}
         sidebar={
           <div className="drawer-sidebar-wrapper">
-            {showReply.visible && (
-              <CommentReply
-                articleId={detail.art_id}
-                onClose={closeReply}
-                originComment={showReply.originComment}
-              />
-            )}
+            {showReply.visible && <CommentReply articleId={detail.art_id} onClose={closeReply} originComment={showReply.originComment}/>}
           </div>
         }
         open={showReply.visible}
