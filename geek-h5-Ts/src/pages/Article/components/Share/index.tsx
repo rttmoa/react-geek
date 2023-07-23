@@ -8,12 +8,13 @@ import styles from './index.module.scss'
 type Props = {
   onClose: () => void
 }
+/** #### 分享弹窗  */
 const Share = ({ onClose }: Props) => {
 
   return (
     <div className={styles.root}>
 
-      <div className="share-header">立即分享给好友</div>
+      <div className="share-header">立即分享给好友！</div>
 
       {/* 第一排菜单 */}
       <div className="share-list">

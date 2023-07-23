@@ -24,11 +24,11 @@ const CommentFooter = ({ goComment, onShare, onComment, type = 'normal' }: Props
 
   const onLike = async () => {
     await dispatch(likeAritcle(detail.art_id, detail.attitude))
-    Toast.info('点赞', .5)
+    Toast.info('成功, 刷新页面MVVM', .5)
   }
   const collect = async () => {
     await dispatch(collectArticle(detail.art_id, detail.is_collected))
-    Toast.info('收藏', .5)
+    Toast.info('成功, 刷新页面MVVM', .5)
   }
 
   return (

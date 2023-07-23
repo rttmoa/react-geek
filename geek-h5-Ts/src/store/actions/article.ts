@@ -102,9 +102,9 @@ export function addComment(articleId: string, content: string): RootThunkAction 
     })
     dispatch({
       type: 'article/saveNewComment',
-      payload: res.data.new_obj,// 评论成功 - 返回的新评论
+      payload: res.data.new_obj, // 评论成功 - 返回的新评论
     })
-    dispatch(getArticleDetail(getState().article.detail.art_id))// 全部评论的数量, 重新拿一下文章数据 - 传递Id
+    dispatch(getArticleDetail(getState().article.detail.art_id)) // 全部评论的数量, 重新拿一下文章数据 - 传递Id
   }
 }
 

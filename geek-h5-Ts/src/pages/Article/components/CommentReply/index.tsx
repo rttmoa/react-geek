@@ -25,7 +25,9 @@ type Props = {
   onClose?: () => void
   originComment: Comment
 }
+/** #### TODO: 评论回复组件：标题，内容，底部  */
 const CommentReply = ({ articleId, onClose, originComment }: Props) => {
+
   const dispatch = useDispatch()
   // 获取文章的回复列表
   const [replyList, setReplyList] = useState({
@@ -47,19 +49,16 @@ const CommentReply = ({ articleId, onClose, originComment }: Props) => {
     fetchData()
   }, [originComment])
 
-  const hasMore = replyList.end_id !== replyList.last_id
 
-  const [drawerStatus, setDrawerStatus] = useState({
-    visible: false,
-  })
-
+  // 控制是否显示 评论输入框
+  const [drawerStatus, setDrawerStatus] = useState({ visible: false })
   const onCloseComment = () => {
-    setDrawerStatus({
-      visible: false,
-    })
+    setDrawerStatus({ visible: false })
   }
 
-  /***--- 加载更多 - 拼接新获取的数据 ---**/
+
+  // 加载更多 - 拼接新获取的数据
+  const hasMore = replyList.end_id !== replyList.last_id;
   const loadMore = async () => {
     const res = await request.get('/comments', {
       params: {
@@ -74,6 +73,7 @@ const CommentReply = ({ articleId, onClose, originComment }: Props) => {
     })
   }
 
+
   // 发请求，添加回复
   const onAddReply = async (content: string) => {
     const res = await request.post('/comments', {
@@ -82,29 +82,22 @@ const CommentReply = ({ articleId, onClose, originComment }: Props) => {
       art_id: articleId,
     })
     // 添加一条数据
-    setReplyList({
-      ...replyList,
-      total_count: replyList.total_count + 1,
-      results: [res.data.new_obj, ...replyList.results],
-    })
-
+    setReplyList({ ...replyList, total_count: replyList.total_count + 1, results: [res.data.new_obj, ...replyList.results], })
     // 更新评论的状态
-    dispatch(
-      updateComment({
-        ...originComment,
-        reply_count: originComment.reply_count + 1,
-      })
-    )
+    dispatch(updateComment({ ...originComment, reply_count: originComment.reply_count + 1 }))
   }
+
+
+
+  
   return (
     <div className={styles.root}>
       <div className="reply-wrapper">
-        {/* 顶部导航栏 */}
         <NavBar className="transparent-navbar" onLeftClick={onClose}>
-          <div>{replyList.total_count}条回复</div>
+          <div>{replyList.total_count}  条回复内容</div>
         </NavBar>
 
-        {/* 原评论信息 */}
+        {/* 评论者信息 */}
         <div className="origin-comment">
           <CommentItem comment={originComment} type="reply"></CommentItem>
         </div>
@@ -116,28 +109,19 @@ const CommentReply = ({ articleId, onClose, originComment }: Props) => {
             <NoComment />
           ) : (
             replyList.results.map((item) => (
-              <CommentItem
-                comment={item}
-                key={item.com_id}
-                type="reply"
-              ></CommentItem>
+              <CommentItem comment={item} key={item.com_id} type="reply"></CommentItem>
             ))
           )}
-          <InfiniteScroll
-            hasMore={hasMore}
-            loadMore={loadMore}
-          ></InfiniteScroll>
+          <InfiniteScroll hasMore={hasMore} loadMore={loadMore}></InfiniteScroll>
         </div>
 
         {/* 评论工具栏，设置 type="reply" 不显示评论和点赞按钮 */}
-        <CommentFooter
-          type="reply"
-          onComment={() => setDrawerStatus({ visible: true })}
-        />
+        <CommentFooter type="reply" onComment={() => setDrawerStatus({ visible: true })} />
       </div>
 
-      {/* 评论回复抽屉 */}
+
       <Drawer
+      // Comment
         className="drawer"
         position="bottom"
         style={{ minHeight: document.documentElement.clientHeight }}
@@ -145,12 +129,7 @@ const CommentReply = ({ articleId, onClose, originComment }: Props) => {
         sidebar={
           <div className="drawer-sidebar-wrapper">
             {drawerStatus.visible && (
-              <CommentInput
-                aritcleId={articleId!} // articleId!：非空 
-                onClose={onCloseComment}
-                name={originComment.aut_name}
-                onAddReply={onAddReply}
-              />
+              <CommentInput aritcleId={articleId!} onClose={onCloseComment} name={originComment.aut_name} onAddReply={onAddReply} />
             )}
           </div>
         }
