@@ -85,9 +85,9 @@ const Tabs = ({ index = 0, tabs = [], children, onChange }) => { // 索引，用
         </div>
 
         <div className="tabs-content">
-          {React.Children.map(children, (child, index) => {
+          {React.Children.map(children, (child, index) => { // children为所有的DOM盒子，child为每一个选项卡
+            // console.log(child)
             return (
-              // 为每个子元素包裹一个 div，用来控制显示或隐藏
               <div className="tabs-content-wrap" style={{ display: index === activeIndex ? 'block' : 'none' }}>
                 {/* 为每个子元素生成副本，并传入选中选项卡的 id 值 */}
                 {React.cloneElement(child, { aid: tabs[activeIndex]?.id || 0 })}

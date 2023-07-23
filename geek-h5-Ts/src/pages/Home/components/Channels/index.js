@@ -19,7 +19,6 @@ const Channels = ({ onClose, index, onChange }) => {
   const userChannels = useSelector((state) => state.home.userChannels)
   const dispatch = useDispatch()
 
-  // 推荐频道
   const recommendChannels = useSelector((state) => {
     const { userChannels, allChannels } = state.home;
     return differenceBy(allChannels, userChannels, 'id');  // FIXME: 推荐频道 = 所有频道 - 用户频道

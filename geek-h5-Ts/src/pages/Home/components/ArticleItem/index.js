@@ -20,14 +20,17 @@ const ArticleItem = ({ article, channelId }) => {
   const { cover: { type, images }, title, aut_name, comm_count, pubdate  } = article;
   const isLogin = useSelector((state) => !!state.login.token);
   const history = useHistory()
+  // console.log(article)
 
   return (
-    <div className={styles.root} onClick={() => history.push('/article/' + article.art_id)}>
-      {/* t3: 三图结构 none-mt没有图片结构  */}
+    // TODO: 文章列表 - 点击进入文章详情中
+    <div className={styles.root} onClick={() => history.push('/article/' + article.art_id)}>  
+      {/* t3: 三图结构 none-mt没有图片结构    {cover: {type: 3, images: Array(3)}} */}
       <div className={classnames('article-content', { t3: type === 3, 'none-mt': type === 0 })}>
         <h3>{title}</h3>
         {type !== 0 && (
           <div className="article-imgs">
+            {/* TODO: 封装<Img />组件，滚动加载图片到达可视区后才加载图片 */}
             {images.map((item, i) => (
               <div className="article-img-wrapper" key={i}>
                 <Img src={item} alt="" />
@@ -40,15 +43,16 @@ const ArticleItem = ({ article, channelId }) => {
       <div className={classnames('article-info', type === 0 ? 'none-mt' : '')}>
         <span>{aut_name}</span>
         <span>{comm_count} 评论</span>
-        {/* fromNow: 距离现在的时间 */}
+        {/* fromNow: 距离现在的时间    {pubdate: "2023-07-22 17:51:18"} */}
         <span>{dayjs(pubdate).fromNow()}</span>
         <span className="close">
-          {isLogin && (<Icon type="iconbtn_essay_close" onClick = {
-            () => dispatch(setMoreAction({
-                visible: true,
-                articleId: article.art_id,
-                channelId,
-              }))  
+          {isLogin && (<Icon type="iconbtn_essay_close" onClick = {() => {
+            return dispatch(setMoreAction({
+                  visible: true,
+                  articleId: article.art_id,
+                  channelId,
+                }))
+              }
             }
           />)}
         </span>

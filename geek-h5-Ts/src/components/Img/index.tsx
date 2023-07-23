@@ -3,14 +3,15 @@ import { useEffect, useRef, useState } from 'react'
 import Icon from '../Icon'
 import styles from './index.module.scss'
 
-// new IntersectionObserver
-// 
+
+
 
 type Props = {
   className?: string
   src: string
   alt?: string
 }
+/** #### TODO: 图片进入可视区后，控制图片加载状态  */
 const Image = ({ className, src, alt }: Props) => {
 
   // const imgRef = useRef<number>(null)  // 如果是 number 类型 下面会报错
@@ -32,7 +33,6 @@ const Image = ({ className, src, alt }: Props) => {
   useEffect(() => {
     // 监听图片
     const current = imgRef.current!; // HTMLImageElement | null
-
     const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (isIntersecting) {
         // 图片在可视区
@@ -41,28 +41,18 @@ const Image = ({ className, src, alt }: Props) => {
         // 取消监听
         observer.unobserve(current)
       }
-    })
-    // console.log(current)
+    }) 
     observer.observe(current)
   }, [])
 
 
   return (
     <div className={classnames(styles.root, className)}>
-      {/* 加载中 */}
-      {loading && (
+      {(loading || error) && (
         <div className="image-icon">
-          <Icon type="iconphoto" />
+          {loading ? <Icon type="iconphoto" /> : <Icon type="iconphoto-fail" />}
         </div>
-      )}
-
-      {/* 加载出错时显示的内容 */}
-      {error && (
-        <div className="image-icon">
-          <Icon type="iconphoto-fail" />
-        </div>
-      )}
-
+      )} 
       <img
         alt={alt}
         ref={imgRef}
@@ -70,6 +60,8 @@ const Image = ({ className, src, alt }: Props) => {
         onLoad={onLoad}
         onError={onError}
       />
+      {/* {loading && <div className="image-icon"><Icon type="iconphoto" /></div>} */}
+      {/* {error && <div className="image-icon"><Icon type="iconphoto-fail" /></div>} */}
     </div>
   )
 }

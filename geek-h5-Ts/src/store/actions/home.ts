@@ -114,7 +114,7 @@ export const getArticleList = (channelId: number, timestamp: string): RootThunkA
   }
 }
 
-/** #### 获取文章列表数据（更多文章数据）  */
+/** #### 加载更多文章列表数据 （更多文章数据）  */
 export const getMoreArticleList = (channelId: number, timestamp: string): RootThunkAction => {
   return async (dispatch) => {
     const res = await request({
@@ -160,7 +160,7 @@ export const setMoreAction = (payload: MoreAction): HomeAction => {
 }
 
 
-/** #### 不喜欢该文章 （action） <MoreAction />  */
+/** #### 不感兴趣 文章 （action） <MoreAction />  */
 export const unLinkArticle = (articleId: string): RootThunkAction => {
   return async (dispatch, getState) => {
     await request({

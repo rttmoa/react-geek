@@ -75,16 +75,18 @@ const FeedbackActionMenu = () => {
     )
   }
 
+  // TODO: 不感兴趣
   const unLike = async () => {
     await dispatch(unLinkArticle(moreAction.articleId))
     onClose()
-    Toast.info('拉黑成功')
+    Toast.info('拉黑成功', 0.5)
   }
 
+  // TODO: 举报文章
   const report = async (id) => {
     await dispatch(reportArticle(moreAction.articleId, id))
     onClose()
-    Toast.info('举报成功')
+    Toast.info('举报成功', 0.5)
   }
 
   return (
@@ -97,7 +99,6 @@ const FeedbackActionMenu = () => {
         footer={[]}
         onClose={onClose}
         visible={moreAction.visible}
-        // visible={true}
       >
         <div className="more-action">
           {/* normal 类型时的菜单内容 */}
@@ -116,7 +117,6 @@ const FeedbackActionMenu = () => {
               </div>
             </>
           )}
-
           {/* junk 类型时的菜单内容 */}
           {type === 'junk' && (
             <>
