@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
-import Tabs from '@/components/Tabs'
 import { useDispatch } from 'react-redux'
 import { getAllChannels, getUserChannels, setMoreAction } from '@/store/actions/home'
 import { useSelector } from 'react-redux'
 import Icon from '@/components/Icon'
 import { Drawer } from 'antd-mobile'
-import Channels from './components/Channels'
-import ArticleList from './components/ArticleList'
-import MoreAction from './components/MoreAction'
 import { RootState } from '@/store'
 import { useHistory } from 'react-router'
+
+// TODO: 封装组件复用
+import Tabs from '@/components/Tabs'
+import ArticleList from './components/ArticleList'
+import Channels from './components/Channels'
+import MoreAction from './components/MoreAction'
 
 
 
@@ -22,8 +24,8 @@ export default function Home () {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  // 获取用户频道 & 获取所有频道
   useEffect(() => {
+    // 获取用户频道 & 获取所有频道
     dispatch(getUserChannels())
     dispatch(getAllChannels())
   }, [dispatch])
@@ -31,11 +33,11 @@ export default function Home () {
   const [open, setOpen] = useState(false) 
   const onClose = () => { setOpen(false) }
 
-  const tabs = useSelector((state: RootState) => state.home.userChannels)
+  const tabs = useSelector((state: RootState) => state.home.userChannels) // 从redux中获取最新的 userChannels
   // console.log('用户频道', tabs)
 
   // TODO: 控制高亮 & 切换Tab
-  const [active, setActive] = useState(0); // 点击的Tab回调index
+  const [active, setActive] = useState(0);  
   const changeActive = (e: number) => {
     setActive(e);
     dispatch(setMoreAction({
@@ -49,9 +51,9 @@ export default function Home () {
   return (
     <div className={styles.root}>
 
+      {/* TODO: 封装Tabs组件 + 封装ArticleList组件  */}
       <Tabs tabs={tabs} index={active} onChange={changeActive}>
         {tabs.map((item) => {
-          // TODO: ArticleList 
           return <ArticleList key={item.id} channelId={item.id} activeId={tabs && tabs[active].id}></ArticleList>
         })}
       </Tabs>
@@ -70,9 +72,8 @@ export default function Home () {
         open={open}
       ></Drawer>
 
-      {/* TODO: MoreAction */}
+      {/* TODO: MoreAction实现过程 */}
       <MoreAction></MoreAction>
-
     </div>
   )
 }

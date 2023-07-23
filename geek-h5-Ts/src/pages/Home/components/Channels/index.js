@@ -22,7 +22,7 @@ const Channels = ({ onClose, index, onChange }) => {
   // 推荐频道
   const recommendChannels = useSelector((state) => {
     const { userChannels, allChannels } = state.home;
-    return differenceBy(allChannels, userChannels, 'id');  // 推荐频道 = 所有频道 - 用户频道
+    return differenceBy(allChannels, userChannels, 'id');  // FIXME: 推荐频道 = 所有频道 - 用户频道
   })
 
   // 切换

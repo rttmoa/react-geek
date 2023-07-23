@@ -7,6 +7,7 @@ import {list} from '@/utils/constant'
 import styles from './index.module.scss'
 
 /* 
+  // TODO: MoreAction状态管理的处理过程：
   1. 在redux中，需要新增一个数据
     moreAction: { visible: false, articleId: '', auth_id: '' }
 
@@ -17,6 +18,7 @@ import styles from './index.module.scss'
         payload,
       }
     }
+    
   3. reducer处理这个action
     case 'home/setMoreAction': {
       return {
@@ -49,9 +51,15 @@ import styles from './index.module.scss'
 
 
 
+ 
+/** #### MoreActive的实现过程： 
+ * 1、点击articleItem中的 x 按钮
+ * 2、控制MoreAction的显示和隐藏
+ * 3、MoreAction中点击遮罩，控制Model的显示
+ * 4、MoreAction点击按钮，需要举报文章，还需要得到文章的id
+*/
 const FeedbackActionMenu = () => {
-
-  // 举报类型：normal 不感兴趣或拉黑作者 | junk 垃圾内容
+  // 举报类型： normal 不感兴趣或拉黑作者 | junk 垃圾内容
   const moreAction = useSelector((state) => state.home.moreAction)
   const dispatch = useDispatch()
   const [type, setType] = useState('normal')

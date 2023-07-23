@@ -159,6 +159,8 @@ export const setMoreAction = (payload: MoreAction): HomeAction => {
   }
 }
 
+
+/** #### 不喜欢该文章 （action） <MoreAction />  */
 export const unLinkArticle = (articleId: string): RootThunkAction => {
   return async (dispatch, getState) => {
     await request({
@@ -182,7 +184,8 @@ export const unLinkArticle = (articleId: string): RootThunkAction => {
   }
 }
 
-/**--- 举报文章接口 传参类型和返回类型 ---**/
+
+/** #### 举报文章接口 传参类型和返回类型 （action） <MoreAction />  */
 export const reportArticle = (articleId: string, reportId: number): RootThunkAction => {
   return async (dispatch, getState) => {
     await request({

@@ -19,7 +19,7 @@ export default function App () {
   return (
     <Router history={history}>
       <div className="app">
-          <Suspense fallback={<div>正在加载</div>}> 
+          <Suspense fallback={<div>正在加载</div>}>
             <KeepAlive alivePath="/home" path="/home" component={Home} exact></KeepAlive>
             <Switch>
               <Redirect exact from="/" to="/home/index"></Redirect>
