@@ -31,7 +31,7 @@ export const getTokenInfo = (): Token => {
   return JSON.parse(localStorage.getItem(TOKEN_KEY)!) || {} // 这里不会为 null,  如果是null 返回的是 {}  |  非空断言的使用 | QA
 }
 
-/** #### TODO: 删除本地缓存中的 Token 信息 ---*/
+/** #### TODO: 删除本地缓存中的 Token 信息 */
 export const removeTokenInfo = () => {
   localStorage.removeItem(TOKEN_KEY)
 }

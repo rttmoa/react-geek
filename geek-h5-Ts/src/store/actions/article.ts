@@ -4,19 +4,17 @@ import { ArticleAction, Comment } from '../reducers/article'
 
 
 
-/** #### 获取文章详情数据 （action）  */
-export function getArticleDetail(id: string): RootThunkAction {
+/** #### 获取文章详情数据 （action + reducer）  */
+export function getArticleDetail(id: string): RootThunkAction {  // 点赞，收藏，关注作者，添加评论，
   return async (dispatch) => {
     // 获取新闻详情 （ /v1_0/articles/:article_id）： http://geek.itheima.net/api.html
     const res = await request.get('/articles/' + id) 
-    dispatch({
-      type: 'artcile/saveDetail',
-      payload: res.data,
-    })
+    // FIXME: reducer
+    dispatch({ type: 'artcile/saveDetail', payload: res.data })
   }
 }
 
-/** #### 获取文章的评论 （action）  */
+/** #### 获取文章的评论 （action + reducer）  */
 export function getCommentList(id: string): RootThunkAction { 
   return async (dispatch) => {
     // 获取评论或评论回复 （/v1_0/comments）： http://geek.itheima.net/api.html
@@ -26,14 +24,12 @@ export function getCommentList(id: string): RootThunkAction {
         source: id,
       },
     })
-    dispatch({
-      type: 'article/saveComment',
-      payload: res.data,
-    })
+    // FIXME: 存储文章评论
+    dispatch({ type: 'article/saveComment', payload: res.data })
   }
 } 
 
-/** #### 获取评论或评论回复 （action）  */
+/** #### 获取更多评论，下拉加载更多 （action）  */
 export function getMoreCommentList( id: string, offset: string ): RootThunkAction {
   return async (dispatch) => {
     const res = await request.get('/comments', {
@@ -43,10 +39,8 @@ export function getMoreCommentList( id: string, offset: string ): RootThunkActio
         offset,     // 获取评论数据的偏移量
       },
     })
-    dispatch({
-      type: 'article/saveMoreComment',
-      payload: res.data,
-    })
+    // FIXME: 存储回复评论 
+    dispatch({ payload: res.data, type: 'article/saveMoreComment' })
   }
 }
 
@@ -93,6 +87,7 @@ export function followUser( userId: string, is_follow: boolean): RootThunkAction
   }
 }
 
+
 /** #### 添加评论  */
 export function addComment(articleId: string, content: string): RootThunkAction {
   return async (dispatch, getState) => {
@@ -100,16 +95,14 @@ export function addComment(articleId: string, content: string): RootThunkAction 
       target: articleId,
       content,
     })
-    dispatch({
-      type: 'article/saveNewComment',
-      payload: res.data.new_obj, // 评论成功 - 返回的新评论
-    })
+    // FIXME: 评论成功 - 返回的新评论
+    dispatch({ type: 'article/saveNewComment', payload: res.data.new_obj })
     dispatch(getArticleDetail(getState().article.detail.art_id)) // 全部评论的数量, 重新拿一下文章数据 - 传递Id
   }
 }
 
 /** #### 更新评论 （reducer）  */
-export function updateComment(comment: Comment): ArticleAction { 
+export function updateComment(comment: Comment): ArticleAction {
   // 更新某一个评论消息
   return {
     type: 'article/updateComment',

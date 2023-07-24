@@ -19,9 +19,11 @@ export default function reducer(state = initValue, action: LoginAction) {
     return payload
   }
   if (type === 'login/logout') {
-    // 指定断言为Token类型才行、才能在indexts中getTokenInfo()赋值给login、否则store->indexts->login报错  login: getTokenInfo(),
-    // return {} as Token
+    // 指定断言为Token类型才行、
+      // 才能在indexts中getTokenInfo()赋值给login、
+      // 否则store->indexts->login报错  
+      // login: getTokenInfo(),
     return {} as Token
   }
   return state
-} 
+}

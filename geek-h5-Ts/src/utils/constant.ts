@@ -10,16 +10,16 @@ const tabBar = [
       icon: 'iconbtn_qa',
       path: '/home/total',
     },
-    // { 
-    //   title: '问答',
-    //   icon: 'iconbtn_qa',
-    //   path: '/home/qa',
-    // },
-    // {
-    //   title: '视频',
-    //   icon: 'iconbtn_video',
-    //   path: '/home/video',
-    // },
+    { 
+      title: '问答',
+      icon: 'iconbtn_qa',
+      path: '/home/qa',
+    },
+    {
+      title: '视频',
+      icon: 'iconbtn_video',
+      path: '/home/video',
+    },
     {
       title: '我的',
       icon: 'iconbtn_mine',

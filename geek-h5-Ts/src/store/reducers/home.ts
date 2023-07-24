@@ -41,7 +41,7 @@ export type ArticlePayload = {
   list: Ariticle[]
 }
 
-const initValue: HomeType = {// 是否 as HomeType 查看返回类型
+const initValue: HomeType = { // 是否 as HomeType 查看返回类型
   userChannels: [],
   allChannels: [],
   // 存储所有的文章列表
@@ -74,25 +74,34 @@ export type HomeAction =
       type: 'home/setMoreAction'
       payload: MoreAction
     }
-/**--- 返回的类型从F12控制台的 redux中获取具体的返回类型 - 查看 ---**/
+
+    
+/** #### 控制台中 [redux] 查看所有state  */
 export default function reducer(state = initValue, action: HomeAction) {
   // const { type, payload } = action  // 如果不用解构 那么直接用action点 并且查看返回类型
+
   switch (action.type) {
+    // 保存 用户频道
     case 'home/saveChannels':
       return {
         ...state,
-        userChannels: action.payload,
+        userChannels: action.payload, // userChannels: Channel[]
       }
-    case 'home/saveAllChannels':
+    // 保存 所有频道
+    case 'home/saveAllChannels': {
       return {
         ...state,
-        allChannels: action.payload,
+        allChannels: action.payload,  // allChannels: Channel[]
       }
-    case 'home/saveArticleList':
-      const { list, timestamp, channelId } = action.payload
-
+    } 
+    // 存储文章数据 (存储频道的可视数据)
+    case 'home/saveArticleList': {
+      const { list, timestamp, channelId } = action.payload;
+      // action.payload: {channelId: 4, timestamp: '1689215627278', list: Array(10)}
+      // console.log('state.articles', state['articles'])
       return {
         ...state,
+        // articles: { [x: number]: { timestamp: string; list: Ariticle[] } }
         articles: {
           ...state.articles,
           [channelId]: {
@@ -102,21 +111,27 @@ export default function reducer(state = initValue, action: HomeAction) {
           },
         },
       }
-    case 'home/saveMoreArticleList':
+    } 
+    // 获取更多文章数据 (存储频道下拉加载的数据)
+    case 'home/saveMoreArticleList': {
       // const oldList = state.articles[action.payload.channelId].list  // const oldList: Ariticle[]
+      // action.payload: {channelId: 6, timestamp: '1687765986204', list: Array(10)}
+      const { list, timestamp, channelId } = action.payload;
       return {
         ...state,
         articles: {
           ...state.articles,
-          [action.payload.channelId]: {
-            timestamp: action.payload.timestamp,
+          // 获取article[channelId]频道，再获取article[channelId].list, 再像频道中追加加载的新数据
+          [channelId]: {
+            timestamp: timestamp,
             list: [
-              ...state.articles[action.payload.channelId].list,
-              ...action.payload.list,
+              ...state.articles[channelId].list, 
+              ...list,  
             ],
           },
         },
       }
+    } 
     case 'home/setMoreAction': {
       return {
         ...state,

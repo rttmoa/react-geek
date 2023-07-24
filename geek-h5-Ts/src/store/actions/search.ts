@@ -4,13 +4,12 @@ import { RootThunkAction } from '..'
 import { Ariticle } from '../reducers/home'
 import { SearchAction } from '../reducers/search'
 
-/**
- * 获取推荐列表
- * @param keyword 关键字
- */
+ 
 type SuggestListRes = {
   options: string[]
 }
+
+/** #### 获取推荐列表  @param keyword 关键字  */
 export function getSuggestList(keyword: string): RootThunkAction {
   return async (dispatch) => {
     // axios.request<T>()  axios.get<T>() axios.post<T>()
@@ -19,21 +18,22 @@ export function getSuggestList(keyword: string): RootThunkAction {
     // request.get<>()
     // axios.post<T>()
     const res = await request.get<SuggestListRes>('/suggestion?q=' + keyword)  // 指定接口返回值的类型 SuggestListRes  \ 更严格化
-    // const res = await request({url: '/suggestion',method:'get',params:{ q:keyword }})
-    let options = res.data.options  
+    // const res = await request({url: '/suggestion', method:'get', params:{ q: keyword }})
+    let options = res.data.options   
     // 后台搜索 结果如果没有数据，返回的结果为[null],遍历就会报错，所以如果是这种情况，默认为[]
     if (!options[0]) {
       options = []
-    } 
-    dispatch({// dispatch完 在控制台redux中查看储存的数据 - 存储到Redux 
+    }
+    // console.log(options) // ['postMessage', 'koa', 'Toast', 'localStorage', 'FormData', 'webpack', 'canvas', 'app', 'a']
+    dispatch({
       type: 'search/saveSuggestions',
-      payload: options, // let options: string[]
+      payload: options,
     })
   }
 }
 
 
-/** #### 清空推荐记录 （action）  */
+/** #### 清空搜索建议 （action） */
 export function clearSuggestions(): SearchAction {
   return {
     type: 'search/clearSuggestions',
@@ -44,7 +44,7 @@ export function clearSuggestions(): SearchAction {
 /** #### 添加搜索关键词 存储Localstoreage+Redux  */
 export function addSearchList(keyword: string): RootThunkAction {
   return async (dispatch, getState) => {
-    let histories = getState().search.histories;  
+    let histories = getState().search.histories;
     // 1. 不允许有重复的历史记录, 先删除原来历史记录中的keyword
     histories = histories.filter((item) => item !== keyword)
     histories = [keyword, ...histories]
@@ -57,6 +57,7 @@ export function addSearchList(keyword: string): RootThunkAction {
     setLocalHistories(histories)
   }
 }
+
 
 /** #### 清空历史记录Localstoreage+Redux （action）  */
 export function clearHistories(): RootThunkAction {
@@ -75,7 +76,6 @@ type ResultRes = {
   results: Ariticle[]
   total_count: number
 }
-
 /**
  * 获取搜索结果数据
  */

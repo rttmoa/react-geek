@@ -1,4 +1,3 @@
-/* 创建store */
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -17,11 +16,12 @@ import { ArticleAction } from './reducers/article'
 // 参数3：指定中间件 
 const store = createStore(reducer, {
     login: getTokenInfo(),
-    search: { // 指定初始值
+    // 指定初始值
+    search: {
       suggestions: [],
       // results: {list: [], page: 1}
       results: [],
-      histories: getLocalHistories(), // 刷新redux获取本地localStoreage里面的值
+      histories: getLocalHistories(),  
     },
   },
   composeWithDevTools(applyMiddleware(thunk))
@@ -30,7 +30,7 @@ const store = createStore(reducer, {
 // 获取RootState的类型
 // typeof: 获取store.getState的类型
 // ReturnType 获取返回值的类型
-export type RootState = ReturnType<typeof store.getState> // ReturnType 获取返回值的类型 - QA
+export type RootState = ReturnType<typeof store.getState>  
 
 
 // URL: https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks
@@ -46,9 +46,6 @@ type RootAction =
   | SearchAction
   | ArticleAction
   
-  // 原： AnyAction   异步dispatch没有返回类型(没有提示)  改：RootAction   dispatch有返回类型了
 export type RootThunkAction = ThunkAction<Promise<void>, RootState, unknown, RootAction>
 
-export default store
-
-// store.dispatch() // 获取dispatch依赖的是谁
+export default store 

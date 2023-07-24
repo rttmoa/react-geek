@@ -9,8 +9,8 @@ import { tabBar } from '@/utils/constant'
 const Home = lazy(() => import('@/pages/Home'))
 const Total = lazy(() => import('@/pages/total'))
 const Profile = lazy(() => import('@/pages/Profile'))
-// const QA = lazy(() => import('@/pages/QA'))
-// const Video = lazy(() => import('@/pages/Video'))
+const QA = lazy(() => import('@/pages/QA'))
+const Video = lazy(() => import('@/pages/Video'))
 
  
 
@@ -28,6 +28,8 @@ export default function Layout () {
           <Switch>
             {/* 需求：封装一个PrivateRoute, 这个组件把这些逻辑封装起来 */}
             <Route path="/home/total" component={Total}></Route> 
+            <Route path="/home/qa" component={QA}></Route> 
+            <Route path="/home/video" component={Video}></Route> 
             {/* component={Profile} 等价于 render={() => <Profile></Profile>} */} 
             <AuthRoute path="/home/profile" component={Profile}></AuthRoute>
           </Switch>

@@ -4,6 +4,18 @@
 * **启动：yarn start**
 * 端口：3020
 
+##### **后端接口文档：http://geek.itheima.net/api.html**
+
+##### const context = React.createContext()
+
+##### useReducer()
+
+##### 表单处理：https://formik.org/
+
+##### 单位 vw  /  控制台redux查看  /  控制台Network查看websocket  /  lodash库
+
+
+
 js/jsx/ts/tsx/.d.ts
 js: 写js功能和react组件
 js--> ts (工具类)

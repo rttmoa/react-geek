@@ -36,25 +36,28 @@ export type SearchAction =
 
     
 export default function reducer(state = initValue, action: SearchAction) {
-  if (action.type === 'search/saveSuggestions') {
+  if (action.type === 'search/saveSuggestions') { 
+    // action.payload: a ['postMessage', 'koa', 'Toast', 'localStorage', 'FormData', 'webpack', 'canvas', 'app', 'a']
     return {
       ...state,
-      suggestions: action.payload,
+      suggestions: action.payload, // suggestions: string[]
     }
   }
-  if (action.type === 'search/clearSuggestions') {
+  if (action.type === 'search/clearSuggestions') {  // 清空搜索建议
+    // 将redux中suggestions数组置空
     return {
       ...state,
-      suggestions: [], // 清空搜索内容
+      suggestions: [],
     }
   }
-  if (action.type === 'search/saveHistories') {
+  if (action.type === 'search/saveHistories') { // 存储 搜索历史关键词
+    // console.log(action.payload) // (10) ['v', 'a', 'o', 'g', 'f', 'r', 'y', 'b', 'Tips', 'sessionStorage']
     return {
       ...state,
-      histories: action.payload,
+      histories: action.payload, // histories: string[]
     }
   }
-  if (action.type === 'search/clearHistories') {
+  if (action.type === 'search/clearHistories') { // 清空 历史关键词
     return {
       ...state,
       histories: [],

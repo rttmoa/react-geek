@@ -17,11 +17,10 @@ export type Profile = {
   birthday: string
 }
 
-type InitType = {// 指定类型
+type InitType = { 
   user: User
   profile: Profile
 }
-// type ProfileAction = { type: 'profile/user'| 'profile/profile', payload: User | Profile}
 export type ProfileAction =
   | {
       type: 'profile/user'
@@ -37,11 +36,6 @@ const initValue: InitType = {
   profile: {},
 } as InitType // 指定类型
 
-// 原initValue
-// const initValue = {
-//   user: {},
-//   profile: {},
-// }
 
 /** 
  * 处理个人信息的reducer
@@ -49,36 +43,21 @@ const initValue: InitType = {
  * @param {*} action
  * @returns
  */
-export default function reducer(state = initValue, action: ProfileAction) {
+export default function reducer(state = initValue, action: ProfileAction) { 
   // state.profile.birthday 可以 . 出来上面的类型
-  // const { type, payload } = action
-  // if(type === 'profile/user'){
-  //   return {
-  //     ...state,
-  //     user: payload,
-  //   }
-  // }
-  // if(type === 'profile/profile'){
-  //   return {
-  //     ...state,
-  //     Profile: payload
-  //   }
-  // }
-  
-  
-  
-   
-  
+  // console.log(state.profile.birthday)
   if (action.type === 'profile/user') {
+    // action.payload: {id: '1111', name: '黑马程序员(改不了)', photo: 'http://ge323780.jpg', intro: 'kkkk', art_count: 4714, …}
     return {
-      ...state,// state: InitType
-      user: action.payload,// payload: User
+      ...state, // state: InitType
+      user: action.payload, // payload: User {}
     }
   }
   if (action.type === 'profile/profile') {
+    // action.payload: {id: '111', photo: 'ht6.jpg', name: '黑马程序员(改不了)', intro: "存储个人信息 payload", gender: 1, …} 
     return {
       ...state,
-      profile: action.payload,
+      profile: action.payload, // typeof profile: {}
     }
   }
   return state

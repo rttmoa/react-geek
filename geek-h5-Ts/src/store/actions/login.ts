@@ -27,9 +27,9 @@ export const sendCode = (mobile: string) => {
 // 解决二、type:'login/token' as const , 告诉他type是常量
 export const saveToken = (payload: Token): LoginAction  => { //　这里指定类型才会有提示、否则不会有提示功能　
   return {
-    // type: 'login/token' as const,  // type是常量
-    type: 'login/token',  
-    payload,
+    // type: 'login/token',  
+    type: 'login/token' as const,
+    payload
   }
 }
 
@@ -41,12 +41,7 @@ export const saveToken = (payload: Token): LoginAction  => { //　这里指定�
 export const login = (data: { mobile: string; code: string }) => {
   // dispatch发送的action必须要有type属性，，，以及任意的其他属性
   return async (dispatch: Dispatch) => {
-    const res = await request({
-      method: 'post',
-      url: '/authorizations',
-      data,
-    })
-
+    const res = await request({ method: 'post', url: '/authorizations', data })
     // 保存token到redux中
     dispatch(saveToken(res.data))
     // 保存到本地
@@ -54,7 +49,7 @@ export const login = (data: { mobile: string; code: string }) => {
   }
 }
 
-/** #### TODO: 退出 （action） ---*/
+/** #### TODO: 退出 （reducer） ---*/
 export const logout = (payload: Token) => {
   return {
     type: 'login/logout' as const,

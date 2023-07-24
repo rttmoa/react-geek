@@ -68,40 +68,56 @@ export type ArticleAction =
       payload: Comment
     }
 
+
+
+
 export default function article(state = initValue, action: ArticleAction) { 
-  if (action.type === 'artcile/saveDetail') {
+
+  if (action.type === 'artcile/saveDetail') { // 存储文章详情
+    // TODO: 点赞，收藏，关注作者，添加评论后，会覆盖detail {}，重新刷新页面达到最新值
     return {
       ...state,
-      detail: action.payload, // payload的返回类型： payload: Detail
+      detail: action.payload, // typeof detail: Detail {}
     }
   }
-  if (action.type === 'article/saveComment') {
+
+  if (action.type === 'article/saveComment') { // 存储文章评论
     return {
       ...state,
-      comment: action.payload,// 这个是直接覆盖
+      comment: action.payload, // comment: CommentType
     }
   }
-  if (action.type === 'article/saveMoreComment') {
-    return {
-      ...state,
-      comment: {// 这个是拼接
-        ...action.payload,
-        results: [...state.comment.results, ...action.payload.results],// results 里面:  [原来的数据, 发请求得到的数据]
-      },
-    }
-  }
-  if (action.type === 'article/saveNewComment') {
-    // console.log(action.payload)
+
+  if (action.type === 'article/saveMoreComment') { // 下拉更多评论
+    // console.log('下拉更多评论', action.payload)
     return {
       ...state,
       comment: {
-        ...state.comment,
-        results: [action.payload, ...state.comment.results],// 表示追加一条评论
+        ...action.payload, // 指的是 {end_id, last_id, total_count, results}
+        results: [
+          ...state.comment.results, // results累加 = state.comment[results] + payload[results]
+          ...action.payload.results
+        ],
       },
     }
   }
 
-  if (action.type === 'article/updateComment') {
+  if (action.type === 'article/saveNewComment') { // 评论成功 - 返回的新评论
+    console.log('评论后的新数据', action.payload)
+    console.log('state.comment', state.comment)
+    return {
+      ...state,
+      comment: {
+        ...state.comment,
+        results: [
+          action.payload, // 评论后，最新的数据显示到最顶部
+          ...state.comment.results
+        ],
+      },
+    }
+  }
+
+  if (action.type === 'article/updateComment') { // 更新新评论
     // 这里要的是 全部评论的数量
     return {
       ...state,
@@ -111,7 +127,7 @@ export default function article(state = initValue, action: ArticleAction) {
         results: state.comment.results.map((item) => {
           if (item.com_id === action.payload.com_id) {
             return {
-              ...action.payload,//改掉这个评论、换成新的
+              ...action.payload, // 改掉这个评论、换成新的
             }
           } else {
             return item

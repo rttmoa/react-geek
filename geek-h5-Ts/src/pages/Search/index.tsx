@@ -46,7 +46,7 @@ const Search = () => {
     timerRef.current = window.setTimeout(() => {
       if (text) {
         setIsSearching(true);
-        dispatch(getSuggestList(text))
+        dispatch(getSuggestList(text))  // FIXME: 搜索数据 action
       } else {
         setIsSearching(false)
       }

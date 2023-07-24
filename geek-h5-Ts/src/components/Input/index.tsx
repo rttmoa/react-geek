@@ -32,7 +32,6 @@ export default function Input({ extra, onExtraClick, className, autoFocus, ...re
     }
   }, [autoFocus])
 
-  
   return (
     <div className={styles.root}>
       <input ref={inputRef} className={classNames('input', className)} {...rest}/>

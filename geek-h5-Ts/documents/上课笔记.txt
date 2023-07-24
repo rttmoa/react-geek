@@ -1,0 +1,459 @@
+课程: ＿黑马前端7.6-3
+
+// 接口文档： http://geek.itheima.net/
+// React官方文档： https://v5.reactrouter.com/web/example/auth-workflow
+// 参考MD文档 & React项目实战资料V7.6 课件内容
+// 问题? 1.yarn serve    2.制作接口文档(格式参考 极客园)    3.笔记写成md文档格式?可以引入图片
+// 谷歌浏览器中的 Components和Redux的工具
+// redux存储数据
+
+
+第一天:
+276-移动端项目介绍------------------技术栈  react-hooks-redux-ts
+    day-13-移动端-极客园移动端1.md
+279-修改项目目录--------------------1.初始化目录结构 2.推送到远程仓库
+280-样式搭建-通用样式处理------------1.安装yarn add sess -D 在于package.json中区分devde和de   2.项目结构 《md文档》
+281-项目搭建-导入组件库--------------1.UI组件库(官网/yarn add antd-mobile -D)  2.导入Button&引入全局样式  3.组件的使用
+    4.导入babel-plugin-import插件 & 按需加载yarn add customize-cra react-app-rewired babel-plugin-import -D  (3个)
+    5.把package.json中启动命令改成react-app-rewired start & 意思是如果用这个启动会自动加载config-overrides.js文件(用户覆盖webpack)
+    !!281-以上配置Antd按需加载 & 如何使用antd-mobile组件库
+282-配置快捷路径--------------------1.@ 在config-overrides.js中配置 2.jsconfig.json配置路径提示paths
+283-配置px转vw----------------------1.配置视口单位(移动端配置 & 不同的手机盒子的大小不同) & 流式布局-高度写死,宽度自适应
+    2.配置视口单位 & rem vw  3.配置插件 yarn add postcss-px-to-viewport -D
+    3.在config-overrides.js配置addPostcssPlugins & pxToViewport
+    4.src下的文件可以用import 但是配置文件运行在node环境需要使用require
+284-配置项目路由---------------------1.yarn add react-router-dom -D  & 《md文档 》 
+    2.App.js中路由的配置 & Suspense组件-如果懒加载没有东西会报错 需要添加个内容loading... & 《md文档》
+
+第二天:
+285-项目搭建-redux环境配置-----------1.创建redux  2.在store文件夹中index.js 和 根目录的index.js中render组件Provider和store
+286-字体图标的使用-js方式------------1.引入图标样式 https://www.iconfont.cn/ index.html引入  
+    2.引入图标symbol引入方式(indexhtml-js)带颜色   jsx语法和html语法xlinkHref
+    3.尝试使用iconfont图标样式symbol引入图标
+287-【登录功能】-icon组件的封装-------1.图标封装通用组件?components->Icon & pages->Login
+    2.父子组件传值   父:引入子组件 & <Icon type="icon-xianxingtudingnan" style={{ fontsize: 100 }}> </Icon>   
+                    子: export default function Icon ({ type, style }){ <use xlinkHref={`#${type}`}></use> }
+    3.图标类型校验 propTypes & type: PropTypes.string.isRequired类型必传 
+    4.参考《极客园移动端1.md》文档 
+    5.图标的点击事件 & 封装components->Icon函数
+288-移动端1px的处理------------------1.顶部工具栏的设计  2.百度->移动端1px问题
+    3. sass和less的语法  sass: @mixin fn($color, $top) {}   less: .fn(@color, @top) {}
+289-登录功能-导航条组件的封装-withRouter的用法-----目标：封装顶部导航栏组件、可以显示页面标题、后退按钮、及添加额外的功能区域
+    1.NavBar顶部导航栏NavBar->scss处理(盒子的样式)
+    2.!!!父子组件传值的使用 子组件点击 父组件处理  ?处理返回到上一页, 需要获取到路由地址history的几种方式
+290-登录功能-导航条封装-useHistory的使用----(介绍推、拉 & 插槽传值) 
+    & 《md文档》& components->NavBar接收history方式 & 有历史记录才能回退
+291-登录功能-登录页面基本结构-----------1.pages->Login 结构 & 样式  2.《md文档》
+292-登录功能-Input组件的封装------------1.Login页面的结构(NavBar/Form/div/input/button)  
+    2.@本节内容：1.子组件: components->Input   父组件: pages->Login
+    3.父子组件传值 子组件接收 {type = 'text', value, onChange, name, className, placeholder, extra, onExtraClick, ...rest}
+    4.子组件注册点击事件(发送验证码) onExtraClick & 获取事件
+293-登录功能-Input组件的封装补充-------  :focus-visible 选择器 outline覆盖掉就可以 输入获取输入框的焦点了
+294-登录功能-formik的介绍-------------1.input框变成受控组件 & Antd-mobile官网 使用麻烦   
+    2.React专门处理表单-------官网: formik.org ? input受控组件的使用  & useFormik的使用
+295-登录功能-formik基本使用------------1.Login中formik & 受控组件的使用 & 登录功能 请求接口 ?成功?失败
+    2. onSubmit提交表单事件 & 解构formik & 请求地址: 发请求 登录 http://toutiao.itheima.net/v1_0/authorizations 
+296-登录功能-formik校验的基本使用------1.校验表单验证 validate函数-官网中的使用教程
+    2.错误信息的条件: 是否touched这个输入框、是否有mobile、是否显示错误信息 & onBlur事件=handleBlur 失去焦点
+    3.《md文档》-->登录表单的数据验证(防止整个表单的校验: 输入手机号时校验验证码的问题 & 错误信息的展示问题 touched)
+297-登录功能-yup的使用-----------------1.可以不用onBlur事件和error和touched方法
+    2.yup的使用->https://github.com/jquense/yup  教程
+    3.导入Yup: 校验表单的合法性 ?如何使用
+298-登录功能-登录按钮禁用的使用---------1.formik属性中含有isValid表示是否校验通过   如果false那么登录按钮就为禁用🈲状态
+299-登录功能-axios的基本封装------------1.发请求: http.js  极客园接口文档: http://geek.itheima.net/ 
+    2.配置请求地址， 配置请求 响应拦截器 & 成功错误的处理
+    3.请求不在onClick中处理  在redux中发请求
+300-登录功能-发送请求获取验证码---------1.目录在store->actions->login中发请求获取数据(dispatch)
+    2.在pages->Login中点击登录函数 使用redux发送请求  &  万能验证码: 246810
+    3.发送验证码, 获取验证码   dispatch(sendSms(mobile))  获取一次和两次
+301-登录功能-获取验证码-消息提示优化
+    1.发送验证码失败 提示消息 导入antd-mobile -> Toast.fail(err.response.data.message, 1)
+    2.await 返回Promise对象的处理结果、如果等待不是Promise对象、则返回该值本身
+    3.await 意思是 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await
+302-登录功能-验证码倒计时
+    1.请求时间改成1s,控制台中网络请求改成3g,项目会崩掉,原因是catch中没有err.response直接访问data.message会崩掉
+    2. onSendSms函数中实现验证码倒计时功能 使用useState和setInterval
+
+第三天:(Hook/useDispatch/useSelector/useState/useStore/Provider)
+303-登录功能-函数组件的特征说明--------1.js垃圾回收机制(内存泄漏问题)    2.函数组件内部闭包问题(定时器)
+    3.pages->Login-> setInterval(()=> { setTime( (time) => time - 1 ) },1000)   
+    time访问内层函数和外层函数的问题  组件是否销毁问题  闭包问题(App组件内部)
+    4.每次渲染都有一次快照 访问的state不是最近的而是当时快照中的state的值  获取最近的要用箭头函数获取最新值
+    此节: 获取验证码倒计时、结束后才可以重新获取验证码
+304-登录功能-如何获取组件最新的值------1.useRef-手动获取DOM & useEffect   2.使用全局变量  不能使用内部变量获取最新值
+305-登录功能-倒计时完成---------------1.setTime(time-1) 注意time   2.获取验证码成功, 开启倒计时 开启定时器,关闭定时器
+306-登录功能-axios统一处理错误信息-----1.背景色: css中!important调节样式的优先级
+    2.登录并获取token & 《md文档》& 提交按钮发送请求 & store->acitons->login 处理发送请求
+    3.登录提交post请求 & 封装login请求 & store中的login封装函数 & pages中的login提交发送请求 await dispatch(login(values))
+    4.测试登录的验证码不正确返回的错误信息
+307-登录功能-把token存储到redux中-----1.封装saveToken函数  2.reducers中处理token (store->reducers->login)
+308-登录功能-token保存到本地----------1.token值: 向redux中存储一份 & 向本地中存储一份
+    2.登录之后，刷新页面本地的token在，redux中的token丢失了 & 刷新页面获取token，获取初始值  store->index中获取createStore
+    3.操作：actions->login & store->index
+    此节: 登录功能把token保存到redux中和本地中
+310-token为什么要存储到redux和localstoreage中---
+    localstoreage: 优点：持久、能够永久存储 & 缺点：不是响应式的
+    redux: 优点：响应式(数据变了组件自动更新) & 缺点：不持久、存储到内存中、刷新页面就会丢失
+    redux响应式的好处: 比如: token动态控制首页文章 不感兴趣、拉黑作者 & 如果没有token那么就不会就这个操作
+【登录功能完成】
+
+
+【个人中心 Layout】
+311-请求拦截器-统一配置token信息------1.为网络请求添加Token请求头 
+    2.utils->http中配置 config.headers['Authorization'] = `Bearer ${getTokens().token}`
+312-首页-基础布局(Layout)-------------1.设计首页布局(基本结构设计) & 《md文档》   
+    2.如何渲染底部图标? 设计 & 点击图标和文字高亮 iconbtn_video_sel & className 是否等于 tabbar-item-active
+313-首页-tabBar基本渲染完成(底部)------1.渲染底部按钮 & 点击哪个就高亮
+    2.scss中 &-item == .tabbar-item
+    3.底部: 一级路由   顶部: 二级路由
+    此节: 点击 底部组件 图标高亮 & 字体高亮
+314-首页-配置项目二级路由-------------分别准备底部 Home/QA/Video/Profile  &  Layout 中配置二级路由
+315-首页-配置二级路由的注意事项-------Suspense 点击时内容会闪一下  路由的获取  react-router-dom & react-router-native
+316-首页-个人中心基本结构和样式-------pages->Profile->index静态结构样式
+317-首页-个人中心-发请求获取用户信息--1.store->actions->profile 中配置异步获取用户信息
+    2.在pages->Profile 不用能dispatch? 数据变了就会再次发请求 & 要用useEffect
+    3.在store->actions->profile中要用redux存储用户信息
+
+318-个人中心-渲染个人信息-----------------store->reducers->profile 中存储个人信息  存储 user 和 userProfile
+    2.actions和reducer中将type值改为变量  action.type === SAVE_USER
+    3.获取用户信息:  useSelector(state => state.profile.user)
+【个人信息编辑】
+319-个人中心-准备个人详情的结构与样式----个人信息进入：头像修改、昵称修改、简介修改、性别修改、生日修改 和 退出功能 (可供选择)
+    1.pages->Profile->Edit->index 个人信息编辑 一级路由  渲染组件--页面的设计
+    2.如何使用官方文档? 参考antd-mobile设计 页面内容
+    3.用获取的数据渲染 头像、昵称、简介...
+    4.<Item extra={'女'} arrow="horizontal" onClick= {()=> { }} >性别 </Item>  选择性别  男:女
+    5.DatePicker选择日期--选择生日
+320-个人中心-获取个人详细信息-----------1.获取用户个人信息 store->actions->profile 中获取 getUserProfile
+    2.useEffect中发请求获取用户个人信息
+    3.store->actions->profile中发请求 & 存储信息到redux中 & reducers中来判断action.type的类型并返回type和payload
+321-个人中心-渲染用户详细信息------------
+    渲染功能、useSelector(state => state.profile.userProfile) 获取redux数据 & 三元运算符显示要渲染的数据
+322-个人中心-抽屉组件-样式bug-----------1.修改用户信息、滑来滑去的功能 
+    2.Drawer 组件的使用  <Drawer>  &  使用useState控制抽屉组件的显示与隐藏  按钮的点击事件 setOpenInput
+    3.控制抽屉组件的使用 -> pages->Profile->Edit->index
+324-个人中心-抽屉组件-基本使用功能------控制css样式 & 原盒子的层级和抽屉组件的层级 & 实现 Drawer 的显示 ！解决Bug
+325-个人中心-封装editInput组件---------(NavBar和TextArea)  &  (Edit->components->EditInpit)
+    抽屉内部封装一个单独的组件 <Drawer> sidebar={<EditList config={openListConfig} onClose={onCloseOpenList} />} </Drawer>
+    里面有NavBar和要修改的内容 & 功能；回退功能和提交功能
+326-个人中心-EditInput组件的封装--------个人信息编辑中NavBar中 传入参数 onLeftClick 如果传入了参数 那么 onLeftClick()
+    处理返回到上一页的问题  是否 history.go(-1)
+327-个人中心-判断显示昵称还是简介-------- 1.Profile->Edit->index 中 useState({ visible: false, type: '' })
+                                                                            2.修改这个 setOpen的值  控制点击昵称/内容显示对应的内容
+    3.Edit->index中传入type值  给 子组件 components->EditInpit type值   type值为 name/intro 
+    4.编辑{type === 'name' ? '昵称' : '简介'}  &  控制显示 编辑昵称/编辑简介
+    5.setOpen中是一个对象 & 控制显示隐藏 和 显示类型  &  如何判断? 点击的是昵称还是简介
+
+第三天:
+!!!328-个人中心-Textarea组件的封装---------位置：components->Textarea     组件放入位置：pages->Profile->Edit->components->EditInpit->index
+    1.简介中是文本域 并且 文本域中限制字数显示 0/100
+    2.控制文本域的字数限制 & 显示输入了多少个字数 
+    3. textarea变成受控组件 接收父组件的值? 传或者不传 设置默认参数或者为空   如果传了显示传递的数据, 不传显示空
+    4.控制父子组件的值
+329-个人中心-回显了昵称和介绍---------------页面一进入是否渲染组件 在抽屉组件加判断条件  &  useState是拿初始值进行更新
+330-个人中心-修改昵称和简介完成-------------编辑昵称或者简介提交按钮, 
+    1.onCommit: 编辑信息 提交  传递给子组件 发请求 更新  参数为 type和value
+
+332-学生反馈-http基础-------------------ip地址、端口号、域名
+333-学生反馈-ip地址的解析----------------拍照
+334-学生反馈-tcp三次握手和四次握手--------浏览器与服务器握手
+335-学生反馈-完整流程--------------------浏览器工作原理 & 重绘和回流   拍照
+
+第四天:
+336-个人中心-修改昵称和简介-自动获取光标----1.位置：components->input & components->Textarea
+    2.光标位置：textRef.current.setSelectionRange(-1, -1)
+    3.使用 useEffect 和 useRef ref <input> <Textarea> 属性绑定
+337-个人中心-修改性别和头像-抽屉组件的使用---1.Input 验证码登录不获取焦点、在编辑个人资料的输入框中获取焦点  添加autoFocus属性
+    2.修改性别：男、女、取消
+    3.位置：pages->Profile->Edit(index)->EditList(index)
+    4.控制列表抽屉 Drawer open的显示与隐藏  const [openList, setOpenList] = useState({ })
+    5，位置：pages->Profile->Edit(index)--控制男女选择的 EditList 组件
+338-个人中心-区分头像和性别的渲染----------位置：page->Profile->Edit->index   
+    1.config传递avatar, gender 参数 分别是 头像中有 拍照、本地选择、按钮点击 | 男、女、按钮点击
+    2.传递的 config 数据为 数组->对象->函数
+    3.EditList中遍历数据   &  位置：pages->Profile->Edit->components->EditList->index
+    如何控制头像渲染?  &  如何控制性别渲染?
+339-个人中心-上传头像功能完成---------------1.在pages/Profile/Edit/index中  dispatch(updateProfile('gender', 0))更新数据
+    2.ajax实现文件的上传、类型是file、必须使用formData -- onFileChange
+    3.更新头像 onUpdateAvatar 函数中 new FormData()
+    4.axios上传图片 -- url： https://blog.csdn.net/m0_45456399/article/details/121615730
+    5.上传图片步骤：获取图片，上传图片类型为file，发请求更新图片，redux更新图片
+340-个人中心-上传图片的说明---------------HTML中演示ajax上传图片功能(原生上传)
+341-个人中心-修改生日--------------------1.onBirthdayChange函数处理生日  提供onChange 拿到生日的时间、拿到生日 格式化时间、更新时间
+342-个人中心-退出功能--------------------1.显示弹窗 2.删除token(包括redux和本地) 3.跳转到登录页
+    位置：Feedback 对话框 Modal  &  pages->Profile->Edit->index
+    1.onLogout处理退出功能 Modal.alert()
+    位置：store->actions->login (移除token logout)
+    位置：store->reducers->login 
+    2.查看本地存储是否被清空  本地 & redux(组件中查看redux信息)
+【个人中心 模块完成】
+
+【小智同学】 功能? 如何实现?
+343-websocket介绍----------(小智同学)  websocket应用场景： 即时通讯(客服) | 聊天室 | 点餐
+344-websocket流程介绍------websocket原生 实现   
+    基本步骤： 1.浏览器发出链接请求 2.服务器告知链接成功 3.双方进行双向通讯 4.关闭连接
+345-小智同学-准备组件和路由---------React实现socket.io的使用
+    1.准备聊天的静态结构  
+    2.位置：pages->Profile->Chat->index  (结构和样式)
+    3.位置：App.js 中导入 Chat
+346-小智同学-基本结构与渲染---------- 聊天客服：动态渲染聊天记录列表    目标：将聊天数据存在数据状态中, 再动态渲染到页面中
+    1.《md文档》
+    2.useState     存储数据(聊天记录)
+    3.useSelector  redux获取头像信息
+347-小智同学-socket.io的初始化------ 自己封装的组件要注意 styles.root是否能得到 className
+    1.借助 useEffect  在进入页面时调用客户端库建立 socket.io 连接
+    2.yarn add socket.io-client -D
+    3.使用useEffect连接服务端, && 清除副作用(组件销毁的时候 关闭socketio的连接)
+    4.与服务端通信
+348-小智同学-给小智同学发消息--------1.把底部输入框变成受控组件 Input 中添加 onKeyDown和onChange属性
+    2.onKeyUp的时候 
+        1.需要给服务器发消息 
+        2.把自己的消息添加到消息列表中
+    2.useRef绑定变量//// ///-----把 useEffect 中的 client 暴露出来 并用 useRef 绑定到 socketIO   == socketIO.current = socketio
+    3.需要注意的 全局client在 函数组件外部 不是在Chat组件内部 如果在组件内部 那么就属于闭包 
+    【4】.回车给服务端发送消息 & 把自己的消息添加到消息列表中 & 控制台网络查看发送的消息 & 接收服务端消息显示到页面当中
+349-小智同学-监听消息并且滚动到底部--useState这个是当时的数据 、 正在执行的数据
+    1.问题：useEffect 中dispatch(getUser()) 获取用户信息  这里需要加个请求 防止页面刷新 头像丢失  
+    2.聊天后 消息会堵塞到底部 看不到  解决方法： useEffect中添加滚动的高度 chatListRef.current.scrollTop = chatListRef.current.scrollHeight
+    3. useEffect? 监听变化?
+【小智同学 功能完成】
+
+
+350-个人中心-token的判断------------位置：components->AuthRoute->indexjs
+    1.需求：path为个人中心的组件 需要登录才能访问  组件为 ProfileEdit/ProfileFeedback/Chat
+    2.封装AuthRoute  控制台清除token会拦截到登录页
+351-AuthRoute-render属性的语法------1.router提供了更复杂的使用方式  router可以不提供component，提供render   两种方式相等举例  
+    2.位置：pages->Layout->index中 例子   render={() => { <Profile></Profile>}} 等价于 components={Profile}
+    3.Layout中把权限封装成组件
+352-AuthRoute基本的封装-------------如果没有token， 登录时候会拦截到登录页
+    位置：pages->Layout->index  中  <AuthRoute path="/home/profile" component={Profile} />
+    拦截 个人信息、编辑、小智同学
+    安装插件： Auto Rename Tag  &   Auto Close Tag
+353-AuthRoute-登录跳回到拦截之前的页面----(在哪个页面登录的就要跳转到哪个页面)
+    1.判断pathname是否有值, const pathname = location.state ? location.state.from : '/home'     pages->Login
+354-history中push和replace的区别-----history.push() / history.go(-1) / history.back()
+    history.go(-1): 页面后退
+    history.go(1): 页面前进
+    history.push(): 页面跳转，并且往页面栈中添加一条记录
+    history.replace(): 页面跳转，但是不会添加一条记录，而是替换当前记录
+    push和replace区别
+        push:   如果从首页访问问答   路径为  /home ===> /home/qa   会增加记录
+        replace:如果从首页访问问答   路径为  /home/qa              不会增加记录
+355-AuthRoute-使用push替换replace-----还是路径的问题 是否被替换
+356-公司项目的流程说明-----------------拍照
+357-Token的失效处理和无感刷新----------
+    1.后端传的token为两个小时过期 | ：token访问令牌, 通过这个token就能访问项目
+    2.token过期处理：
+        重新登录(适合pc端的管理系统)
+        对于移动端资讯类的项目用户体验不好
+    3.refresh_token: 刷新令牌，没有访问的功能，通过刷新令牌能够获取到一个新的访问令牌
+    刷新令牌：有效时间比较长
+358-刷新token-判断401-----------------位置：store->utils->http
+    响应拦截器中 & token 和 刷新token
+    // 错误问题汇总==>
+    // 如果没有response
+    // 如果有response 但是状态码不为401
+    // 如果有response 但是状态码不为401 但是没有刷新token (跳到登录页 重新登录)
+    // 是401错误， 且有刷新token， 刷新token
+    // 尝试发请求， 获取新的token
+359-刷新token-功能完成---------------- 刷新用户token接口  http://geek.itheima.net/api.html#u5237u65b0u7528u6237token0a3ca20id3du5237u65b0u7528u6237token3e203ca3e
+    // 自动刷新 token & 发请求通过接口
+    // 成功：把新的 token 保存起来   1.保存到redux中 & 保存到localstorage中
+    // 失败：说明 refresh_token 失效了 & 删除token 拦截到登录页
+    《md文档》
+    无感刷新token  token刷新成功后，重新把最开始的失败的请求重新发一次   config查看  http(error.config)
+
+第五天:
+360-刷新token-失败后刷新token且重新发请求----Token的失效处理和无感刷新:《md文档》  权限控制图片
+    // 位置：store->utils->http  处理响应拦截器中的错误处理
+361-刷新token-刷新token失败的处理-----------
+    // 位置：store->utils->http  处理响应拦截器中的错误处理
+    两个小时过期后  自动刷新token
+362-刷新token-出现bug-----------------------
+363-刷新token-打断点------------------------debugger 在错误之前打断点 查看各个变量的值 就不用打印查看信息了
+364-404页面-处理定时跳转--------------------404页面  目标：实现用户访问不存在的页面路径时，所要显示错误提示页
+    位置：pages->NotFound->indexjs
+    如何制作? useState/
+365-404页面-倒计时处理----------------------useEffect中使用setTimeout倒计时处理 setInterval
+366-404-处理定时器问题----------------------两种写法
+367-首页-其他一些不常用的页面---------------渲染视频，问答、用户反馈的静态结构
+368-首页-tabs组件的基本使用-----------------组件使用 Vant 不是 antd-mobile
+    1.位置：components->Tabs->indexjs
+    2.Tabs中大量的DOM操作 useEffect中的DOM操作
+    3.动画：requestAnimationFrame
+    4.Home组件中渲染Tabs(tab栏)
+    5.准备主页的静态结构(Tabs栏) 顶部的 推荐|html.....
+369-首页-tabs组件的渲染---------------------发请求渲染频道数据 acitons中封装接口 位置store->acitons->homejs
+    步骤：
+    // 1.actions中发请求获取用户频道接口：getUserChannel 
+    // 2.在Home中发请求dispath拿数据 把频道数据存起来
+    // 3.保存用户频道到redux中  getUser
+    // 4.reducers中initialState存储初始值 判断类型type并返回 state和payload
+    // 5.Homejs中获取redux数据 useSelector
+370-首页-频道管理-获取频道数据的逻辑优化------ 我的频道 & 可选频道
+    // 频道数据的获取逻辑优化
+        1.如果用户登录了，发送请求获取该用户的频道信息
+        2.如果用户没有登录
+            从本地localstoreage中获取数据，如果本地存储了频道数据 那就可以直接获取
+        3.如果没有登录，且本地没有存储数据，发送请求获取默认的频道数据
+    // 保存频道到本地localstoreage中 位置：pages->Home->indexjs中CHANNEL_KEY存储
+    判断用户是否登录 | 没有token,从本地获取频道数据
+    登录或不登录都可以获取到频道信息 本地获取 或者 发请求获取
+371-首页-频道管理-展示频道管理组件----------
+    // 位置：pages->Home->component->Channels->indexjs
+    // Channels组件要放到Drawer抽屉组件中
+    // 图标渲染不出来 
+    // useState的使用 打开和关闭Channels组件
+    // css样式  高度100vh  背景色 白色
+372-首页-频道管理-推荐频道的渲染------------
+373-首页-lodash的使用介绍------------------jQuery：增强了DOM操作，  &   lodash：增强了js本身的能力
+    yarn add lodash
+    使用 random：  _.random(1, 3)   --- 表示1，3之前的随机数
+    防抖，节流
+    differenceBy函数
+    官网：https://www.lodashjs.com/
+374-首页-lodash的按需导入-----------------
+    1.import { differenceBy } from 'lodash'
+    2.import differenceBy from 'lodash/differenceBy'
+375-首页-频道高亮的切换-------------------Tabs栏中 index(高亮)和onChange(到哪个频道)  通过useState来控制
+376-首页-tabs组件的使用
+377-首页-编辑模块的切换---------------功能：点击进入频道/点击编辑频道      编辑和保存    点击频道可以跳到频道
+    实现：控制类的改变  控制editing使用三元运算符
+    根据editing控制文字的内容 和 文字的完成和编辑 和 控制类 和 控制图标
+378-频道管理-删除频道的功能-----------删除频道onDeleteChannel函数  注意：判断登录还是没登录  要删除本地的数据 和 redux的数据
+    如果用户登录， 需要发送请求删除频道
+    如果用户没有登录， 需要删除本地的这个频道
+    不管登录还是没登录 都要删除redux中的频道
+379-首页-频道管理-删除频道-删除逻辑优化----频道最少保留三个 &  推荐频道不可删除
+    控制推荐频道不可删除: {item.id !== 0 && (<Icon> 下面的图标 </Icon>)}
+    在 onDeleteChannel 函数中做判断
+    在 onChannelItemClick 函数中处理 // 高亮处理 判断的 i 和 index问题
+380-首页-添加功能完成---------------------登录的就发请求去添加  ?  没有登录的添加到本地就可以
+    1.onAddChannel添加频道 actions中添加请求
+    2.保存数据到redux中 和 localStoreage中
+    有token往redux中存一份  没有token往redux存一份  本地存一份
+    // 添加和删除的功能是一样的 
+381-首页-articleList的基本结构和样式-------就是在Tabs栏中放对应数量的articleList
+    pages->Home->indexjs中 Tabs组件中 遍历tabs渲染多个ArticleList
+    此节:封装ArticleList组件  ArticleList没有功能  css样式搞定
+    首页整个是Tabs组件  每个频道是一个ArtcleList组件  每个ArtcleList组件中有ArtcleItem组件(一个个小新闻)
+    根据<Md>文档准备静态结构  渲染静态结构
+382-首页-当前频道对应的文章数据------------useEffect中发请求获取数据 
+    注意：useEffect中应该是同步的  如果是异步的 返回的是Promise  返回的就不是函数了  错误
+    发请求获取数据
+383-首页-文章列表数据的渲染--------------位置: component->ArticleItem
+    type=0, 1, 3的结构  type表示图片在哪个位置
+    获取出来的数据 渲染到页面当中
+384-首页-把文章列表数据保存到redux中的分析----ArticleList中 获取文章列表数据
+    获取频道1下最新的文章数据
+        request({channel_id: 1,  timestamp: Date.now() })
+    抖音中上拉拿的数据是最新的， 下拉拿到的是加载好的视频
+    redux中文章的数据格式
+    加载的时候可以根据时间戳加载文章
+    article: {
+        频道的id:{ list: [文章的列表],   timestamp: 时间戳  }
+        频道的id2:{ list: [文章的列表],   timestamp: 时间戳  }
+        频道的id3:{ list: [文章的列表],   timestamp: 时间戳  }
+    }
+385-首页-把文章列表保存到redux中-------
+    actions中getArticleList函数获取文章列表 传入(channel_id, timestamp)
+    步骤：ArticleList中dispatch(getArticleList(channel_id, timestamp))
+    在actions里面提供getArticleList发请求 然后把值传到reducers中
+    在reducers中处理SAVE_ARTICLE_LIST
+    把数据传到redux里面去
+386-首页-渲染文章列表-----------------ArtcieList
+    通过useSelector从redux中获取数据  通过ChannelId拿到对应的频道数据
+    if(current) return   如果文章有数据就不用发请求了
+    if(!current) return null  如果不是当前频道、没有文章数据 先不用渲染
+    此节：把数据放redux中并且把列表渲染出
+387-首页-下拉刷新功能与antd-mobile v5版本----
+    下拉刷新 -- <PullToRefresh>组件的使用
+    github中antd-mobile 的v5版本
+    https://blog.csdn.net/weixin_51601829/article/details/124501651   v2和v5的转换
+    总结：安装v5 《md文档》 
+388-首页-上拉加载更多-infiniteScroll组件的使用------ 
+    infiniteScroll组件的使用
+    位置ArticleList
+389-首页-上拉加载更多数据-------------------
+    上拉刷新加载更多数据 ？ onPullToRefresh函数中处理
+    总结：dispatch(getArticleList)    dispatch一个actions 多传了一个参数 true
+    acionts中多接收了一个参数 loadMore = false 默认为false
+    加载更多数据?
+390-首页-上拉加载更多数据-处理--------------
+    总结：上拉加载用loadMore  dispatch一个actions 需要传递一个true
+        actions中多接收一个loadMore  把loadMore传递到reducers中 
+        reducers中做判断 如果是loadMore就追加数据 否则直接返回list
+    最后在ArticleList中 如果没有时间戳 就setHasMore(false) 没有更多数据
+391-首页-上拉加载更多 整理---------------
+392-首页-记录滚动条的位置----------------css样式  element.style { 100% 和 100vh }  通过样式去控制
+
+393-hooks中的useReducer----------------useReducer的使用(React官网使用教程)
+    基础Hook:
+        useState
+        useEffect
+        useContext
+    额外的Hook:
+        useReducer
+        useCallback
+        useMemo
+        useRef
+    reducer重写useState一节计数器示例:  React官网中Hook API 索引
+    useReducer配置hooks使用 把父组件的值可以传递到所有子组件当中
+    const [state, dispatch] = useReducer(reducer, initValue)
+    父组件根据type类型做相应功能  子组件dispatch到父组件
+    reducer就是redux  只不过reducer更容易使用   不像redux那么多的概念  
+    
+    //    useContext useReducer 代替 redux
+    // 主要思想：
+        1.使用redux的action以及dispatch方法将数据存在一个组件中
+        2.使用createContext，useContext进行父子组件传值
+
+394-redux配合class组件使用功能-----------class组件中使用redux  
+    3.rcc生成class组件
+    1.class组件中无法使用useDispatch和useSelector 这样的Hook     在函数组件中可以使用
+    2.需要使用高阶组件 connect 
+    4.connect是一个函数，接收两个参数，返回一个函数
+    5.返回的函数包裹组件，组件中就可以获取到redux中的数据了
+        class Node extends React.component { render(){console.log( this.props ) } }  
+        export default connect()(Node)
+        在this.props中可以获取到dispatch
+        解释：
+        connect接收两个参数：
+            1.mapStateToProps 可以把redux中状态的映射给组件的props 类似于 useSelector
+            2.mapDispatchToProps 可以是空
+    useDispatch和useSelector的使用
+        使用Hooks是使用哪个属性去拿就行  拉
+        使用class是组件推过来去使用     推
+395-intersectionObserver的使用------------实现图片懒加载API  DOM提供的API
+    const oberver= new intersectionObserver(function ) {}
+396-图片懒加载的组件封装-------------------位置：components->Image
+    图片懒加载的封装  在首页频道中 向下滑动  图片会慢慢加载出来 
+397-MoreAction-数据分析--------------------
+    需求：
+    1.登录之后，主页频道，不感兴趣、反馈垃圾内容、拉黑作者 
+    2.点击反馈垃圾内容实现二级弹窗
+    举报的❌渲染： 位置：components->ArticleItem
+    通过ActicleList向ArticleItem组件中传递 art_id,  type,  title,  images,  aut_name,  comm_count,  pubdate,  isLogin,  onFeedback  属性
+    const articleItemProps = {  art_id,  type,  title,  aut_name,  comm_count,  pubdate,  images,  isLogin  }
+398-MoreAction-控制弹窗的显示与隐藏---------下载redux工具(谷歌)
+    在ActicleItem中点击图标的按钮 回调函数 在ActicleList中处理 dispatch
+    在redux中处理  visible为ture还是false  && 获取AcitcleId
+399-MoreAction-控制显示与隐藏---------------
+    1.在redux中，需要新增一个数据   moreAction: { visible: false, acticleId: '', auth_id: ''}
+    2.在actions新增一个actions  新增了一个 setMoreActions 函数
+    3.reducer中处理这个actions
+    4.articleItem组件中，点击举报按钮，需要显示弹窗
+    5.在MoreActions中，点击遮罩，onClose事件，关闭弹窗
+        const onClose = () => {
+        dispatch(
+        setMoreAction({
+            id: 0,
+            visible: false
+        })
+        )
+    }
+400-拉黑功能-举报文章
+    根据接口文档 在actions中添加请求函数 unLinkArticle  发请求
+    redux中的使用
+401-不喜欢文章功能完成---- 处理redux &  反馈垃圾内容(手持机)
+402-举报功能-功能完成---- 渲染举报文章的list ** 接口文档

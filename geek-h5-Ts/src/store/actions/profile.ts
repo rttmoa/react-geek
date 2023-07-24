@@ -3,8 +3,9 @@ import { User, Profile, ProfileAction } from '../reducers/profile'
 import { RootThunkAction } from '..'
 
 
-/** #### 保存用户信息  @param {*} payload ---*/
+// FIXME: 保存用户信息 reducers
 export const saveUser = (payload: User): ProfileAction => {/**--- actionCreator: 创建action  必须要符合 ProfileAction类型 ---**/
+  // console.log(payload) // {id: '1111', name: '黑马程序员(改不了)', photo: 'http://ge323780.jpg', intro: 'kkkk', art_count: 4714, …}
   return {
     type: 'profile/user',
     payload: payload,
@@ -19,7 +20,9 @@ export const getUser = (): RootThunkAction => {
   }
 }
 
-export const saveProfile = (payload: Profile): ProfileAction => {// 传递的Profile是不可选的
+// FIXME: 存储个人信息 reducers
+export const saveProfile = (payload: Profile): ProfileAction => { 
+  // console.log(payload) // {id: '111', photo: 'ht6.jpg', name: '黑马程序员(改不了)', intro: "存储个人信息 payload", gender: 1, …} 
   return {
     type: 'profile/profile',
     payload,
