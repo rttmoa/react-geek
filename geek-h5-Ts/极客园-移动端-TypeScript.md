@@ -14,25 +14,19 @@
 
 ##### 单位 vw  /  控制台redux查看  /  控制台Network查看websocket  /  lodash库
 
-
-
 js/jsx/ts/tsx/.d.ts
 js: 写js功能和react组件
 js--> ts (工具类)
 js--> tsx (组件必须用tsx)
 .d.ts: typescript类型声明文件
 
-此项目改造: js->ts,  jsx->tsx
-
-QA-index备份中==> 断言的使用?  改造storage文件?
+此项目改造: js->ts,  jsx->tsx 
 
 type不能继承 interface可以继承
 
 redux中的Dispatch是做类型校验的、传参dispatch({type: ''})、必须要有type类型
 
-先改reducers再改actions
-
-/**直接看MD笔记即可*/
+先改reducers再改actions 
 
 项目代码改动==>(公共组件)
 1.NavBar -> 2.Icon -> 3.在QA中测试组件功能 -> 4.Img -> 5.Input -> 6.Testarea
