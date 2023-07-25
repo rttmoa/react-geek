@@ -30,7 +30,7 @@ const store = createStore(reducer, {
 // 获取RootState的类型
 // typeof: 获取store.getState的类型
 // ReturnType 获取返回值的类型
-export type RootState = ReturnType<typeof store.getState>  
+export type RootState = ReturnType<typeof store.getState>
 
 
 // URL: https://redux.js.org/usage/usage-with-typescript#type-checking-redux-thunks

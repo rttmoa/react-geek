@@ -1,6 +1,7 @@
 // 参考： https://github.com/ant-design/ant-design-mobile/blob/v2/components/style/mixins/hairline.less
 // 原理： 伪元素 + transform 缩放
 //       伪元素::after或::before是独立于当前元素，可以单独对其缩放而不影响元素本身的缩放
+
 @mixin scale-hairline-common($color, $top, $right, $bottom, $left) {
   content: '';
   position: absolute;

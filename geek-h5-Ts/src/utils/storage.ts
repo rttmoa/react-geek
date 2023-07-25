@@ -17,12 +17,12 @@ type Channels = {
 
 // FIXME: TOKEN数据的 获取、存储、删除
 
-/** #### TODO: 将Token信息存入缓存 @param {Object} tokenInfo 从后端获取到的 Token 信息 ---*/
+/** #### 存储 TOKEN ---*/
 export const setTokenInfo = (tokenInfo: Token) => {
   localStorage.setItem(TOKEN_KEY, JSON.stringify(tokenInfo))
 }
 
-/** #### TODO: 从本地缓存中获取 Token 信息 ---*/
+/** #### 获取 TOKEN ---*/
 export const getTokenInfo = (): Token => {
   // JSON.parse() 参数1必须是string类型
   // localStorage.getItem() 获取到的结果类型  string | null
@@ -31,12 +31,12 @@ export const getTokenInfo = (): Token => {
   return JSON.parse(localStorage.getItem(TOKEN_KEY)!) || {} // 这里不会为 null,  如果是null 返回的是 {}  |  非空断言的使用 | QA
 }
 
-/** #### TODO: 删除本地缓存中的 Token 信息 */
+/** #### 删除 TOKEN */
 export const removeTokenInfo = () => {
   localStorage.removeItem(TOKEN_KEY)
 }
 
-/** #### TODO: 判断本地缓存中是否存在 Token 信息 ---*/
+/** #### 判断 是否有TOKEN ---*/
 export const hasToken = () => { // 会有类型推断：const hasToken: () => boolean   返回的就是布尔值
   return !!getTokenInfo().token
 }
@@ -46,17 +46,17 @@ export const hasToken = () => { // 会有类型推断：const hasToken: () => bo
 
 // FIXME: 频道数据的 获取、存储、删除
 
-/** #### TODO: 保存频道数据到本地 ---*/
+/** ####  存储 频道数据 */
 export const setLocalChannels = (channels: Channels) => {
   localStorage.setItem(CHANNEL_KEY, JSON.stringify(channels))
 }
 
-/** #### TODO: 获取本地的频道数据，，，，如果没有数据，不要默认为空数组 */
+/** ####  获取 频道数据  */
 export const getLocalChannels = (): Channels => {
   return JSON.parse(localStorage.getItem(CHANNEL_KEY)!) // 断言， 返回的不是空
 }
 
-/** #### TODO: 删除本地的频道数据 ---*/
+/** ####  删除 频道数据  */
 export const removeLocalChannels = () => {
   localStorage.removeItem(CHANNEL_KEY)
 }
@@ -66,17 +66,17 @@ export const removeLocalChannels = () => {
 
 // FIXME: 搜索关键词的 获取、存储、删除
 
-/** #### TODO: 从缓存获取搜索历史关键字 ---*/
+/** #### 获取 历史关键字 ---*/
 export const getLocalHistories = (): string[] => {
   return JSON.parse(localStorage.getItem(SEARCH_HIS_KEY)!) || []
 }
 
-/** #### TODO: 将搜索历史关键字存入本地缓存 ---*/
+/** #### 存储 历史关键字 ---*/
 export const setLocalHistories = (histories: string[]) => {
   localStorage.setItem(SEARCH_HIS_KEY, JSON.stringify(histories))
 }
 
-/** #### TODO: 删除本地缓存中的搜索历史关键字 ---*/
+/** #### 删除 历史关键字 ---*/
 export const removeLocalHistories = () => {
   localStorage.removeItem(SEARCH_HIS_KEY)
 }

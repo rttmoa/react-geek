@@ -25,7 +25,7 @@ const ProfileFeedback = () => {
           {/* ImagePicker Ts组件源码 - 可传值 */}
           <ImagePicker files={['1', '2', '3']} multiple />
           <p className="image-picker-desc">最多6张, 单个图片不超过20M。</p>
-        </div>  
+        </div>
 
         <div className="feedback-item">
           <p className="title">联系方式</p>

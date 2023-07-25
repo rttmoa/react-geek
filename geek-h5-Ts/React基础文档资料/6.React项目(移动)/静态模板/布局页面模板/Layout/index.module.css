@@ -1,0 +1,14 @@
+.root {
+  height: 100%;
+}
+.root :global .tab-bar {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  height: 46px;
+  background-color: #f7f8fa;
+}
+.root :global .tab-bar .icon {
+  color: #fc6627;
+}/*# sourceMappingURL=index.module.css.map */

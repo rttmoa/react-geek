@@ -2,7 +2,9 @@
 
 .root {
   height: 100%;
-  :global {
+
+  :global {  
+    // 底部首页、测试、问答、视频、我的
     .tabbar {
       position: fixed;
       z-index: 1;
@@ -15,10 +17,12 @@
       background-color: #f7f8fa;
       @include hairline(top, #f0f0f0);
 
+      // 根据地址栏和对象属性相匹配：<div className={classNames( 'tabbar-item', location.pathname === item.path ? 'tabbar-item-active' : "" )}
       &-item-active {
         color: #fc6627;
       }
 
+      // 每一个tab
       &-item {
         flex: 1;
         display: flex;

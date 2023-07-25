@@ -1,0 +1,14 @@
+.root {
+  height: 100%;
+  padding: 0 16px;
+  overflow-y: scroll;
+}
+.root :global .articles {
+  padding-bottom: 50px;
+}
+.root :global .article-item {
+  position: relative;
+  color: #323233;
+  font-size: 14px;
+  background-color: #fff;
+}/*# sourceMappingURL=index.module.css.map */

@@ -8,7 +8,7 @@ const tabBar = [
     { 
       title: '测试',
       icon: 'iconbtn_qa',
-      path: '/home/total',
+      path: '/home/intro',
     },
     { 
       title: '问答',

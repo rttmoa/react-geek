@@ -79,13 +79,11 @@ instance.interceptors.response.use((response) => {
       // store.dispatch({ type: 'login/token', payload: tokenInfo})
       store.dispatch(saveToken(tokenInfo))
       setTokenInfo(tokenInfo)
-
       // token刷新成功后，重新把最开始失败的请求重新发一次
       return instance(config)
     } catch {
       // 刷新token失败, 刷新token过期
       // store.dispatch 类型就是 Dispath,,,要求参数必须有type才行
-
       removeTokenInfo()
       store.dispatch(logout({ token: '', refresh_token: '' }))
       // 跳转到登录页

@@ -4,6 +4,8 @@
   :global {
     .video-list {
       padding: 0 16px;
+      // FIXME: 撑起底部最后一个盒子
+      padding-bottom: 50px;
     }
     .video-item {
       position: relative;
@@ -17,9 +19,14 @@
       padding-bottom: 5px;
     }
 
+    img {
+      width: 100%;
+      border-radius: 14px;
+    }
+
     video {
       width: 100%;
-      border-radius: 4px;
+      border-radius: 14px;
     }
 
     span {

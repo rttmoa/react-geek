@@ -4,9 +4,9 @@
   position: relative;
   z-index: 1;
   height: 100%;
-
+  background-color: #f0f0f0;
+  
   :global {
-    // ---
     .tabs {
       display: flex;
       flex-direction: column;
@@ -24,6 +24,7 @@
       position: relative;
       display: flex;
       height: 100%;
+      // TODO: 水平滚动
       overflow-x: auto;
       padding: 0 8px;
       box-sizing: content-box;
@@ -33,6 +34,7 @@
         display: none;
       }
 
+      // 每一个频道
       .tab {
         position: relative;
         flex: 1 0 auto;
@@ -41,9 +43,9 @@
         justify-content: center;
         padding: 0 12px;
         font-size: 15px;
-        color: #9ea1ae;
-        // line-height: 44px;
+        color: #9ea1ae; 
 
+        // 选中的频道，字体变大，字体加粗
         &.active {
           font-size: 18px;
           color: #333;
@@ -51,11 +53,12 @@
         }
       }
 
+      // 选中tab后底部红色的线
       .tab-line {
         // 38px 是动态计算的
         // transform: translateX(38px) translateX(-50%);
         transform: translateX(23px);
-        transition-duration: 0.3s;
+        transition-duration: 0.5s;
         background-color: #fc6627;
         width: 30px;
         height: 3px;

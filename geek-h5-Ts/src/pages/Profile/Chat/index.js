@@ -94,13 +94,14 @@ const Chat = () => {
 
 
   return (
+    // .root {position: fixed; padding: 46px 0 50px 0;}
     <div className={styles.root}>
-      {/* 顶部导航栏 */}
+
       <NavBar className="fixed-header">小智同学</NavBar>
 
-      {/* 聊天记录列表 */}
+      {/* 聊天记录列表 {height: 100%; overflow-y: scroll} */}
       <div className="chat-list" ref={listRef}>
-        {messageList.map((item, index) => {
+        {messageList.map((item, index) => { 
           if (item.type === 'robot') {
             return (
               <div key={index} className="chat-item">
@@ -110,6 +111,7 @@ const Chat = () => {
             )
           } else {
             return (
+              // .user { flex-direction: row-reverse; }
               <div key={index} className="chat-item user">
                 <img src={photo} alt="" />
                 <div className="message">{item.text}</div>
@@ -119,7 +121,6 @@ const Chat = () => {
         })}
       </div>
 
-      {/* 底部消息输入框 */}
       <div className="input-footer">
         <Input
           className="no-border"

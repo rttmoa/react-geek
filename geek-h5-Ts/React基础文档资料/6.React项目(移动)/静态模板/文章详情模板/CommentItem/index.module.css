@@ -1,0 +1,88 @@
+.root {
+  display: flex;
+  padding: 5px 0 16px 16px;
+}
+.root :global .avatar {
+  width: 34px;
+  height: 34px;
+  margin-right: 12px;
+}
+.root :global .avatar img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.root :global .comment-info {
+  flex: 1;
+  padding-right: 16px;
+}
+.root :global .comment-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 34px;
+  font-size: 15px;
+  color: #333;
+}
+.root :global .comment-info-header .name {
+  font-weight: 500;
+}
+.root :global .thumbs-up {
+  font-size: 14px;
+}
+.root :global .thumbs-up .icon {
+  margin-left: 8px;
+}
+.root :global .follow {
+  line-height: 29px;
+  color: #de644b;
+  font-size: 15px;
+  text-align: center;
+}
+.root :global .followed {
+  width: 64px;
+  height: 29px;
+  border-radius: 15px;
+  color: #a5a6ab;
+  background-color: #f7f8fa;
+}
+.root :global .comment-content {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #3a3948;
+  font-size: 16px;
+}
+.root :global .comment-footer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.root :global .comment-footer .close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -7px;
+  font-size: 14px;
+}
+.root :global .replay {
+  height: 25px;
+  padding: 6px 8px;
+  margin-right: 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  background-color: #f7f8fa;
+}
+.root :global .replay .icon {
+  position: relative;
+  top: -1px;
+  width: 11px;
+  height: 10px;
+  margin-left: 6px;
+}
+.root :global .comment-time {
+  flex: 1;
+  color: #a5a6ab;
+  font-size: 12px;
+}/*# sourceMappingURL=index.module.css.map */

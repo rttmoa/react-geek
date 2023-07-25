@@ -12,11 +12,7 @@ const Publish = lazy(() => import('./pages/Publish'))
 function App () {
   return (
     <HistoryRouter history={history}>
-      <Suspense
-        fallback={
-          <div style={{textAlign: 'center',marginTop: 200}}> loading...</div>
-        }
-      >
+      <Suspense fallback={<div style={{textAlign: 'center',marginTop: 200}}> loading...</div>}>
         <Routes>
           {/* 需要鉴权的路由 */}
           <Route path="/" element={

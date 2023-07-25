@@ -21,7 +21,6 @@ const Profile = () => {
   // 泛型参数2：指定返回值的类型
   // const user = useSelector<RootState, RootState['profile']['user']>(state => state.profile.user)
   const user = useSelector((state: RootState) => state.profile.user)
-  // console.log(user)
 
 
   useEffect(() => {
@@ -29,23 +28,25 @@ const Profile = () => {
   }, [dispatch]);
 
   
+
   return (
+    // FIXME: 修改 height
     <div className={styles.root}>
+
       <div className="profile">
 
-        {/* 顶部个人信息区域 */}
         <div className="user-info">
           <div className="avatar">
             <img src={user.photo} alt="" />
           </div>
           <div className="user-name">{'UserName' || user.name}</div>
-          <Link to="/profile/edit"><span className='text'>个人信息</span><Icon type="iconbtn_right" /> </Link>
+          <Link to="/profile/edit"><span className='text'>个人信息 {/* {">"} */}</span><Icon type="iconbtn_right" /> </Link>
         </div>
 
-        {/* 今日阅读区域 */}
-        <div className="read-info"><Icon type="iconbtn_readingtime" />今日阅读<span>34</span> 分钟</div>
+        <div className="read-info">
+          <Icon type="iconbtn_readingtime" />今日阅读<span>34</span> 分钟
+        </div>
 
-        {/* 统计信息区域 */}
         <div className="count-list">
           <div className="count-item">
             <p>{user.art_count}</p>
@@ -90,7 +91,7 @@ const Profile = () => {
       <div className="more-service">
         <h3>更多服务</h3>
         <div className="service-list">
-          <div className="service-item" onClick={() => history.push('/profile/feedback')} >
+          <div className="service-item" onClick={() => history.push('/profile/feedback')}>
             <Icon type="iconbtn_feedback" />
             <div style={{color: '#4119f4'}}>用户反馈</div>
           </div>

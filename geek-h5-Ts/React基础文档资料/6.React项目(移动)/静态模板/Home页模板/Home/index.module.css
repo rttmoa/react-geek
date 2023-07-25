@@ -1,0 +1,56 @@
+.root {
+  height: 100%;
+}
+.root :global .tabs {
+  height: 100%;
+  padding: 44px 0 50px 0;
+}
+.root :global .tabs .adm-tabs-header {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  height: 44px;
+  width: calc(100vw - 86px);
+  background-color: #fff;
+}
+.root :global .tabs .adm-tabs-tab {
+  line-height: 25px;
+  color: #9ea1ae;
+  font-size: 15px;
+}
+.root :global .tabs .adm-tabs-tab-active {
+  color: var(--adm-color-text);
+  font-size: 18px;
+}
+.root :global .tabs .adm-tabs-tab-line {
+  height: 3px;
+  border-radius: 2px;
+}
+.root :global .tabs .adm-tabs-content {
+  height: 100%;
+  padding: 0;
+}
+.root :global .tabs-opration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 86px;
+  height: 44px;
+  padding: 0 14px;
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+}
+.root :global .tabs-opration .icon {
+  color: #9ea1ae;
+  font-size: 18px;
+}
+.root :global .tabs-opration .icon:first-child {
+  margin-right: 21px;
+}
+
+:global .channel-popup .adm-popup-body {
+  overflow-y: scroll;
+}/*# sourceMappingURL=index.module.css.map */

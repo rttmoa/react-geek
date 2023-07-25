@@ -1,0 +1,96 @@
+.root :global .navbar {
+  --height: 52px;
+}
+.root :global .navbar .adm-nav-bar-title {
+  height: 36px;
+  padding-left: 0;
+}
+.root :global .navbar .adm-nav-bar-left,
+.root :global .navbar .adm-nav-bar-right {
+  flex: unset;
+}
+.root :global .navbar .adm-nav-bar-right {
+  font-size: 16px;
+}
+.root :global .navbar .adm-search {
+  height: 100%;
+  --border-radius: 18px;
+}
+.root :global .navbar .adm-search-input-box {
+  height: 100%;
+  border: none;
+}
+.root :global .history {
+  padding: 0 16px;
+}
+.root :global .history .history-header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 19px;
+  color: #a5a6ab;
+}
+.root :global .history .history-header .icon {
+  font-size: 16px;
+  margin-right: 6px;
+}
+.root :global .history .history-list {
+  color: #333333;
+}
+.root :global .history .history-list .history-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 12px 0;
+  font-size: 13px;
+}
+.root :global .history .history-list .history-item span {
+  flex: 1;
+}
+.root :global .history .history-list .history-item .icon {
+  color: #999;
+}
+.root :global .history .history-list .history-item:first-child {
+  padding-top: 0;
+}
+.root :global .history .history-list .divider {
+  display: inline-block;
+  height: 16px;
+  width: 1px;
+  margin: 0 16px;
+  vertical-align: middle;
+  background-color: #bfc2cb;
+}
+.root :global .search-result {
+  padding: 0 20px;
+  display: none;
+}
+.root :global .search-result .result-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 10px 0;
+  font-size: 14px;
+}
+.root :global .search-result .result-item .icon {
+  margin-right: 4px;
+  font-size: 12px;
+}
+.root :global .search-result .result-item .result-value {
+  flex: 1;
+}
+.root :global .search-result .result-item .result-value span {
+  color: red;
+}
+.root :global .search-result.show {
+  display: block;
+}
+.root :global .text-overflow {
+  word-break: break-all;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}/*# sourceMappingURL=index.module.css.map */
