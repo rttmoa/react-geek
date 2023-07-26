@@ -10,7 +10,7 @@ const path = require('path')  //282-webpack在node环境下运行 可以导入no
  * 2.后处理器：postcss  
  * 3.脚手架集成autoprefixer:自动添加前缀  -webkit-transform -moz- 
  * pxtorem,
- * pxtoviewport 
+ * pxtoviewport
   */
 /**--- 
  * customize-cra、https://www.jianshu.com/p/568832790592
