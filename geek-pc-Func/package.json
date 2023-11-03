@@ -2,6 +2,7 @@
   "name": "geek-pc",
   "version": "0.1.0",
   "private": true,
+  "description": "NODEJS_V16.20.1 && yarn start",
   "dependencies": {
     "antd": "^4.16.13",
     "axios": "^0.24.0",

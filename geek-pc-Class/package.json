@@ -2,6 +2,12 @@
   "name": "geek-pc-bytts",
   "version": "0.1.0",
   "private": true,
+  "description": "NODEJS_V16.20.1 && yarn start",
+  "scripts": {
+    "start": "set PORT=7001 && node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
+  },
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
@@ -61,11 +67,6 @@
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
-  },
-  "scripts": {
-    "start": "set PORT=7001 && node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": [

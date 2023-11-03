@@ -8,8 +8,9 @@ import { hasToken } from '@/utils/storage'
 // 2. 源码
 // 3. 积累
 interface Props extends RouteProps {
-  //component :React.ReactElement()  // JSX类型
-  component: React.ComponentType<any>  // 表示只能传组件
+  // component :React.ReactElement()  // JSX类型
+  // component: React.ComponentType<any> // 表示只能传组件
+  component: any
 }
 
 /** ####   */

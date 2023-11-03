@@ -7,7 +7,6 @@
 ### 二、环境参数
 
 1. **前端技术：`React17 + React-Hooks + React-Router-v5 + Redux4 +  antd-mobile-v5 + typescript + sass + formik + lodash + socket + yup`**
-2. **后端技术：`网络请求`**
 
 ### 三、项目业务
 

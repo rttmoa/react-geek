@@ -1,1 +1,0 @@
-cmd /k "cd /d    E:\Project\React\geek\geek-h5-Ts    && npm start" 
