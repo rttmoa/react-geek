@@ -2,9 +2,7 @@ const path = require('path')
 const { whenProd, getPlugin, pluginByName } = require('@craco/craco')
 
 
-
 module.exports = {
-  // webpack 配置
   webpack: {
     // 配置别名
     alias: {
